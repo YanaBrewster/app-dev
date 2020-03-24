@@ -8,7 +8,7 @@ const bcryptjs = require('bcryptjs');
 const config = require('./config.json'); // store creditials
 const Comment = require('./models/comment.js');
 const Member = require('./models/member.js');
-const Portfolio = require('./models/portfolio.js');
+// const Portfolio = require('./models/portfolio.js');
 
 const port = 3000;
 
