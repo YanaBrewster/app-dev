@@ -12,4 +12,4 @@ const memberSchema = new mongoose.Schema({
 
 });
 module.exports = mongoose.model('Member', memberSchema);
-// Yannas code ends
+// Yanas code ends

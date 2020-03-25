@@ -41,7 +41,9 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(cors());
 
 // =============================================================================
-// Yanas code for register member
+// Yanas code
+
+// register a member
 
 app.post('/registerMember', (req,res) =>{
   //checking if member is found in the db already
@@ -61,7 +63,8 @@ app.post('/registerMember', (req,res) =>{
       });
 
       member.save().then(result =>{
-        res.send(result);
+        // security measures
+        res.send('Your account has been created, please login to activate your account');
       }).catch(err => res.send(err));
     }
   })
@@ -75,7 +78,7 @@ app.get('/allMembers', (req,res) =>{
   })
 });
 
-// login the member
+// login a member
 
 app.post('/loginMember', (req,res) =>{
   Member.findOne({username:req.body.username},(err,memberResult) => {
@@ -86,10 +89,17 @@ app.post('/loginMember', (req,res) =>{
         res.send('not authorized');
       }
     } else {
-      res.send('user not found. Please register');
+      res.send('Member not found. Please register');
     }
   });
 });
+
+// logout member
+
+
+
+
+
 //  Yanas code ends
 // =============================================================================
 
