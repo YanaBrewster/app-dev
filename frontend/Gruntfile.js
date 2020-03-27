@@ -60,9 +60,9 @@ module.exports = function(grunt) {
       },
     },
     // grunt-contrib-jshint
-    jshint: {
-      all: ['Gruntfile.js', 'js/script.js']
-    }
+    // jshint: {
+    //   all: ['Gruntfile.js', 'js/script.js']
+    // }
   });
 
   // Load the plugin that provides tasks.
@@ -74,7 +74,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
 
   // Default task(s).
-  grunt.registerTask('default', ['sass'],['jshint']);
+  grunt.registerTask('default', ['sass']);
   grunt.registerTask('ugly', ['cssmin'], ['uglify']);
 
 };

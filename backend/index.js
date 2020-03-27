@@ -1,6 +1,7 @@
 // Yanas set up code
 const express = require('express');
 const app = express();
+const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -10,7 +11,7 @@ const Comment = require('./models/comment.js');
 const Member = require('./models/member.js');
 const Portfolio = require('./models/portfolio.js');
 
-const port = 3000;
+const port = 5000;
 
 app.get('/', (req, res) => res.send('Hello World from Hayley, Rahul and Yana!'))
 

@@ -9,10 +9,40 @@
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
 </head>
 <body>
-
-<button id="viewMembersBtn" type="button" class="btn btn-info">All Members</button>
-<div id="membersCards">
-
+  <!-- Hayley's code -->
+  <div class="header">
+    <img src="images/logo.png" class="logo" alt="logo">
+    <div class="nav">
+      <div class="signUpButton">Sign Up!</div>
+      <div class="signInButton">Login</div>
+    </div>
+  </div>
+  <div id="landingPage">
+    <div class="landingPage-banner">
+      <!-- <img src="images/BarneyBrewsterBanner.jpg" alt="Barney Brewster Banner"> -->
+    </div>
+    <div class="filterDropdown">
+      <div class="input-group mb-3">
+        <select class="custom-select" id="filterDropdown-byPrice">
+          <option selected>Price</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </div>
+      <div class="input-group mb-3">
+        <select class="custom-select" id="filterDropdown-byCategory">
+          <option selected>Category</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </div>
+      <div>Search</div>
+    </div>
+    <div id="productsDeck"></div>
+  </div>
+  <!-- Hayley's code ends -->
 </div>
 <script src="node_modules\jquery\dist\jquery.min.js"></script>
 <script src="node_modules\popper.js\dist\umd\popper.min.js"></script>

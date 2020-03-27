@@ -66,6 +66,40 @@ p {
 .nav-font {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
+.logo {
+  width: 200px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem;
+  height: 60px;
+}
+
+.nav {
+  width: 300px;
+  justify-content: space-evenly;
+}
+
+.signUpButton {
+  color: white;
+  background-color: darkslategrey;
+  padding: 6px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.signInButton {
+  padding: 6px 15px;
+  cursor: pointer;
+}
+
+.landingPage-banner {
+  background-image: url("../images/BarneyBrewsterBanner.jpg");
+  background-size: cover;
+  height: 30vh;
 }
 
 /*# sourceMappingURL=style.css.map */
