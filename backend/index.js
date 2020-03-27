@@ -42,7 +42,9 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(cors());
 
 // =============================================================================
-// Yanas code for register member
+// Yanas code
+
+// register a member
 
 app.post('/registerMember', (req,res) =>{
   //checking if member is found in the db already
@@ -62,7 +64,8 @@ app.post('/registerMember', (req,res) =>{
       });
 
       member.save().then(result =>{
-        res.send(result);
+        // security measures
+        res.send('Your account has been created, please login to activate your account');
       }).catch(err => res.send(err));
     }
   })
@@ -76,7 +79,7 @@ app.get('/allMembers', (req,res) =>{
   })
 });
 
-// login the member
+// login a member
 
 app.post('/loginMember', (req,res) =>{
   Member.findOne({username:req.body.username},(err,memberResult) => {
@@ -87,10 +90,46 @@ app.post('/loginMember', (req,res) =>{
         res.send('not authorized');
       }
     } else {
-      res.send('user not found. Please register');
+      res.send('Member not found. Please register');
     }
   });
 });
+
+
+// add an artwork to portfolio
+
+app.post('/addPortfolio', (req,res) =>{
+  //checking if portfolio is found in the db already
+  Portfolio.findOne({name:req.body.title},(err,portfolioResult)=>{
+    if (portfolioResult){
+      res.send('Artwork already added');
+    } else{
+      const portfolio = new Portfolio({
+        _id : new mongoose.Types.ObjectId,
+        title : req.body.title,
+        description : req.body.description,
+        image : req.body.image,
+        category : req.body.category,
+        price : req.body.price,
+        memberId : req.body.memberId
+      });
+
+      portfolio.save().then(result =>{
+        res.send(result);
+      }).catch(err => res.send(err));
+    }
+  })
+});
+
+// get all portfolios
+
+app.get('/allPortfolios', (req,res) =>{
+  Portfolio.find().then(result =>{
+    res.send(result);
+  })
+});
+
+
 //  Yanas code ends
 // =============================================================================
 
