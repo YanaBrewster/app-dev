@@ -94,10 +94,39 @@ app.post('/loginMember', (req,res) =>{
   });
 });
 
-// logout member
 
+// add an artwork to portfolio
 
+app.post('/addPortfolio', (req,res) =>{
+  //checking if portfolio is found in the db already
+  Portfolio.findOne({name:req.body.title},(err,portfolioResult)=>{
+    if (portfolioResult){
+      res.send('Artwork already added');
+    } else{
+      const portfolio = new Portfolio({
+        _id : new mongoose.Types.ObjectId,
+        title : req.body.title,
+        description : req.body.description,
+        image : req.body.image,
+        category : req.body.category,
+        price : req.body.price,
+        memberId : req.body.memberId
+      });
 
+      portfolio.save().then(result =>{
+        res.send(result);
+      }).catch(err => res.send(err));
+    }
+  })
+});
+
+// get all portfolios
+
+app.get('/allPortfolios', (req,res) =>{
+  Portfolio.find().then(result =>{
+    res.send(result);
+  })
+});
 
 
 //  Yanas code ends
