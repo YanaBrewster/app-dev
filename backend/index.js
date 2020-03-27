@@ -8,7 +8,7 @@ const bcryptjs = require('bcryptjs');
 const config = require('./config.json'); // store creditials
 const Comment = require('./models/comment.js');
 const Member = require('./models/member.js');
-// const Portfolio = require('./models/portfolio.js');
+const Portfolio = require('./models/portfolio.js');
 
 const port = 3000;
 
@@ -40,10 +40,8 @@ app.use(bodyParser.urlencoded({extended:false}));
 
 app.use(cors());
 
-// =============================================================================
+// register a member ============================================================
 // Yanas code
-
-// register a member
 
 app.post('/registerMember', (req,res) =>{
   //checking if member is found in the db already
@@ -70,7 +68,8 @@ app.post('/registerMember', (req,res) =>{
   })
 });
 
-// get all members
+// get all members =============================================================
+// Yanas code
 
 app.get('/allMembers', (req,res) =>{
   Member.find().then(result =>{
@@ -78,7 +77,8 @@ app.get('/allMembers', (req,res) =>{
   })
 });
 
-// login a member
+// login a member ==============================================================
+// Yanas code
 
 app.post('/loginMember', (req,res) =>{
   Member.findOne({username:req.body.username},(err,memberResult) => {
@@ -95,7 +95,8 @@ app.post('/loginMember', (req,res) =>{
 });
 
 
-// add an artwork to portfolio
+// add an artwork to portfolio =================================================
+// Yanas code
 
 app.post('/addPortfolio', (req,res) =>{
   //checking if portfolio is found in the db already
@@ -120,7 +121,8 @@ app.post('/addPortfolio', (req,res) =>{
   })
 });
 
-// get all portfolios
+// get all portfolios ==========================================================
+// Yanas code
 
 app.get('/allPortfolios', (req,res) =>{
   Portfolio.find().then(result =>{

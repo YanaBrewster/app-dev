@@ -1,10 +1,5 @@
 // Yanas code
 $(document).ready(function(){
-//   console.log("js is working");
-// // Testing jQuery
-// // $('#hide').click(function(){
-// //     $('.hidden').hide();
-// //   });
 
   // get url and port from config.json
   $.ajax({
@@ -21,6 +16,7 @@ $(document).ready(function(){
 });
 
   // view all members button ===============================================================
+// Yanas code
 
   // view members
   $('#viewMembersBtn').click(function(){
@@ -46,4 +42,7 @@ $(document).ready(function(){
 
     });//ajax
   });
+
+
+
 // Yanas code ends
