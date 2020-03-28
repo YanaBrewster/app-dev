@@ -52,6 +52,8 @@ p {
   align-items: center;
 }
 
+
+
 .btn-font {
   text-align: center;
   font-family: 'Quicksand', sans-serif;
@@ -65,6 +67,7 @@ p {
 
 .logo {
   width: 200px;
+
 }
 
 .header {
@@ -102,54 +105,8 @@ p {
   cursor: pointer;
 }
 
-.btn-font {
-  text-align: center;
-  font-family: 'Quicksand', sans-serif;
-  font-weight: 700;
-}
-
-.nav-font {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 700;
-}
-
-.logo {
-  width: 200px;
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 1rem;
-  height: 60px;
-}
-
-.nav {
-  width: 300px;
-  justify-content: space-evenly;
-}
-
-.button {
-  padding: 6px 15px;
-  cursor: pointer;
-  color: white;
-  width: 80px;
-  height: 36px;
-  border-radius: 20px;
-  background-color: #339999;
-}
-
-.signUpButton {
-  background-color: #333333;
-  padding: 6px 15px;
-  border-radius: 8px;
-  width: 90px;
-}
-
-.signInButton {
-  padding: 6px 15px;
-  cursor: pointer;
+button {
+  border-radius: 50px !important;
 }
 
 .landingPage-banner {

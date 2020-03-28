@@ -101,7 +101,7 @@ app.post('/loginMember', (req,res) =>{
 
 app.post('/addPortfolio', (req,res) =>{
   //checking if portfolio is found in the db already
-  Portfolio.findOne({name:req.body.title},(err,portfolioResult)=>{
+  Portfolio.findOne({title:req.body.title},(err,portfolioResult)=>{
     if (portfolioResult){
       res.send('Artwork already added');
     } else{
