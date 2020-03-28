@@ -5,44 +5,48 @@
   margin: 0;
 }
 
+button {
+  border-radius: 50px !important;
+}
+
 h1 {
   font-family: 'Quicksand', sans-serif;
-  color: #333333;
+  color: #333333 !important;
   font-size: 3em;
   font-weight: 700;
 }
 
 h2 {
   font-family: 'Quicksand', sans-serif;
-  color: #333333;
+  color: #333333 !important;
   font-size: 2.250em;
   font-weight: 700;
 }
 
 h3 {
   font-family: 'Quicksand', sans-serif;
-  color: #99cccc;
+  color: #99cccc !important;
   font-size: 1.750em;
   font-weight: 700;
 }
 
 h4 {
   font-family: 'Quicksand', sans-serif;
-  color: #333333;
-  font-size: 1.500em;
+  color: #333333 !important;
+  font-size: 1.250em;
   font-weight: 700;
 }
 
 h5 {
   font-family: 'Open Sans', sans-serif;
-  color: #333333;
-  font-size: 1.500em;
+  color: #333333 !important;
+  font-size: 1.250em;
   font-weight: 700;
 }
 
 p {
   font-family: 'Open Sans', sans-serif;
-  color: #333333;
+  color: #333333 !important;
   text-align: left;
 }
 
@@ -51,8 +55,6 @@ p {
   flex-direction: row;
   align-items: center;
 }
-
-
 
 .btn-font {
   text-align: center;
@@ -65,9 +67,21 @@ p {
   font-weight: 700;
 }
 
+.radius {
+  border-radius: 50px !important;
+}
+
+.border {
+  border-width: 2px !important;
+  border-radius: 50px !important;
+}
+
+.border-info {
+  color: #99cccc !important !important;
+}
+
 .logo {
   width: 200px;
-
 }
 
 .header {
@@ -90,11 +104,12 @@ p {
   width: 80px;
   height: 36px;
   border-radius: 20px;
-  background-color: #339999;
+  background-color: #339999 !important;
+  text-align: center;
 }
 
 .signUpButton {
-  background-color: #333333;
+  background-color: #333333 !important;
   padding: 6px 15px;
   border-radius: 8px;
   width: 90px;
@@ -105,8 +120,68 @@ p {
   cursor: pointer;
 }
 
-button {
+.btn-font {
+  text-align: center;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+}
+
+.nav-font {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+}
+
+.radius {
   border-radius: 50px !important;
+}
+
+.border {
+  border-width: 2px !important;
+  border-radius: 50px !important;
+}
+
+.border-info {
+  color: #99cccc !important !important;
+}
+
+.logo {
+  width: 200px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem;
+  height: 60px;
+}
+
+.nav {
+  width: 300px;
+  justify-content: space-evenly;
+}
+
+.button {
+  padding: 6px 15px;
+  cursor: pointer;
+  color: white;
+  width: 80px;
+  height: 36px;
+  border-radius: 20px;
+  background-color: #339999 !important;
+  text-align: center;
+}
+
+.signUpButton {
+  background-color: #333333 !important;
+  padding: 6px 15px;
+  border-radius: 8px;
+  width: 90px;
+}
+
+.signInButton {
+  padding: 6px 15px;
+  cursor: pointer;
 }
 
 .landingPage-banner {
@@ -117,7 +192,7 @@ button {
 
 .filterDropdown {
   justify-content: center;
-  background-color: #cccccc;
+  background-color: #cccccc !important;
   padding-top: 20px;
   padding-bottom: 20px;
 }
