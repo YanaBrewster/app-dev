@@ -87,6 +87,10 @@ p {
   font-weight: 700;
 }
 
+button {
+  border-radius: 50px !important;
+}
+
 .btn-font {
   text-align: center;
   font-family: 'Quicksand', sans-serif;
@@ -96,6 +100,10 @@ p {
 .nav-font {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
+}
+
+button {
+  border-radius: 50px !important;
 }
 
 .landingPage-banner {

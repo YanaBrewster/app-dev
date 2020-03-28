@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Artful App</title>
-    <link href="css/style.css" rel="stylesheet">
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <title>Artful App</title>
+  <link href="css/style.css" rel="stylesheet">
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
 </head>
 <body>
   <!-- Hayley's code -->
@@ -43,11 +43,84 @@
     <div id="productsDeck"></div>
   </div>
   <!-- Hayley's code ends -->
-</div>
-<script src="node_modules\jquery\dist\jquery.min.js"></script>
-<script src="node_modules\popper.js\dist\umd\popper.min.js"></script>
-<script src="node_modules\bootstrap\dist\js\bootstrap.min.js"></script>
-<script src="js/script.js"></script>
-<!-- <script src="js/script.min.js"></script> -->
+
+  <!-- Yanas code -->
+  <!-- project page -->
+  <div id="projectPage">
+    <h1 class="text-center">Upload Project</h1>
+    <form id="addPortfolioForm" class="py-3 px-3">
+      <div class="form-group col-12">
+        <label for="addPortfolioTitle"><h5>Title</h5></label>
+        <input type="text" id="addPortfolioTitle" class="rounded radius" placeholder="Title" name="addPortfolioTitle" required autofocus>
+      </div>
+      <div class="form-group col-8">
+        <label for="addPortfolioDescription"><h5>Description</h5></label>
+        <textarea id="addPortfolioDescription" class="form-control rounded radius" placeholder="Description" name="addPortfolioDescription" required autofocus></textarea>
+      </div>
+      <div class="form-group col-12">
+        <label for="addPortfolioImage"><h5>Image URL</h5></label>
+        <input type="text" id="addPortfolioImage" class="rounded radius" placeholder="Image URL" name="addPortfolioImage" required autofocus>
+      </div>
+      <div class="form-group col-12">
+        <label for="addPortfolioCategory"><h5>Category</h5></label>
+        <input type="text" id="addPortfolioCategory" class="rounded radius" placeholder="Category" name="addPortfolioCategory" required autofocus>
+      </div>
+      <div class="form-group col-12">
+        <label for="addPortfolioPrice"><h5>Price $</h5></label>
+        <input type="number" id="addPortfolioPrice" class="rounded radius" placeholder="Price" name="addPortfolioPrice" required autofocus>
+      </div>
+      <!-- <div class="form-group col-12">
+        <label for="addPortfolioMemberId"><h5>Member ID</h5></label>
+        <input type="text" id="addPortfolioMemberId" class="rounded radius" placeholder="MemberID" name="addPortfolioMemberId" required autofocus>
+      </div> -->
+      <button id="addPortfolioBtn" name="addPortfolioButton" type="submit" class="btn btn-dark">Submit</button>
+      <button name="addPortfolioButton" type="submit" class="btn btn-danger">Cancel</button>
+    </form>
+  </div>
+
+  <!-- register page -->
+  <div id="signUpPage">
+    <form id="registerForm" class="py-3 px-3 mt-5">
+      <h1 class="text-center">Join Art App!<br> Support New Zealand Artists</h1>
+      <div class="form-group col-8">
+        <label for="registerUsername"><h3>Username</h3></label>
+        <input type="text" name="registerUsername" class="form-control rounded" placeholder="Username" id="registerUsername" required autofocus>
+      </div>
+      <div class="form-group col-8">
+        <label for="registerEmail"><h3>Email</h3></label>
+        <input type="email" name="registerEmail" class="form-control rounded" placeholder="Email" id="registerEmail" required autofocus>
+      </div>
+      <div class="form-group col-8">
+        <label for="registerPassword"><h3>Password</h3></label>
+        <input type="password" autocomplete="new-password" name="registerPassword" class="form-control rounded" placeholder="Password" id="registerPassword" required autofocus>
+      </div>
+      <button id="registerSubmit" name="registerButton" type="submit" class="btn btn-dark btn-lg btn-font">Sign Up!</button>
+    </form>
+  </div>
+
+  <!-- login page -->
+  <div id="loginPage">
+    <form id="loginForm" class="py-3 px-3 mt-5">
+      <h1 class="text-center">Login</h1>
+      <div class="form-group col-8">
+        <label for="username" class=""><h3> Username </h3></label>
+        <input type="text" id="inputUsernameLogin" name="loginUsername" placeholder="Username" class="form-control rounded">
+      </div>
+      <div class="form-group col-8">
+        <label for="password" class=""><h3> Password </h3></label>
+        <input type="password" id="inputPasswordLogin" name="loginPassword" placeholder="Password" class="form-control rounded">
+      </div>
+      <button id="loginSubmitBtn" name="button" type="submit" class="mt-3 btn btn-dark btn-lg btn-font"> Login </button>
+    </form>
+  </div>
+      <button id="logoutBtn" name="logoutBtn" type="submit" class="btn btn-dark btn-lg btn-font">Logout</button>
+  <!-- Yanas code ends -->
+
+
+  <script src="node_modules\jquery\dist\jquery.min.js"></script>
+  <script src="node_modules\popper.js\dist\umd\popper.min.js"></script>
+  <script src="node_modules\bootstrap\dist\js\bootstrap.min.js"></script>
+  <script src="js/script.js"></script>
+  <!-- <script src="js/script.min.js"></script> -->
 </body>
 </html>
