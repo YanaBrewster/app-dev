@@ -11,42 +11,42 @@ button {
 
 h1 {
   font-family: 'Quicksand', sans-serif;
-  color: #333333;
+  color: #333333 !important;
   font-size: 3em;
   font-weight: 700;
 }
 
 h2 {
   font-family: 'Quicksand', sans-serif;
-  color: #333333;
+  color: #333333 !important;
   font-size: 2.250em;
   font-weight: 700;
 }
 
 h3 {
   font-family: 'Quicksand', sans-serif;
-  color: #99cccc;
+  color: #99cccc !important;
   font-size: 1.750em;
   font-weight: 700;
 }
 
 h4 {
   font-family: 'Quicksand', sans-serif;
-  color: #333333;
-  font-size: 1.500em;
+  color: #333333 !important;
+  font-size: 1.250em;
   font-weight: 700;
 }
 
 h5 {
   font-family: 'Open Sans', sans-serif;
-  color: #333333;
-  font-size: 1.500em;
+  color: #333333 !important;
+  font-size: 1.250em;
   font-weight: 700;
 }
 
 p {
   font-family: 'Open Sans', sans-serif;
-  color: #333333;
+  color: #333333 !important;
   text-align: left;
 }
 
@@ -78,6 +78,16 @@ p {
   border-radius: 50px !important;
 }
 
+
+.border {
+  border-width: 2px !important;
+  border-radius: 50px !important;
+}
+
+.border-info {
+  color: #99cccc !important !important;
+}
+
 .logo {
   width: 200px;
 }
@@ -102,12 +112,12 @@ p {
   width: 80px;
   height: 36px;
   border-radius: 20px;
-  background-color: #339999;
+  background-color: #339999 !important;
   text-align: center;
 }
 
 .signUpButton {
-  background-color: #333333;
+  background-color: #333333 !important;
   padding: 6px 15px;
   border-radius: 8px;
   width: 90px;
@@ -133,6 +143,7 @@ p {
   border-radius: 50px !important;
 }
 
+
 .logo {
   width: 200px;
 }
@@ -157,7 +168,7 @@ p {
   width: 80px;
   height: 36px;
   border-radius: 20px;
-  background-color: #339999;
+  background-color: #339999 !important;
   text-align: center;
 }
 
@@ -181,7 +192,7 @@ p {
 
 .filterDropdown {
   justify-content: center;
-  background-color: #cccccc;
+  background-color: #cccccc !important;
   padding-top: 20px;
   padding-bottom: 20px;
 }

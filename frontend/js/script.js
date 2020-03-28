@@ -187,11 +187,11 @@ $('#addPortfolioForm').submit(function(){
       },
       success:function(portfolio){
         console.log(portfolio);
-        // if (!(portfolio == 'Title name already taken, please try another one')) {
-        //   alert('Project Added');
-        // } else {
-        //   alert("Title name already taken, please try another one")
-        // }
+        if (!(portfolio == 'Title taken already, please try another one')) {
+             alert('added the portfolio');
+           } else {
+             alert("Title taken already, please try another one")
+           }
         $('#addPortfolioTitle').val();
         $('#addPortfolioDescription').val();
         $('#addPortfolioImage').val();
