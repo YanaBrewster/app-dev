@@ -1,4 +1,5 @@
 // Yanas code
+let url;
 $(document).ready(function(){
 
   // get url and port from config.json
@@ -8,11 +9,16 @@ $(document).ready(function(){
     dataType :'json',
     success : function(configData){
       url = `${configData.SERVER_URL}:${configData.SERVER_PORT}`;
+      console.log(url);
+      generateLandingPageCards();
     },//success
     error:function(){
       console.log('error: cannot call api');
     }//error
   });//ajax
+  
+  
+
 });
 
   // view all members button ===============================================================
@@ -46,3 +52,24 @@ $(document).ready(function(){
 
 
 // Yanas code ends
+
+// Hayley's code
+function generateLandingPageCards() {
+
+  $.ajax({
+    url: `${url}/allPortfolios`,
+    type: 'GET',
+    dataType: 'json',
+    success: function (portfolios) {
+      console.log(url);
+      console.log(portfolios);
+      // let portfoliosMarkup = portfolios.map(item => `
+      // `)
+    },
+    error: function(error) {
+      console.log('Error: ' + error);
+    }
+  })
+}
+
+// Hayley's code ends
