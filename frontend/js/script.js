@@ -1,4 +1,5 @@
 // Yanas code
+let url;
 $(document).ready(function(){
 
   // get url and port from config.json
@@ -8,11 +9,16 @@ $(document).ready(function(){
     dataType :'json',
     success : function(configData){
       url = `${configData.SERVER_URL}:${configData.SERVER_PORT}`;
+      console.log(url);
+      generateLandingPageCards();
     },//success
     error:function(){
       console.log('error: cannot call api');
     }//error
   });//ajax
+  
+  
+
 });
 
   // view all members button ===============================================================
@@ -204,3 +210,46 @@ $('#addPortfolioForm').submit(function(){
 
 
 // Yanas code ends
+
+// Hayley's code
+function generateLandingPageCards() {
+
+  $.ajax({
+    url: `${url}/portfoliosAndAuthors`,
+    type: 'GET',
+    dataType: 'json',
+    success: function (portfolios) {
+      console.log(portfolios);
+      makeProductCards(portfolios);
+    },
+    error: function(error) {
+      console.log('Error: ' + error);
+    }
+  })
+}
+
+function makeProductCards(arr) {
+  document.getElementById('artsDeck').innerHTML = arr.map(art => 
+    `<div class="card artcard">
+      <div class="image-container">
+        <img src="${art.image}" alt="Avatar" class="card-img-top art-image" style="width:100%">
+      </div>
+     
+      <div class="card-body artcard-body">
+        <div class="artcard-columnwrap mb-3">
+          <h5 class="card-title h4 artcard-title">${art.title}</h5>
+          <h5 class="card-title h4 artcard-price">&dollar;${art.price}</h5>
+        </div>
+        <h6 class="card-title mb-3">${art.authorInfo[0].username}, ${art.authorInfo[0].location}</h6>
+        <p class="card-text artcard-description mb-3">${art.description}</p>
+        <a href="${art.authorInfo[0].website}" class="card-link artcard-link">Artist Website</a>
+        <div class="artcard-columnwrap mt-5">
+          <h5 class="card-title h5 artcard-category">${art.category}</h5>
+          <div class="button">View</div>
+        </div>
+      </div>
+    </div>`
+  ).join(' ');
+}
+
+// Hayley's code ends

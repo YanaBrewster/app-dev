@@ -4,4 +4,11 @@
     flex-direction: row;
     align-items: center;
 }
+
+.container-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-left: 70px;
+}
 // Hayley's code ends

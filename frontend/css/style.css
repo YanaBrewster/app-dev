@@ -56,6 +56,13 @@ p {
   align-items: center;
 }
 
+.container-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-left: 70px;
+}
+
 .btn-font {
   text-align: center;
   font-family: 'Quicksand', sans-serif;
@@ -70,6 +77,7 @@ p {
 .radius {
   border-radius: 50px !important;
 }
+
 
 .border {
   border-width: 2px !important;
@@ -135,14 +143,6 @@ p {
   border-radius: 50px !important;
 }
 
-.border {
-  border-width: 2px !important;
-  border-radius: 50px !important;
-}
-
-.border-info {
-  color: #99cccc !important !important;
-}
 
 .logo {
   width: 200px;
@@ -173,7 +173,7 @@ p {
 }
 
 .signUpButton {
-  background-color: #333333 !important;
+  background-color: #333333;
   padding: 6px 15px;
   border-radius: 8px;
   width: 90px;
@@ -199,6 +199,61 @@ p {
 
 .filterInputGroup {
   border-radius: 20px;
+}
+
+#artsDeck {
+  display: flex;
+  height: auto;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+}
+
+.artcard {
+  width: 450px;
+  height: 700px;
+  margin-left: 70px;
+  margin-right: 70px;
+  margin-bottom: 50px;
+  border: none;
+}
+
+.artcard-title {
+  height: 56px;
+  margin-right: 50px;
+}
+
+.artcard-body {
+  padding-right: 30px;
+  padding-left: 30px;
+}
+
+.artcard-columnwrap {
+  display: flex;
+  justify-content: space-between;
+}
+
+.artcard-description {
+  height: 72px;
+  overflow: hidden;
+  text-align: justify;
+}
+
+.art-image {
+  border: none;
+  max-height: 300px;
+  max-width: 449px;
+  height: auto;
+  width: auto;
+  border-radius: 50px;
+}
+
+.artcard-link {
+  color: black;
+  text-decoration: underline;
+}
+
+.artcard-category {
+  color: #339999;
 }
 
 /*# sourceMappingURL=style.css.map */

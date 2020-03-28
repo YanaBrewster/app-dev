@@ -11,7 +11,7 @@ const Comment = require('./models/comment.js');
 const Member = require('./models/member.js');
 const Portfolio = require('./models/portfolio.js');
 
-const port = 5000;
+const port = 3000;
 
 app.get('/', (req, res) => res.send('Hello World from Hayley, Rahul and Yana!'))
 
@@ -125,7 +125,7 @@ app.post('/addPortfolio', (req,res) =>{
 // get all portfolios ==========================================================
 // Yanas code
 
-app.get('/allPortfolios', (req,res) =>{
+app.get('/allPortfolios', (req,res) => {
   Portfolio.find().then(result =>{
     res.send(result);
   })
@@ -135,7 +135,19 @@ app.get('/allPortfolios', (req,res) =>{
 //  Yanas code ends
 // =============================================================================
 
+// Hayley's code
 
+app.get('/portfoliosAndAuthors', async (req, res) => {
+  let query = await Portfolio.aggregate()
+    .lookup({from: "members",
+              localField: "memberId",
+              foreignField: "_id",
+              as: "authorInfo"})
+    .exec(); 
+  res.send(query);
+})
+
+// Hayley's code ends
 
 
 
