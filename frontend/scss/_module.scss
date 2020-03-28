@@ -12,6 +12,50 @@
   font-weight: 700;
 }
 
+
 .radius{
   border-radius: 50px !important;
 }
+
+// Hayley's code
+.logo {
+  width: 200px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem;
+  height: 60px;
+}
+
+.nav {
+  width: 300px;
+  justify-content: space-evenly;
+}
+
+.button {
+  padding: 6px 15px;
+  cursor: pointer;
+  color: white;
+  width: 80px;
+  height: 36px;
+  border-radius: 20px;
+  background-color: $primary;
+  text-align: center;
+}
+
+.signUpButton {
+  background-color: $gray-dark;
+  padding: 6px 15px;
+  border-radius: 8px;
+  width: 90px;
+}
+
+.signInButton {
+  padding: 6px 15px;
+  cursor: pointer;
+}
+
+// Hayley's code ends

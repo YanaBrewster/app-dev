@@ -46,8 +46,28 @@ p {
   text-align: left;
 }
 
+.flexContainer-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+
+
+.btn-font {
+  text-align: center;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+}
+
+.nav-font {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+}
+
 .logo {
   width: 200px;
+
 }
 
 .header {
@@ -63,43 +83,26 @@ p {
   justify-content: space-evenly;
 }
 
-.signUpButton {
+.button {
+  padding: 6px 15px;
+  cursor: pointer;
   color: white;
-  background-color: darkslategrey;
+  width: 80px;
+  height: 36px;
+  border-radius: 20px;
+  background-color: #339999;
+}
+
+.signUpButton {
+  background-color: #333333;
   padding: 6px 15px;
   border-radius: 8px;
-  cursor: pointer;
+  width: 90px;
 }
 
 .signInButton {
   padding: 6px 15px;
   cursor: pointer;
-}
-
-.btn-font {
-  text-align: center;
-  font-family: 'Quicksand', sans-serif;
-  font-weight: 700;
-}
-
-.nav-font {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 700;
-}
-
-button {
-  border-radius: 50px !important;
-}
-
-.btn-font {
-  text-align: center;
-  font-family: 'Quicksand', sans-serif;
-  font-weight: 700;
-}
-
-.nav-font {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 700;
 }
 
 button {
@@ -110,6 +113,17 @@ button {
   background-image: url("../images/BarneyBrewsterBanner.jpg");
   background-size: cover;
   height: 30vh;
+}
+
+.filterDropdown {
+  justify-content: center;
+  background-color: #cccccc;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.filterInputGroup {
+  border-radius: 20px;
 }
 
 /*# sourceMappingURL=style.css.map */

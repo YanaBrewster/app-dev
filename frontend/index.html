@@ -3,17 +3,19 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Artful App</title>
-  <link href="css/style.css" rel="stylesheet">
-  <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+    <title>Artful App</title>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link href="css/style.css" rel="stylesheet">
+
 </head>
 <body>
   <!-- Hayley's code -->
   <div class="header">
     <img src="images/logo.png" class="logo" alt="logo">
     <div class="nav">
-      <div class="signUpButton">Sign Up!</div>
+      <div class="button signUpButton">Sign Up!</div>
       <div class="signInButton">Login</div>
     </div>
   </div>
@@ -21,26 +23,30 @@
     <div class="landingPage-banner">
       <!-- <img src="images/BarneyBrewsterBanner.jpg" alt="Barney Brewster Banner"> -->
     </div>
-    <div class="filterDropdown">
-      <div class="input-group mb-3">
-        <select class="custom-select" id="filterDropdown-byPrice">
+    <div class="filterDropdown flexContainer-row">
+      <div class="input-group col-md-3">
+        <select class="custom-select filterInputGroup" id="filterDropdown-byPrice">
           <option selected>Price</option>
           <option value="1">One</option>
           <option value="2">Two</option>
           <option value="3">Three</option>
         </select>
       </div>
-      <div class="input-group mb-3">
-        <select class="custom-select" id="filterDropdown-byCategory">
+      <div class="input-group col-md-3">
+        <select class="custom-select filterInputGroup" id="filterDropdown-byCategory">
           <option selected>Category</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
+          <option value="painting">Painting</option>
+          <option value="photography">Photography</option>
+          <option value="prints">Prints</option>
+          <option value="others">Others</option>
         </select>
       </div>
-      <div>Search</div>
+      <div class="button">Search</div>
     </div>
-    <div id="productsDeck"></div>
+    <div class="landingPage-listing">
+      <div class="text-center h3 mt-5 mb-3">Latest Artworks</div>
+      <div id="productsDeck"></div>
+    </div>
   </div>
   <!-- Hayley's code ends -->
 
