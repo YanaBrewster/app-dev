@@ -125,7 +125,7 @@ app.post('/addPortfolio', (req,res) =>{
 // get all portfolios ==========================================================
 // Yanas code
 
-app.get('/allPortfolios', (req,res) =>{
+app.get('/allPortfolios', (req,res) => {
   Portfolio.find().then(result =>{
     res.send(result);
   })
@@ -135,7 +135,19 @@ app.get('/allPortfolios', (req,res) =>{
 //  Yanas code ends
 // =============================================================================
 
+// Hayley's code
 
+app.get('/portfoliosAndAuthors', async (req, res) => {
+  let query = await Portfolio.aggregate()
+    .lookup({from: "members",
+              localField: "memberId",
+              foreignField: "_id",
+              as: "authorInfo"})
+    .exec(); 
+  res.send(query);
+})
+
+// Hayley's code ends
 
 
 
