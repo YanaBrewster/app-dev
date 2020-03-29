@@ -27,7 +27,7 @@
     <div class="filterDropdown flexContainer-row">
       <div class="input-group col-md-3">
         <select class="custom-select filterInputGroup" id="filterDropdown-byPrice">
-          <option selected>Price</option>
+          <option value='{"min":0,"max":500000}' selected>Price</option>
           <option value='{"min":0,"max":50}'>Under $50</option>
           <option value='{"min":51,"max":150}'>From $51 to $150</option>
           <option value='{"min":151,"max":100000}''>From $151</option>
@@ -36,10 +36,10 @@
       <div class="input-group col-md-3">
         <select class="custom-select filterInputGroup" id="filterDropdown-byCategory">
           <option selected>Category</option>
-          <option value="painting">Painting</option>
-          <option value="photography">Photography</option>
-          <option value="prints">Prints</option>
-          <option value="others">Others</option>
+          <option value="Painting">Painting</option>
+          <option value="Photography">Photography</option>
+          <option value="Prints">Prints</option>
+          <option value="Others">Others</option>
         </select>
       </div>
       <div class="button" id="filterButton">Search</div>

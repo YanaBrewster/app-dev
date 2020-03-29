@@ -218,7 +218,7 @@ function generateLandingPageCards() {
     url: `${url}/portfoliosAndAuthors`,
     type: 'GET',
     dataType: 'json',
-    success: function (portfolios) {
+    success: function(portfolios) {
       console.log(portfolios);
       makeProductCards(portfolios);
     },
@@ -299,9 +299,30 @@ function generateViewMoreHTML(portfolio) {
 }
 
 document.getElementById("filterButton").addEventListener('click', function() {
-  let price = $("#filterDropdown-byPrice").val();
+  let price = JSON.parse($("#filterDropdown-byPrice").val());
   let category = $("#filterDropdown-byCategory").val();
   console.log(price, category);
 })
+
+function getFilteredArtworks() {
+  // let price = JSON.parse($("#filterDropdown-byPrice").val());
+  // if (price)
+  // let minPrice = JSON.parse($("#filterDropdown-byPrice").val()).minPrice;
+  // let maxPrice = JSON.parse($("#filterDropdown-byPrice").val()).maxPrice;
+  let category = $("#filterDropdown-byCategory").val();
+
+  $.ajax({
+    url: `${url}/filterPortfolios/${minPrice}/${maxPrice}/${category}`,
+    type: 'GET',
+    dataType: 'json',
+    success: function(portfolios) {
+      console.log(portfolios);
+      makeProductCards(portfolios);
+    },
+    error: function(error) {
+      console.log('Error: ' + error);
+    }
+  })
+}
 
 // Hayley's code ends

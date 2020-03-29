@@ -176,7 +176,11 @@ app.get('/filterPortfolios/:minPrice/:maxPrice/:category', async (req, res) => {
     }}
   ])
 
-  res.send(query)
+  if(query.length > 0) {
+    res.send(query);
+  } else {
+    res.send('Sorry, there is no artwork that matches your search!')
+  }
 })
 
 
