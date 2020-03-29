@@ -11,43 +11,57 @@ button {
 
 h1 {
   font-family: 'Quicksand', sans-serif;
-  color: #333333 !important;
+  color: #333333;
   font-size: 3em;
   font-weight: 700;
 }
 
 h2 {
   font-family: 'Quicksand', sans-serif;
-  color: #333333 !important;
+  color: #333333;
   font-size: 2.250em;
   font-weight: 700;
 }
 
 h3 {
   font-family: 'Quicksand', sans-serif;
-  color: #99cccc !important;
+  color: #99cccc;
   font-size: 1.750em;
   font-weight: 700;
 }
 
 h4 {
   font-family: 'Quicksand', sans-serif;
-  color: #333333 !important;
+  color: #333333;
   font-size: 1.250em;
   font-weight: 700;
 }
 
 h5 {
   font-family: 'Open Sans', sans-serif;
-  color: #333333 !important;
+  color: #333333;
   font-size: 1.250em;
   font-weight: 700;
 }
 
 p {
   font-family: 'Open Sans', sans-serif;
-  color: #333333 !important;
+  color: #333333;
   text-align: left;
+}
+
+.h5-cyan {
+  font-family: 'Open Sans', sans-serif;
+  color: #339999;
+  font-size: 1.250em;
+  font-weight: 700;
+}
+
+.flexContainer-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .flexContainer-row {
@@ -78,14 +92,13 @@ p {
   border-radius: 50px !important;
 }
 
-
 .border {
   border-width: 2px !important;
   border-radius: 50px !important;
 }
 
 .border-info {
-  color: #99cccc !important !important;
+  color: #99cccc !important;
 }
 
 .logo {
@@ -97,7 +110,7 @@ p {
   justify-content: space-between;
   align-items: center;
   margin: 1rem;
-  height: 60px;
+  height: 80px;
 }
 
 .nav {
@@ -112,12 +125,12 @@ p {
   width: 80px;
   height: 36px;
   border-radius: 20px;
-  background-color: #339999 !important;
+  background-color: #339999;
   text-align: center;
 }
 
 .signUpButton {
-  background-color: #333333 !important;
+  background-color: #333333;
   padding: 6px 15px;
   border-radius: 8px;
   width: 90px;
@@ -143,6 +156,14 @@ p {
   border-radius: 50px !important;
 }
 
+.border {
+  border-width: 2px !important;
+  border-radius: 50px !important;
+}
+
+.border-info {
+  color: #99cccc !important;
+}
 
 .logo {
   width: 200px;
@@ -153,7 +174,7 @@ p {
   justify-content: space-between;
   align-items: center;
   margin: 1rem;
-  height: 60px;
+  height: 80px;
 }
 
 .nav {
@@ -168,7 +189,7 @@ p {
   width: 80px;
   height: 36px;
   border-radius: 20px;
-  background-color: #339999 !important;
+  background-color: #339999;
   text-align: center;
 }
 
@@ -192,7 +213,7 @@ p {
 
 .filterDropdown {
   justify-content: center;
-  background-color: #cccccc !important;
+  background-color: #cccccc;
   padding-top: 20px;
   padding-bottom: 20px;
 }
@@ -254,6 +275,32 @@ p {
 
 .artcard-category {
   color: #339999;
+}
+
+#viewMorePage {
+  width: 100vw;
+  border-top: #339999 4px solid;
+  padding-top: 3rem;
+  padding-right: 10vw;
+  padding-left: 10vw;
+}
+
+.viewMore-photoBackground {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  background-color: #f5f9f8;
+  margin-top: 2rem;
+}
+
+.viewMore-mainPhoto {
+  max-width: 70vw;
+  height: auto;
+}
+
+.viewMore-endBoarder {
+  padding-bottom: 2rem;
+  border-bottom: lightgrey 2px solid;
 }
 
 /*# sourceMappingURL=style.css.map */
