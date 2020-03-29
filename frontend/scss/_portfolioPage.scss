@@ -1,0 +1,42 @@
+// Yanas code
+
+// #addPortfolioForm{
+//   height: 100vh;
+// }
+
+.container-form{
+  background-color: white !important;
+  height: 100vh;
+  margin: 0 auto !important;
+  width: 70%;
+}
+
+.form-box{
+  background-color: white !important;
+  height: 85vh;
+  margin: 0 auto !important;
+  width: 60%;
+}
+
+
+.bg-page{
+	height: 100vh;
+	width: 100%;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+  overflow: hidden;
+	z-index: -2;
+}
+
+// background image for upload project form
+.bg-upload{
+  background-image: url("../images/KateLeslie_HolidaySeries1.jpg");
+}
+
+// background image for sign up page
+.bg-register{
+  background-image: url("../images/KateLeslie_HolidaySeries2.jpg");
+}
+
+// Yanas code ends

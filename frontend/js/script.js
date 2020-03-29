@@ -16,8 +16,8 @@ $(document).ready(function(){
       console.log('error: cannot call api');
     }//error
   });//ajax
-  
-  
+
+
 
 });
 
@@ -229,12 +229,12 @@ function generateLandingPageCards() {
 }
 
 function makeProductCards(arr) {
-  document.getElementById('artsDeck').innerHTML = arr.map(art => 
-    `<div class="card artcard">
+  document.getElementById('artsDeck').innerHTML = arr.map(art =>
+    `<div class="card artcard border-bottom">
       <div class="image-container">
         <img src="${art.image}" alt="Avatar" class="card-img-top art-image" style="width:100%">
       </div>
-     
+
       <div class="card-body artcard-body">
         <div class="artcard-columnwrap mb-3">
           <h5 class="card-title h4 artcard-title">${art.title}</h5>
