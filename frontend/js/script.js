@@ -244,12 +244,58 @@ function makeProductCards(arr) {
         <p class="card-text artcard-description mb-3">${art.description}</p>
         <a href="${art.authorInfo[0].website}" class="card-link artcard-link">Artist Website</a>
         <div class="artcard-columnwrap mt-5">
-          <h5 class="card-title h5 artcard-category">${art.category}</h5>
-          <div class="button">View</div>
+          <p class="card-title h5-cyan">${art.category}</p>
+          <div class="button viewMoreButton" id="${art._id}">View</div>
         </div>
       </div>
     </div>`
   ).join(' ');
+
+  let viewMoreButtons = document.getElementsByClassName('viewMoreButton');
+    console.log(viewMoreButtons);
+
+    for (let i = 0; i < viewMoreButtons.length; i++) {
+      viewMoreButtons[i].addEventListener('click', getArtworkInfo)
+    }
+}
+
+function getArtworkInfo(e) {
+  let id = e.target.id;
+  $.ajax({
+    url: `${url}/portfolioWithAuthor/${id}`,
+    type: 'GET',
+    dataType: 'json',
+    success: function(portfolio) {
+      generateViewMoreHTML(portfolio[0]);
+      $("#landingPage").hide();
+    },
+    error: function(error) {
+      console.log('Error: ' + error);
+    }
+  })
+}
+
+function generateViewMoreHTML(portfolio) {
+  document.getElementById('viewMorePage').innerHTML = `
+    <div>
+      <h5 class="h3">${portfolio.title}</h5>
+      <div class="viewMore-photoBackground">
+        <img src="${portfolio.image}" class="viewMore-mainPhoto" alt="${portfolio.title} photo">
+      </div>
+      <div class="flexContainer-row mt-3 mb-3">
+        <h5 class="h4">${portfolio.authorInfo[0].username}</h5>
+        <h5 class="card-title h4 artcard-price">&dollar;${portfolio.price}</h5>
+      </div>
+      <p>${portfolio.description}</p>
+      <strong class="mb-5">Location: ${portfolio.authorInfo[0].location}</strong>
+      <br/>
+      <a href="${portfolio.authorInfo[0].website}" class="artcard-link">${portfolio.authorInfo[0].website}</a>
+      <div class="artcard-columnwrap mt-5 viewMore-endBoarder">
+        <p class="card-title h5-cyan">${portfolio.category}</p>
+        <div class="button" id="${portfolio._id}">Buy</div>
+      </div>
+    </div>
+  `
 }
 
 // Hayley's code ends

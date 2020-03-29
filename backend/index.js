@@ -147,6 +147,21 @@ app.get('/portfoliosAndAuthors', async (req, res) => {
   res.send(query);
 })
 
+app.get('/portfolioWithAuthor/:id', async (req, res) => {
+  let artId = req.params.id;
+  let query = await Portfolio.aggregate([
+    { $match: { _id: mongoose.Types.ObjectId(artId) }},
+    { $lookup: {
+                from: "members",
+                localField: "memberId",
+                foreignField: "_id",
+                as: "authorInfo"
+    }}
+  ])
+  res.send(query);
+});
+
+
 // Hayley's code ends
 
 
