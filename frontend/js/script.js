@@ -298,4 +298,10 @@ function generateViewMoreHTML(portfolio) {
   `
 }
 
+document.getElementById("filterButton").addEventListener('click', function() {
+  let price = $("#filterDropdown-byPrice").val();
+  let category = $("#filterDropdown-byCategory").val();
+  console.log(price, category);
+})
+
 // Hayley's code ends
