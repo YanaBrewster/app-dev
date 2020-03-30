@@ -1,4 +1,5 @@
 // Yanas code
+let url;
 $(document).ready(function(){
 
   // get url and port from config.json
@@ -8,11 +9,16 @@ $(document).ready(function(){
     dataType :'json',
     success : function(configData){
       url = `${configData.SERVER_URL}:${configData.SERVER_PORT}`;
+      console.log(url);
+      generateLandingPageCards();
     },//success
     error:function(){
       console.log('error: cannot call api');
     }//error
   });//ajax
+
+
+
 });
 
   // view all members button ===============================================================
@@ -181,11 +187,11 @@ $('#addPortfolioForm').submit(function(){
       },
       success:function(portfolio){
         console.log(portfolio);
-        // if (!(portfolio == 'Title name already taken, please try another one')) {
-        //   alert('Project Added');
-        // } else {
-        //   alert("Title name already taken, please try another one")
-        // }
+        if (!(portfolio == 'Title taken already, please try another one')) {
+             alert('added the portfolio');
+           } else {
+             alert("Title taken already, please try another one")
+           }
         $('#addPortfolioTitle').val();
         $('#addPortfolioDescription').val();
         $('#addPortfolioImage').val();
@@ -204,3 +210,92 @@ $('#addPortfolioForm').submit(function(){
 
 
 // Yanas code ends
+
+// Hayley's code
+function generateLandingPageCards() {
+
+  $.ajax({
+    url: `${url}/portfoliosAndAuthors`,
+    type: 'GET',
+    dataType: 'json',
+    success: function (portfolios) {
+      console.log(portfolios);
+      makeProductCards(portfolios);
+    },
+    error: function(error) {
+      console.log('Error: ' + error);
+    }
+  })
+}
+
+function makeProductCards(arr) {
+  document.getElementById('artsDeck').innerHTML = arr.map(art =>
+    `<div class="card artcard border-bottom">
+      <div class="image-container">
+        <img src="${art.image}" alt="Avatar" class="card-img-top art-image" style="width:100%">
+      </div>
+
+      <div class="card-body artcard-body">
+        <div class="artcard-columnwrap mb-3">
+          <h5 class="card-title h4 artcard-title">${art.title}</h5>
+          <h5 class="card-title h4 artcard-price">&dollar;${art.price}</h5>
+        </div>
+        <h6 class="card-title mb-3">${art.authorInfo[0].username}, ${art.authorInfo[0].location}</h6>
+        <p class="card-text artcard-description mb-3">${art.description}</p>
+        <a href="${art.authorInfo[0].website}" class="card-link artcard-link">Artist Website</a>
+        <div class="artcard-columnwrap mt-5">
+          <p class="card-title h5-cyan">${art.category}</p>
+          <div class="button viewMoreButton" id="${art._id}">View</div>
+        </div>
+      </div>
+    </div>`
+  ).join(' ');
+
+  let viewMoreButtons = document.getElementsByClassName('viewMoreButton');
+    console.log(viewMoreButtons);
+
+    for (let i = 0; i < viewMoreButtons.length; i++) {
+      viewMoreButtons[i].addEventListener('click', getArtworkInfo)
+    }
+}
+
+function getArtworkInfo(e) {
+  let id = e.target.id;
+  $.ajax({
+    url: `${url}/portfolioWithAuthor/${id}`,
+    type: 'GET',
+    dataType: 'json',
+    success: function(portfolio) {
+      generateViewMoreHTML(portfolio[0]);
+      $("#landingPage").hide();
+    },
+    error: function(error) {
+      console.log('Error: ' + error);
+    }
+  })
+}
+
+function generateViewMoreHTML(portfolio) {
+  document.getElementById('viewMorePage').innerHTML = `
+    <div>
+      <h5 class="h3">${portfolio.title}</h5>
+      <div class="viewMore-photoBackground">
+        <img src="${portfolio.image}" class="viewMore-mainPhoto" alt="${portfolio.title} photo">
+      </div>
+      <div class="flexContainer-row mt-3 mb-3">
+        <h5 class="h4">${portfolio.authorInfo[0].username}</h5>
+        <h5 class="card-title h4 artcard-price">&dollar;${portfolio.price}</h5>
+      </div>
+      <p>${portfolio.description}</p>
+      <strong class="mb-5">Location: ${portfolio.authorInfo[0].location}</strong>
+      <br/>
+      <a href="${portfolio.authorInfo[0].website}" class="artcard-link">${portfolio.authorInfo[0].website}</a>
+      <div class="artcard-columnwrap mt-5 viewMore-endBoarder">
+        <p class="card-title h5-cyan">${portfolio.category}</p>
+        <div class="button" id="${portfolio._id}">Buy</div>
+      </div>
+    </div>
+  `
+}
+
+// Hayley's code ends

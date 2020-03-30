@@ -1,0 +1,26 @@
+#viewMorePage {
+    width: 100vw;
+    border-top: $primary 4px solid;
+    padding-top: 3rem;
+    padding-right: 10vw;
+    padding-left: 10vw;
+}
+
+.viewMore-photoBackground {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+
+    background-color: $grey-light;
+    margin-top: 2rem;
+}
+
+.viewMore-mainPhoto {
+    max-width: 70vw;
+    height: auto;
+}
+
+.viewMore-endBoarder {
+    padding-bottom: 2rem;
+    border-bottom: lightgrey 2px solid;
+}

@@ -5,6 +5,10 @@
   margin: 0;
 }
 
+button {
+  border-radius: 50px !important;
+}
+
 h1 {
   font-family: 'Quicksand', sans-serif;
   color: #333333;
@@ -29,14 +33,14 @@ h3 {
 h4 {
   font-family: 'Quicksand', sans-serif;
   color: #333333;
-  font-size: 1.500em;
+  font-size: 1.250em;
   font-weight: 700;
 }
 
 h5 {
   font-family: 'Open Sans', sans-serif;
   color: #333333;
-  font-size: 1.500em;
+  font-size: 1.250em;
   font-weight: 700;
 }
 
@@ -46,13 +50,32 @@ p {
   text-align: left;
 }
 
+.h5-cyan {
+  font-family: 'Open Sans', sans-serif;
+  color: #339999;
+  font-size: 1.250em;
+  font-weight: 700;
+}
+
+.flexContainer-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .flexContainer-row {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-
+.container-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-left: 70px;
+}
 
 .btn-font {
   text-align: center;
@@ -65,9 +88,21 @@ p {
   font-weight: 700;
 }
 
+.radius {
+  border-radius: 50px !important;
+}
+
+.border {
+  border-width: 2px !important;
+  border-radius: 50px !important;
+}
+
+.border-info {
+  color: #99cccc !important;
+}
+
 .logo {
   width: 200px;
-
 }
 
 .header {
@@ -75,7 +110,7 @@ p {
   justify-content: space-between;
   align-items: center;
   margin: 1rem;
-  height: 60px;
+  height: 80px;
 }
 
 .nav {
@@ -91,6 +126,7 @@ p {
   height: 36px;
   border-radius: 20px;
   background-color: #339999;
+  text-align: center;
 }
 
 .signUpButton {
@@ -105,8 +141,100 @@ p {
   cursor: pointer;
 }
 
-button {
+.btn-font {
+  text-align: center;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+}
+
+.nav-font {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+}
+
+.radius {
   border-radius: 50px !important;
+}
+
+.border {
+  border-width: 2px !important;
+  border-radius: 50px !important;
+}
+
+.border-info {
+  color: #99cccc !important;
+}
+
+.logo {
+  width: 200px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem;
+  height: 80px;
+}
+
+.nav {
+  width: 300px;
+  justify-content: space-evenly;
+}
+
+.button {
+  padding: 6px 15px;
+  cursor: pointer;
+  color: white;
+  width: 80px;
+  height: 36px;
+  border-radius: 20px;
+  background-color: #339999;
+  text-align: center;
+}
+
+.signUpButton {
+  background-color: #333333 !important;
+  padding: 6px 15px;
+  border-radius: 8px;
+  width: 90px;
+}
+
+.signInButton {
+  padding: 6px 15px;
+  cursor: pointer;
+}
+
+.container-form {
+  background-color: white !important;
+  height: 100vh;
+  margin: 0 auto !important;
+  width: 70%;
+}
+
+.form-box {
+  background-color: white !important;
+  height: 85vh;
+  margin: 0 auto !important;
+  width: 60%;
+}
+
+.bg-page {
+  height: 100vh;
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  z-index: -2;
+}
+
+.bg-upload {
+  background-image: url("../images/KateLeslie_HolidaySeries1.jpg");
+}
+
+.bg-register {
+  background-image: url("../images/KateLeslie_HolidaySeries2.jpg");
 }
 
 .landingPage-banner {
@@ -124,6 +252,87 @@ button {
 
 .filterInputGroup {
   border-radius: 20px;
+}
+
+#artsDeck {
+  display: flex;
+  height: auto;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+}
+
+.artcard {
+  width: 450px;
+  height: 700px;
+  margin-left: 70px;
+  margin-right: 70px;
+  margin-bottom: 50px;
+  border: none;
+}
+
+.artcard-title {
+  height: 56px;
+  margin-right: 50px;
+}
+
+.artcard-body {
+  padding-right: 30px;
+  padding-left: 30px;
+}
+
+.artcard-columnwrap {
+  display: flex;
+  justify-content: space-between;
+}
+
+.artcard-description {
+  height: 72px;
+  overflow: hidden;
+  text-align: justify;
+}
+
+.art-image {
+  border: none;
+  max-height: 300px;
+  max-width: 449px;
+  height: auto;
+  width: auto;
+  border-radius: 50px;
+}
+
+.artcard-link {
+  color: black;
+  text-decoration: underline;
+}
+
+.artcard-category {
+  color: #339999 !important;
+}
+
+#viewMorePage {
+  width: 100vw;
+  border-top: #339999 4px solid;
+  padding-top: 3rem;
+  padding-right: 10vw;
+  padding-left: 10vw;
+}
+
+.viewMore-photoBackground {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  background-color: #f5f9f8;
+  margin-top: 2rem;
+}
+
+.viewMore-mainPhoto {
+  max-width: 70vw;
+  height: auto;
+}
+
+.viewMore-endBoarder {
+  padding-bottom: 2rem;
+  border-bottom: lightgrey 2px solid;
 }
 
 /*# sourceMappingURL=style.css.map */
