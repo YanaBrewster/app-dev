@@ -357,4 +357,20 @@ p {
   border-bottom: lightgrey 2px solid;
 }
 
+.viewMorePage-commentsWrapper {
+  padding-left: 10vw;
+  padding-right: 10vw;
+  max-width: 100%;
+}
+
+.comment-container {
+  padding: 1rem;
+  border: #339999 1px solid;
+  border-radius: 20px;
+}
+
+.comment-info {
+  display: flex;
+}
+
 /*# sourceMappingURL=style.css.map */

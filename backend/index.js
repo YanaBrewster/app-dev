@@ -233,21 +233,4 @@ app.post('/addComment', (req, res) => {
 
 // Hayley's code ends
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

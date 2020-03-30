@@ -305,6 +305,8 @@ function makeProductCards(arr) {
   }
 }
 
+console.log(sessionStorage);
+
 function getArtworkInfo(e) {
   let id = e.target.id;
   $.ajax({
@@ -341,6 +343,7 @@ function generateViewMoreHTML(portfolio) {
         <p class="card-title h5-cyan">${portfolio.category}</p>
         <div class="button" id="${portfolio._id}">Buy</div>
       </div>
+      <button id="backToLanding" type="button" class="btn btn-dark mt-3 mb-5">Back</button>
     </div>
   `
 }
@@ -349,11 +352,11 @@ function generateCommentsHTML(comments) {
   for (let i = 0; i < comments.length; i++) {
     document.getElementById('viewMorePage-comments').innerHTML += `
       <div class="comment-container mb-3">
-      <div class="comment-info">
-        <p>${comments[i].postByUsername}</p>
-        <p>${formatDate(comments[i].posted)}</p>
-      </div>
-      <p>${comments[i].text}</p>
+        <div class="comment-info">
+          <strong class="mr-1">${comments[i].postByUsername}</strong>
+          <p>on ${formatDate(comments[i].posted)}</p>
+        </div>
+        <p>${comments[i].text}</p>
       </div>
     `
   }
@@ -423,8 +426,6 @@ function formatDate(datestring) {
   let year = date.getFullYear();
   let hour = date.getHours();
   let minute = (date.getMinutes()<10?'0':'') + date.getMinutes();
-
-  (date.getMinutes()<10?'0':'') + date.getMinutes()
 
   return `${day}/${month}/${year} at ${hour}:${minute}`;
 }
