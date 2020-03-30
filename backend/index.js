@@ -202,7 +202,20 @@ app.get('/filterPortfolios/:minPrice/:maxPrice/:category', async (req, res) => {
   }
 })
 
-app.post('/addComment')
+app.post('/addComment', (req, res) => {
+  let comment = new Comment({
+    _id : new mongoose.Types.ObjectId,
+    portfolioID: req.body.portfolioID,
+    postByID: mongoose.Types.ObjectId(req.body.postByID),
+    postByUsername: req.body.postByUsername,
+    postDate: req.body.postDate,
+    content: req.body.content
+  })
+
+  comment.save()
+          .then(result => res.send(result))
+          .catch(err => res.send(err))
+})
 
 
 // Hayley's code ends

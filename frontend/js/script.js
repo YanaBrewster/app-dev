@@ -373,16 +373,27 @@ function getFilteredArtworks() {
   })
 }
 
+document.getElementById('viewMorePage-postCommentButton').addEventListener('click', postComment)
+
 function postComment() {
-  let content = $('#viewMorePage-postComment').val();
-  console.log(content);
+  let _content = $('textarea#viewMorePage-postComment').val();
+  console.log(_content);
 
   $.ajax({
     url: `${url}/addComment`,
     type: 'POST',
     data: {
       portfolioID: '5e7d3f104ac7d036781d1097',
-      postBy: '5e7954aff0f43e339cf0a715'
+      postByID: '5e7954aff0f43e339cf0a715',
+      postByUsername: 'Hayley',
+      postDate: new Date(),
+      content: _content
+    },
+    success: function(comment) {
+      console.log(comment);
+    },
+    error: function(err) {
+      console.log(err);
     }
 
   })
