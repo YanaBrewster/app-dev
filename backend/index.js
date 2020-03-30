@@ -163,7 +163,13 @@ app.get('/portfolioWithAuthor/:id', async (req, res) => {
                 foreignField: "_id",
                 as: "authorInfo"
     }},
-    { $unwind: "$authorInfo" }
+    { $unwind: "$authorInfo" },
+    { $lookup: {
+                from: "comments",
+                localField: "_id",
+                foreignField: "portfolioID",
+                as: "comments"
+    }}
   ])
   console.log(query);
   res.send(query);
