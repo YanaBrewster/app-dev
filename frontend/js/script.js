@@ -266,6 +266,7 @@ function getArtworkInfo(e) {
     type: 'GET',
     dataType: 'json',
     success: function(portfolio) {
+      
       generateViewMoreHTML(portfolio[0]);
       $("#landingPage").hide();
     },
@@ -298,26 +299,31 @@ function generateViewMoreHTML(portfolio) {
   `
 }
 
-document.getElementById("filterButton").addEventListener('click', function() {
-  let price = JSON.parse($("#filterDropdown-byPrice").val());
-  let category = $("#filterDropdown-byCategory").val();
-  console.log(price, category);
-})
+document.getElementById("filterButton").addEventListener('click', getFilteredArtworks)
 
 function getFilteredArtworks() {
   // let price = JSON.parse($("#filterDropdown-byPrice").val());
-  // if (price)
-  // let minPrice = JSON.parse($("#filterDropdown-byPrice").val()).minPrice;
-  // let maxPrice = JSON.parse($("#filterDropdown-byPrice").val()).maxPrice;
+  // console.log(price);
+  let minPrice = (JSON.parse($("#filterDropdown-byPrice").val())).min;
+  let maxPrice = (JSON.parse($("#filterDropdown-byPrice").val())).max;
   let category = $("#filterDropdown-byCategory").val();
 
   $.ajax({
     url: `${url}/filterPortfolios/${minPrice}/${maxPrice}/${category}`,
     type: 'GET',
-    dataType: 'json',
-    success: function(portfolios) {
-      console.log(portfolios);
-      makeProductCards(portfolios);
+    // dataType: 'json text',
+    success: function(response) {
+      console.log(response);
+      if (response === 'Sorry, there is no artwork that matches your search!') {
+        document.getElementById('artsDeck').innerHTML = `
+        <div class="noResultText-wrapper">
+          <h3 class="noResultText">Sorry, there is no artwork that matches your search!</h3>
+        </div>
+        
+        `
+      } else {
+        makeProductCards(response);
+      }
     },
     error: function(error) {
       console.log('Error: ' + error);

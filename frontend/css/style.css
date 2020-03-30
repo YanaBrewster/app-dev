@@ -194,7 +194,7 @@ p {
 }
 
 .signUpButton {
-  background-color: #333333 !important;
+  background-color: #333333;
   padding: 6px 15px;
   border-radius: 8px;
   width: 90px;
@@ -306,7 +306,19 @@ p {
 }
 
 .artcard-category {
-  color: #339999 !important;
+  color: #339999;
+}
+
+.noResultText-wrapper {
+  position: absolute;
+  width: 80vw;
+  height: 40vh;
+}
+
+.noResultText {
+  position: relative;
+  top: 20%;
+  left: 35%;
 }
 
 #viewMorePage {
