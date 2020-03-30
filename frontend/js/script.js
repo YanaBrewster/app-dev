@@ -16,41 +16,157 @@ $(document).ready(function(){
       console.log('error: cannot call api');
     }//error
   });//ajax
-
-
-
 });
 
-  // view all members button ===============================================================
+// Show and hide pages ===============================================================
 // Yanas code
 
-  $('#viewMembersBtn').click(function(){
-    $.ajax({
-      url : `${url}/allMembers`,
-      type : 'GET',
-      dataType : 'json',
-      success : function(membersFromMongo){
-        console.log(membersFromMongo);
-        $('#membersCards').empty();
-        document.getElementById('membersCards').innerHTML +=
-        '<h2 class="pt-5 pb-4">All Members</h2>'
-        for(let i=0; i<membersFromMongo.length; i++){
-          document.getElementById('membersCards').innerHTML +=
-          `<div class="col mt-3">
-          <h4 class=""> ${membersFromMongo[i].username}</h4>
-          </div>`;
-        }
-      },
-      error:function() {
-        console.log('ERROR: cannot call API');
-      }//error
+//check if there is any session sessionStorage
+if (sessionStorage['userName']) {
+  console.log('You are logged in');
+  // buttons
+  $('#logoutBtn').show();
+  $('#myPortfolioBtn').show();
+  $('#loginBtn').hide();
+  $('#signUpBtn').hide();
+  // showMemberName(sessionStorage.userName);
+  // pages
+  $('#landingPage').show();
+  $('#loginPage').hide();
+  $('#signUpPage').hide();
+  $('#projectPage').hide();
+  $('#uploadPortfolioPage').hide();
+  $('#updatePortfolio').hide();
+} else {
+  console.log('Please login');
+  // buttons
+  $('#logoutBtn').hide();
+  $('#myPortfolioBtn').hide();
+  $('#loginBtn').show();
+  $('#signUpBtn').show();
+  // pages
+  $('#landingPage').show();
+  $('#loginPage').hide();
+  $('#signUpPage').hide();
+  $('#projectPage').hide();
+  $('#uploadPortfolioPage').hide();
+  $('#updatePortfolio').hide();
+}
 
-    });//ajax
-  });
+//Home button to show landing page
+$('#homeBtn').click(function(){
+  // pages
+  $('#landingPage').show();
+  $('#loginPage').hide();
+  $('#signUpPage').hide();
+  $('#projectPage').hide();
+  $('#uploadPortfolioPage').hide();
+  $('#updatePortfolio').hide();
+});
+
+//Login button to show login page
+$('#loginBtn').click(function(){
+  // pages
+  $('#loginPage').show();
+  $('#landingPage').hide();
+  $('#signUpPage').hide();
+  $('#projectPage').hide();
+  $('#uploadPortfolioPage').hide();
+  $('#updatePortfolio').hide();
+});
+
+
+//signup button to shoe register page
+$('#signUpBtn').click(function(){
+  // pages
+  $('#signUpPage').show();
+  $('#projectPage').hide();
+  $('#loginPage').hide();
+  $('#landingPage').hide();
+  $('#uploadPortfolioPage').hide();
+  $('#updatePortfolio').hide();
+});
+
+// my portfolio button to show my portfolio page
+$('#myPortfolioBtn').click(function(){
+  showMyProjects()
+  // pages
+  $('#projectPage').show();
+  $('#signUpPage').hide();
+  $('#loginPage').hide();
+  $('#landingPage').hide();
+  $('#uploadPortfolioPage').hide();
+  $('#updatePortfolio').hide();
+});
+
+//upload projects button to show upload project page
+$('#addPortfolioBtn').click(function(){
+  // pages
+  $('#uploadPortfolioPage').show();
+  $('#projectPage').hide();
+  $('#signUpPage').hide();
+  $('#loginPage').hide();
+  $('#landingPage').hide();
+  $('#updatePortfolio').hide();
+});
+
+// back button to my portfolio page
+$('.back-portfolio').click(function(){
+  // pages
+  $('#projectPage').show();
+  $('#uploadPortfolioPage').hide();
+  $('#signUpPage').hide();
+  $('#loginPage').hide();
+  $('#landingPage').hide();
+  $('#updatePortfolio').hide();
+});
+
+
+// Logout member ===============================================================
+// Yanas code
+
+$('#logoutBtn').click(function(){
+  sessionStorage.clear()
+  $('#landingPage').show();
+  $('#loginPage').hide();
+  $('#signUpPage').hide();
+  $('#projectPage').hide();
+  $('#uploadPortfolioPage').hide();
+  $('#updatePortfolio').hide();
+  location.reload("#loginForm");
+});
+
+// view all members button ===============================================================
+// Yanas code
+
+$('#viewMembersBtn').click(function(){
+  $.ajax({
+    url : `${url}/allMembers`,
+    type : 'GET',
+    dataType : 'json',
+    success : function(membersFromMongo){
+      console.log(membersFromMongo);
+      $('#membersCards').empty();
+      document.getElementById('membersCards').innerHTML +=
+      '<h2 class="pt-5 pb-4">All Members</h2>'
+      for(let i=0; i<membersFromMongo.length; i++){
+        document.getElementById('membersCards').innerHTML +=
+        `<div class="col mt-3">
+        <h4 class=""> ${membersFromMongo[i].username}</h4>
+        </div>`;
+      }
+    },
+    error:function() {
+      console.log('ERROR: cannot call API');
+    }//error
+
+  });//ajax
+});
+
 // register member ===============================================================
 // Yanas code
 $('#registerBtn').click(function(){
-  $('#registerForm').show();
+  // $('#registerForm').show();
 });
 
 // register user
@@ -74,7 +190,6 @@ $('#registerForm').submit(function(){
         alert ('Please login to add artwork and buy art');
         $('#loginBtn').show();
         $('#registerBtn').hide();
-        $('#registerForm').hide();
       } else {
         alert('Username already taken. Please try another one');
         $('#registerUsername').val('');
@@ -113,19 +228,20 @@ $('#loginSubmitBtn').click(function(){
       } else if (loginData === 'Not Authorized') {
         alert('Incorrect Password')
       }  else {
-          alert('You are logged in')
+        // alert('You are logged in')
         sessionStorage.setItem('memberId',loginData['_id']);
         sessionStorage.setItem('userName',loginData['username']);
         sessionStorage.setItem('userEmail',loginData['email']);
         // console.log(sessionStorage);
         // showMemberName(username);
-        // $('.landingPage-banner').hide();
-        // $('.logout-btn').show();
-        // $('.signInButton').hide();
-        // $('#signUp').hide();
-        // $('#projectPage').show();
-        // $('#signUpPage').hide();
-        // $('#loginPage').hide();
+        $('#logoutBtn').show();
+        $('#myPortfolioBtn').show();
+        $('#loginBtn').hide();
+        $('#signUpBtn').hide();
+        $('#landingPage').show();
+        $('#loginPage').hide();
+        $("html, body").animate({ scrollTop: 0 }, "fast");
+
       }
     },//success
     error:function(){
@@ -134,42 +250,22 @@ $('#loginSubmitBtn').click(function(){
   });//ajax
 });
 
-// logout member ===============================================================
+// add portfolio form ===============================================================
 // Yanas code
-
-$('#logoutBtn').click(function(){
-  sessionStorage.clear()
-  // $('#loginBtn').show();
-  // $('#logoutBtn').hide();
-  // $('#registerBtn').show();
-  // $('#updatePortfolioForm').hide();
-  // $('#addPortfolioForm').hide();
-  // $('#deleteForm').hide();
-  location.reload("#loginForm");
-});
-
-// add portfolio ===============================================================
-// Yanas code
-
-$('#addPortfolioBtn').click(function(){
-  $('#addPortfolioForm').show();
-  // $('#updatePortfolioForm').hide();
-  // $('#deletePortfolioForm').hide();
-});
 
 $('#addPortfolioForm').submit(function(){
   event.preventDefault();
   if(!sessionStorage['memberId']){
-        alert('401, permission denied');
-        return;
-    };
+    alert('401, permission denied');
+    return;
+  };
   let title = $('#addPortfolioTitle').val();
   let description = $('#addPortfolioDescription').val();
   let image = $('#addPortfolioImage').val();
   let category = $('#addPortfolioCategory').val();
   let price = $('#addPortfolioPrice').val();
   let memberId = $('#addPortfolioMemberId').val();
-    // console.log(title, description, image, category, price, memberId);
+  // console.log(title, description, image, category, price, memberId);
   if (title == '' || description == '' || image == '' || category == '' || price == '' || memberId == ''){
     alert('Please enter all details')
   } else {
@@ -188,16 +284,17 @@ $('#addPortfolioForm').submit(function(){
       success:function(portfolio){
         console.log(portfolio);
         if (!(portfolio == 'Title taken already, please try another one')) {
-             alert('added the portfolio');
-           } else {
-             alert("Title taken already, please try another one")
-           }
+          alert('added the portfolio');
+        } else {
+          alert("Title taken already, please try another one")
+        }
         $('#addPortfolioTitle').val();
         $('#addPortfolioDescription').val();
         $('#addPortfolioImage').val();
         $('#addPortfolioCategory').val();
         $('#addPortfolioPrice').val();
         $('#addPortfolioMemberId').val();
+          $("html, body").animate({ scrollTop: 0 }, "fast");
       },   // success
       error:function(){
         console.log('error: cannot call api');
@@ -209,24 +306,20 @@ $('#addPortfolioForm').submit(function(){
 // View my portfolio project cards =============================================
 // Yanas code
 
-$('#myPortfolioBtn').click(function(){
-showMyProjects()
+function showMyProjects(){
+  $.ajax({
+    url :`${url}/allPortfolios`,
+    type :'GET',
+    dataType :'json',
+    success : function(portfoliosFromMongo){
+      let currentMemberId = sessionStorage.getItem('memberId');
+      myProjects = portfoliosFromMongo.filter(item=>item.memberId === currentMemberId);
+      renderAllCards(myProjects);
+    }
   });
+};
 
-  function showMyProjects(){
-    $.ajax({
-      url :`${url}/allPortfolios`,
-      type :'GET',
-      dataType :'json',
-      success : function(portfoliosFromMongo){
-        let currentMemberId = sessionStorage.getItem('memberId');
-        myProjects = portfoliosFromMongo.filter(item=>item.memberId === currentMemberId);
-        renderAllCards(myProjects);
-      }
-    });
-  };
-
-  function renderAllCards(projects){
+function renderAllCards(projects){
 
   document.getElementById('myProjectCards').innerHTML = "";
   for(let i=0; i<projects.length; i++){
@@ -244,16 +337,22 @@ function renderCard(project){
   <h4 class="card-text">${project.title}</h4>
   <div class="d-flex justify-content-between align-items-center">
   <div class="btn-group pt-2 pb-3 border-bottom mx-auto">
-  <button id="viewProject_${project._id}" type="button" class="mx-2 btn btn-primary btn-font">View</button>
-  <button id="updateProject_${project._id}" type="button" class="mx-2 btn btn-secondary btn-font">Update</button>
-  <button id="deleteProject_${project._id}" type="button" class="mx-2 btn btn-danger btn-font">Delete</button>
+  <button id="viewProject${project._id}" onclick="getArtworkInfo()" type="button" class="viewMoreButton mx-2 btn btn-info btn-font">View</button>
+  <button id="updateProject${project._id}" type="button" class="mx-2 btn btn-dark btn-font">Update</button>
+  <button id="deleteProject${project._id}" type="button" class="mx-2 btn btn-danger btn-font">Delete</button>
   </div>
   </div>
   </div>
   </div>
   </div>`;
-}
 
+  let viewMoreButtons = document.getElementsByClassName('viewMoreButton');
+  console.log(viewMoreButtons);
+
+  for (let i = 0; i < viewMoreButtons.length; i++) {
+    viewMoreButtons[i].addEventListener('click', getArtworkInfo)
+  }
+}
 
 
 // Yanas code ends
@@ -278,6 +377,7 @@ function generateLandingPageCards() {
 function makeProductCards(arr) {
   document.getElementById('artsDeck').innerHTML = arr.map(art =>
     `<div class="card artcard border-bottom">
+
       <div class="image-container">
         <img src="${art.image}" alt="Avatar" class="card-img-top art-image" style="width:100%">
       </div>
@@ -295,10 +395,12 @@ function makeProductCards(arr) {
           <div class="button viewMoreButton" id="${art._id}">View</div>
         </div>
       </div>
+
     </div>`
   ).join(' ');
 
   let viewMoreButtons = document.getElementsByClassName('viewMoreButton');
+
 
   for (let i = 0; i < viewMoreButtons.length; i++) {
     viewMoreButtons[i].addEventListener('click', getArtworkInfo)
@@ -314,6 +416,7 @@ function getArtworkInfo(e) {
     type: 'GET',
     dataType: 'json',
     success: function(portfolio) {
+
       generateViewMoreHTML(portfolio[0]);
       generateCommentsHTML(portfolio[0].comments)
       $("#landingPage").hide();
@@ -325,6 +428,7 @@ function getArtworkInfo(e) {
 }
 
 function generateViewMoreHTML(portfolio) {
+
   document.getElementById('viewMorePage-artInfo').innerHTML = `
     <div>
       <h5 class="h3">${portfolio.title}</h5>
@@ -377,9 +481,9 @@ function getFilteredArtworks() {
       if (response === 'Sorry, there is no artwork that matches your search!') {
         document.getElementById('artsDeck').innerHTML = `
         <div class="noResultText-wrapper">
-          <h3 class="noResultText">Sorry, there is no artwork that matches your search!</h3>
+        <h3 class="noResultText">Sorry, there is no artwork that matches your search!</h3>
         </div>
-        
+
         `
       } else {
         makeProductCards(response);
