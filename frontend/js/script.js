@@ -299,11 +299,10 @@ function makeProductCards(arr) {
   ).join(' ');
 
   let viewMoreButtons = document.getElementsByClassName('viewMoreButton');
-    console.log(viewMoreButtons);
 
-    for (let i = 0; i < viewMoreButtons.length; i++) {
-      viewMoreButtons[i].addEventListener('click', getArtworkInfo)
-    }
+  for (let i = 0; i < viewMoreButtons.length; i++) {
+    viewMoreButtons[i].addEventListener('click', getArtworkInfo)
+  }
 }
 
 function getArtworkInfo(e) {
@@ -313,7 +312,6 @@ function getArtworkInfo(e) {
     type: 'GET',
     dataType: 'json',
     success: function(portfolio) {
-      
       generateViewMoreHTML(portfolio[0]);
       $("#landingPage").hide();
     },
@@ -324,7 +322,7 @@ function getArtworkInfo(e) {
 }
 
 function generateViewMoreHTML(portfolio) {
-  document.getElementById('viewMorePage').innerHTML = `
+  document.getElementById('viewMorePage-artInfo').innerHTML = `
     <div>
       <h5 class="h3">${portfolio.title}</h5>
       <div class="viewMore-photoBackground">
@@ -349,8 +347,6 @@ function generateViewMoreHTML(portfolio) {
 document.getElementById("filterButton").addEventListener('click', getFilteredArtworks)
 
 function getFilteredArtworks() {
-  // let price = JSON.parse($("#filterDropdown-byPrice").val());
-  // console.log(price);
   let minPrice = (JSON.parse($("#filterDropdown-byPrice").val())).min;
   let maxPrice = (JSON.parse($("#filterDropdown-byPrice").val())).max;
   let category = $("#filterDropdown-byCategory").val();
@@ -358,7 +354,6 @@ function getFilteredArtworks() {
   $.ajax({
     url: `${url}/filterPortfolios/${minPrice}/${maxPrice}/${category}`,
     type: 'GET',
-    // dataType: 'json text',
     success: function(response) {
       console.log(response);
       if (response === 'Sorry, there is no artwork that matches your search!') {
@@ -375,6 +370,21 @@ function getFilteredArtworks() {
     error: function(error) {
       console.log('Error: ' + error);
     }
+  })
+}
+
+function postComment() {
+  let content = $('#viewMorePage-postComment').val();
+  console.log(content);
+
+  $.ajax({
+    url: `${url}/addComment`,
+    type: 'POST',
+    data: {
+      portfolioID: '5e7d3f104ac7d036781d1097',
+      postBy: '5e7954aff0f43e339cf0a715'
+    }
+
   })
 }
 

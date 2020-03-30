@@ -8,10 +8,11 @@ const commentSchema = new mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: 'Portfolio'
     },
-    author: {
+    postByID: {
         type: Schema.Types.ObjectId,
         ref: 'Member'
     },
+    postByUsername: String,
     posted: Date,
     text: String
 });

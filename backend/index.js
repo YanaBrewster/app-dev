@@ -202,6 +202,8 @@ app.get('/filterPortfolios/:minPrice/:maxPrice/:category', async (req, res) => {
   }
 })
 
+app.post('/addComment')
+
 
 // Hayley's code ends
 
