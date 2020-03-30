@@ -165,16 +165,29 @@ app.get('/filterPortfolios/:minPrice/:maxPrice/:category', async (req, res) => {
   let _minPrice = parseInt(req.params.minPrice);
   let _maxPrice = parseInt(req.params.maxPrice);
   let _category = req.params.category;
+  let query;
 
-  let query = await Portfolio.aggregate([
-    { $match: { $and: [{ category: _category }, { price: { $gt: _minPrice, $lt: _maxPrice }}]}},
-    { $lookup: {
-                from: "members",
-                localField: "memberId",
-                foreignField: "_id",
-                as: "authorInfo"
-    }}
-  ])
+  if(_category === "all") {
+    query = await Portfolio.aggregate([
+      { $match: { price: { $gt: _minPrice, $lt: _maxPrice }}},
+      { $lookup: {
+                  from: "members",
+                  localField: "memberId",
+                  foreignField: "_id",
+                  as: "authorInfo"
+      }}
+    ])
+  } else { 
+    query = await Portfolio.aggregate([
+      { $match: { $and: [{ category: _category }, { price: { $gt: _minPrice, $lt: _maxPrice }}]}},
+      { $lookup: {
+                  from: "members",
+                  localField: "memberId",
+                  foreignField: "_id",
+                  as: "authorInfo"
+      }}
+    ])
+  }
 
   if(query.length > 0) {
     res.send(query);
