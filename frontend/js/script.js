@@ -442,4 +442,9 @@ function addComment(comment) {
   document.getElementById('viewMorePage-comments').innerHTML += commentHtml;
 }
 
+document.getElementById('backToLanding').addEventListener('click', function() {
+  $("#viewMorePage").hide();
+  $("#landingPage").show();
+})
+
 // Hayley's code ends

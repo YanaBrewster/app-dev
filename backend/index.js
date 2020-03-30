@@ -144,12 +144,15 @@ app.get('/allPortfolios', (req,res) => {
 // Hayley's code
 
 app.get('/portfoliosAndAuthors', async (req, res) => {
-  let query = await Portfolio.aggregate()
-    .lookup({from: "members",
-              localField: "memberId",
-              foreignField: "_id",
-              as: "authorInfo"})
-    .exec();
+  let query = await Portfolio.aggregate([
+    { $lookup: {
+                from: "members",
+                localField: "memberId",
+                foreignField: "_id",
+                as: "authorInfo"
+    }},
+    { $unwind: "$authorInfo" }
+  ])
   res.send(query);
 })
 
@@ -189,7 +192,8 @@ app.get('/filterPortfolios/:minPrice/:maxPrice/:category', async (req, res) => {
                   localField: "memberId",
                   foreignField: "_id",
                   as: "authorInfo"
-      }}
+      }},
+      { $unwind: "$authorInfo" }
     ])
   } else { 
     query = await Portfolio.aggregate([
@@ -199,7 +203,8 @@ app.get('/filterPortfolios/:minPrice/:maxPrice/:category', async (req, res) => {
                   localField: "memberId",
                   foreignField: "_id",
                   as: "authorInfo"
-      }}
+      }},
+      { $unwind: "$authorInfo" }
     ])
   }
 
