@@ -211,12 +211,22 @@ p {
   margin: 0 auto !important;
   width: 70%;
 }
+@media (max-width: 900px) {
+  .container-form {
+    width: 100%;
+  }
+}
 
 .form-box {
   background-color: white !important;
   height: 85vh;
   margin: 0 auto !important;
   width: 60%;
+}
+@media (max-width: 900px) {
+  .form-box {
+    width: 100%;
+  }
 }
 
 .bg-page {

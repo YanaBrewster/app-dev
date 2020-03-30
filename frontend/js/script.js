@@ -183,7 +183,7 @@ $('#addPortfolioForm').submit(function(){
         image : image,
         category : category,
         price: price,
-        memberId : sessionStorage['memberId']
+        memberId : sessionStorage.getItem('memberId')
       },
       success:function(portfolio){
         console.log(portfolio);
@@ -206,6 +206,53 @@ $('#addPortfolioForm').submit(function(){
   } //else
 }); // submit add portfolio
 
+// View my portfolio project cards =============================================
+// Yanas code
+
+$('#myPortfolioBtn').click(function(){
+showMyProjects()
+  });
+
+  function showMyProjects(){
+    $.ajax({
+      url :`${url}/allPortfolios`,
+      type :'GET',
+      dataType :'json',
+      success : function(portfoliosFromMongo){
+        let currentMemberId = sessionStorage.getItem('memberId');
+        myProjects = portfoliosFromMongo.filter(item=>item.memberId === currentMemberId);
+        renderAllCards(myProjects);
+      }
+    });
+  };
+
+  function renderAllCards(projects){
+
+  document.getElementById('myProjectCards').innerHTML = "";
+  for(let i=0; i<projects.length; i++){
+    let project = projects[i];
+    let card = renderCard(project);
+    document.getElementById('myProjectCards').innerHTML += card;
+  }
+}
+
+function renderCard(project){
+  return  `<div class="col-md-3 col-lg-3 col-sm-12">
+  <div class="card mb-4 border-0">
+  <img src="${project.image}" class="card-img-top radius" alt="Picture from my project">
+  <div class="card-body">
+  <h4 class="card-text">${project.title}</h4>
+  <div class="d-flex justify-content-between align-items-center">
+  <div class="btn-group pt-2 pb-3 border-bottom mx-auto">
+  <button id="viewProject_${project._id}" type="button" class="mx-2 btn btn-primary btn-font">View</button>
+  <button id="updateProject_${project._id}" type="button" class="mx-2 btn btn-secondary btn-font">Update</button>
+  <button id="deleteProject_${project._id}" type="button" class="mx-2 btn btn-danger btn-font">Delete</button>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>`;
+}
 
 
 

@@ -9,6 +9,9 @@
   height: 100vh;
   margin: 0 auto !important;
   width: 70%;
+  @media (max-width: 900px) {
+    width: 100%;
+}
 }
 
 .form-box{
@@ -16,6 +19,9 @@
   height: 85vh;
   margin: 0 auto !important;
   width: 60%;
+  @media (max-width: 900px) {
+    width: 100%;
+}
 }
 
 
