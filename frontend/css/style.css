@@ -319,6 +319,18 @@ p {
   color: #339999;
 }
 
+.noResultText-wrapper {
+  position: absolute;
+  width: 80vw;
+  height: 40vh;
+}
+
+.noResultText {
+  position: relative;
+  top: 20%;
+  left: 35%;
+}
+
 #viewMorePage {
   width: 100vw;
   border-top: #339999 4px solid;
