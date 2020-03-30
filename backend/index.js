@@ -162,8 +162,10 @@ app.get('/portfolioWithAuthor/:id', async (req, res) => {
                 localField: "memberId",
                 foreignField: "_id",
                 as: "authorInfo"
-    }}
+    }},
+    { $unwind: "$authorInfo" }
   ])
+  console.log(query);
   res.send(query);
 });
 

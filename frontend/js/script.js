@@ -287,9 +287,9 @@ function makeProductCards(arr) {
           <h5 class="card-title h4 artcard-title">${art.title}</h5>
           <h5 class="card-title h4 artcard-price">&dollar;${art.price}</h5>
         </div>
-        <h6 class="card-title mb-3">${art.authorInfo[0].username}, ${art.authorInfo[0].location}</h6>
+        <h6 class="card-title mb-3">${art.authorInfo.username}, ${art.authorInfo.location}</h6>
         <p class="card-text artcard-description mb-3">${art.description}</p>
-        <a href="${art.authorInfo[0].website}" class="card-link artcard-link">Artist Website</a>
+        <a href="${art.authorInfo.website}" class="card-link artcard-link">Artist Website</a>
         <div class="artcard-columnwrap mt-5">
           <p class="card-title h5-cyan">${art.category}</p>
           <div class="button viewMoreButton" id="${art._id}">View</div>
@@ -329,13 +329,13 @@ function generateViewMoreHTML(portfolio) {
         <img src="${portfolio.image}" class="viewMore-mainPhoto" alt="${portfolio.title} photo">
       </div>
       <div class="flexContainer-row mt-3 mb-3">
-        <h5 class="h4">${portfolio.authorInfo[0].username}</h5>
+        <h5 class="h4">${portfolio.authorInfo.username}</h5>
         <h5 class="card-title h4 artcard-price">&dollar;${portfolio.price}</h5>
       </div>
       <p>${portfolio.description}</p>
-      <strong class="mb-5">Location: ${portfolio.authorInfo[0].location}</strong>
+      <strong class="mb-5">Location: ${portfolio.authorInfo.location}</strong>
       <br/>
-      <a href="${portfolio.authorInfo[0].website}" class="artcard-link">${portfolio.authorInfo[0].website}</a>
+      <a href="${portfolio.authorInfo.website}" class="artcard-link">${portfolio.authorInfo.website}</a>
       <div class="artcard-columnwrap mt-5 viewMore-endBoarder">
         <p class="card-title h5-cyan">${portfolio.category}</p>
         <div class="button" id="${portfolio._id}">Buy</div>
