@@ -391,13 +391,34 @@ function postComment() {
       content: _content
     },
     success: function(comment) {
-      console.log(comment);
+      $('textarea#viewMorePage-postComment').val('');
+      addComment(comment);
     },
     error: function(err) {
       console.log(err);
     }
 
   })
+}
+
+function addComment(comment) {
+  let date = new Date(comment.posted);
+  let day = date.getDate();
+  let month = date.getMonth();
+  let year = date.getFullYear();
+  let hour = date.getHours();
+  let minute = date.getMinutes();
+
+  let commentHtml = `
+    <div class="comment-container">
+      <div class="comment-info">
+        <p>${comment.postByUsername}</p>
+        <p>${day}/${month}/${year} at ${hour}:${minute}</p>
+      </div>
+      <p>${comment.text}</p>
+    </div>
+  `
+  document.getElementById('viewMorePage-comments').innerHTML += commentHtml;
 }
 
 // Hayley's code ends
