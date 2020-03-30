@@ -11,7 +11,7 @@ const Comment = require('./models/comment.js');
 const Member = require('./models/member.js');
 const Portfolio = require('./models/portfolio.js');
 
-const port = 5000;
+const port = 3000;
 
 app.get('/', (req, res) => res.send('Hello World from Hayley, Rahul and Yana!'))
 
@@ -160,6 +160,41 @@ app.get('/portfolioWithAuthor/:id', async (req, res) => {
   ])
   res.send(query);
 });
+
+app.get('/filterPortfolios/:minPrice/:maxPrice/:category', async (req, res) => {
+  let _minPrice = parseInt(req.params.minPrice);
+  let _maxPrice = parseInt(req.params.maxPrice);
+  let _category = req.params.category;
+  let query;
+
+  if(_category === "all") {
+    query = await Portfolio.aggregate([
+      { $match: { price: { $gt: _minPrice, $lt: _maxPrice }}},
+      { $lookup: {
+                  from: "members",
+                  localField: "memberId",
+                  foreignField: "_id",
+                  as: "authorInfo"
+      }}
+    ])
+  } else { 
+    query = await Portfolio.aggregate([
+      { $match: { $and: [{ category: _category }, { price: { $gt: _minPrice, $lt: _maxPrice }}]}},
+      { $lookup: {
+                  from: "members",
+                  localField: "memberId",
+                  foreignField: "_id",
+                  as: "authorInfo"
+      }}
+    ])
+  }
+
+  if(query.length > 0) {
+    res.send(query);
+  } else {
+    res.send('Sorry, there is no artwork that matches your search!')
+  }
+})
 
 
 // Hayley's code ends
