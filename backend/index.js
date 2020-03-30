@@ -208,8 +208,8 @@ app.post('/addComment', (req, res) => {
     portfolioID: req.body.portfolioID,
     postByID: mongoose.Types.ObjectId(req.body.postByID),
     postByUsername: req.body.postByUsername,
-    postDate: req.body.postDate,
-    content: req.body.content
+    posted: req.body.postDate,
+    text: req.body.content
   })
 
   comment.save()

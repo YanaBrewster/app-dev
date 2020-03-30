@@ -377,7 +377,8 @@ document.getElementById('viewMorePage-postCommentButton').addEventListener('clic
 
 function postComment() {
   let _content = $('textarea#viewMorePage-postComment').val();
-  console.log(_content);
+  let _date = Date.now()
+  console.log(_content, _date);
 
   $.ajax({
     url: `${url}/addComment`,
@@ -386,7 +387,7 @@ function postComment() {
       portfolioID: '5e7d3f104ac7d036781d1097',
       postByID: '5e7954aff0f43e339cf0a715',
       postByUsername: 'Hayley',
-      postDate: new Date(),
+      postDate: _date,
       content: _content
     },
     success: function(comment) {
