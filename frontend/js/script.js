@@ -287,9 +287,9 @@ function makeProductCards(arr) {
           <h5 class="card-title h4 artcard-title">${art.title}</h5>
           <h5 class="card-title h4 artcard-price">&dollar;${art.price}</h5>
         </div>
-        <h6 class="card-title mb-3">${art.authorInfo[0].username}, ${art.authorInfo[0].location}</h6>
+        <h6 class="card-title mb-3">${art.authorInfo.username}, ${art.authorInfo.location}</h6>
         <p class="card-text artcard-description mb-3">${art.description}</p>
-        <a href="${art.authorInfo[0].website}" class="card-link artcard-link">Artist Website</a>
+        <a href="${art.authorInfo.website}" class="card-link artcard-link">Artist Website</a>
         <div class="artcard-columnwrap mt-5">
           <p class="card-title h5-cyan">${art.category}</p>
           <div class="button viewMoreButton" id="${art._id}">View</div>
@@ -299,12 +299,13 @@ function makeProductCards(arr) {
   ).join(' ');
 
   let viewMoreButtons = document.getElementsByClassName('viewMoreButton');
-    console.log(viewMoreButtons);
 
-    for (let i = 0; i < viewMoreButtons.length; i++) {
-      viewMoreButtons[i].addEventListener('click', getArtworkInfo)
-    }
+  for (let i = 0; i < viewMoreButtons.length; i++) {
+    viewMoreButtons[i].addEventListener('click', getArtworkInfo)
+  }
 }
+
+console.log(sessionStorage);
 
 function getArtworkInfo(e) {
   let id = e.target.id;
@@ -313,8 +314,8 @@ function getArtworkInfo(e) {
     type: 'GET',
     dataType: 'json',
     success: function(portfolio) {
-      
       generateViewMoreHTML(portfolio[0]);
+      generateCommentsHTML(portfolio[0].comments)
       $("#landingPage").hide();
     },
     error: function(error) {
@@ -324,33 +325,46 @@ function getArtworkInfo(e) {
 }
 
 function generateViewMoreHTML(portfolio) {
-  document.getElementById('viewMorePage').innerHTML = `
+  document.getElementById('viewMorePage-artInfo').innerHTML = `
     <div>
       <h5 class="h3">${portfolio.title}</h5>
       <div class="viewMore-photoBackground">
         <img src="${portfolio.image}" class="viewMore-mainPhoto" alt="${portfolio.title} photo">
       </div>
       <div class="flexContainer-row mt-3 mb-3">
-        <h5 class="h4">${portfolio.authorInfo[0].username}</h5>
+        <h5 class="h4">${portfolio.authorInfo.username}</h5>
         <h5 class="card-title h4 artcard-price">&dollar;${portfolio.price}</h5>
       </div>
       <p>${portfolio.description}</p>
-      <strong class="mb-5">Location: ${portfolio.authorInfo[0].location}</strong>
+      <strong class="mb-5">Location: ${portfolio.authorInfo.location}</strong>
       <br/>
-      <a href="${portfolio.authorInfo[0].website}" class="artcard-link">${portfolio.authorInfo[0].website}</a>
+      <a href="${portfolio.authorInfo.website}" class="artcard-link">${portfolio.authorInfo.website}</a>
       <div class="artcard-columnwrap mt-5 viewMore-endBoarder">
         <p class="card-title h5-cyan">${portfolio.category}</p>
         <div class="button" id="${portfolio._id}">Buy</div>
       </div>
+      <button id="backToLanding" type="button" class="btn btn-dark mt-3 mb-5">Back</button>
     </div>
   `
+}
+
+function generateCommentsHTML(comments) {
+  for (let i = 0; i < comments.length; i++) {
+    document.getElementById('viewMorePage-comments').innerHTML += `
+      <div class="comment-container mb-3">
+        <div class="comment-info">
+          <strong class="mr-1">${comments[i].postByUsername}</strong>
+          <p>on ${formatDate(comments[i].posted)}</p>
+        </div>
+        <p>${comments[i].text}</p>
+      </div>
+    `
+  }
 }
 
 document.getElementById("filterButton").addEventListener('click', getFilteredArtworks)
 
 function getFilteredArtworks() {
-  // let price = JSON.parse($("#filterDropdown-byPrice").val());
-  // console.log(price);
   let minPrice = (JSON.parse($("#filterDropdown-byPrice").val())).min;
   let maxPrice = (JSON.parse($("#filterDropdown-byPrice").val())).max;
   let category = $("#filterDropdown-byCategory").val();
@@ -358,7 +372,6 @@ function getFilteredArtworks() {
   $.ajax({
     url: `${url}/filterPortfolios/${minPrice}/${maxPrice}/${category}`,
     type: 'GET',
-    // dataType: 'json text',
     success: function(response) {
       console.log(response);
       if (response === 'Sorry, there is no artwork that matches your search!') {
@@ -377,5 +390,62 @@ function getFilteredArtworks() {
     }
   })
 }
+
+document.getElementById('viewMorePage-postCommentButton').addEventListener('click', postComment)
+
+function postComment() {
+  let _content = $('textarea#viewMorePage-postComment').val();
+  let _date = Date.now();
+
+  $.ajax({
+    url: `${url}/addComment`,
+    type: 'POST',
+    data: {
+      portfolioID: '5e7d3f104ac7d036781d1097',
+      postByID: '5e7954aff0f43e339cf0a715',
+      postByUsername: 'Hayley',
+      postDate: _date,
+      content: _content
+    },
+    success: function(comment) {
+      $('textarea#viewMorePage-postComment').val('');
+      console.log(comment);
+      addComment(comment);
+    },
+    error: function(err) {
+      console.log(err);
+    }
+
+  })
+}
+
+function formatDate(datestring) {
+  let date = new Date(datestring);
+  let day = date.getDate();
+  let month = date.getMonth();
+  let year = date.getFullYear();
+  let hour = date.getHours();
+  let minute = (date.getMinutes()<10?'0':'') + date.getMinutes();
+
+  return `${day}/${month}/${year} at ${hour}:${minute}`;
+}
+
+function addComment(comment) {
+  let commentHtml = `
+    <div class="comment-container mb-3">
+      <div class="comment-info">
+        <strong class="mr-1">${comment.postByUsername}</strong>
+        <p>on ${formatDate(comment.posted)}</p>
+      </div>
+      <p>${comment.text}</p>
+    </div>
+  `;
+  document.getElementById('viewMorePage-comments').innerHTML += commentHtml;
+}
+
+document.getElementById('backToLanding').addEventListener('click', function() {
+  $("#viewMorePage").hide();
+  $("#landingPage").show();
+})
 
 // Hayley's code ends
