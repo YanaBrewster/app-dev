@@ -313,6 +313,7 @@ function getArtworkInfo(e) {
     dataType: 'json',
     success: function(portfolio) {
       generateViewMoreHTML(portfolio[0]);
+      generateCommentsHTML(portfolio[0].comments)
       $("#landingPage").hide();
     },
     error: function(error) {
@@ -342,6 +343,20 @@ function generateViewMoreHTML(portfolio) {
       </div>
     </div>
   `
+}
+
+function generateCommentsHTML(comments) {
+  for (let i = 0; i < comments.length; i++) {
+    document.getElementById('viewMorePage-comments').innerHTML += `
+      <div class="comment-container mb-3">
+      <div class="comment-info">
+        <p>${comments[i].postByUsername}</p>
+        <p>${formatDate(comments[i].posted)}</p>
+      </div>
+      <p>${comments[i].text}</p>
+      </div>
+    `
+  }
 }
 
 document.getElementById("filterButton").addEventListener('click', getFilteredArtworks)
@@ -401,19 +416,25 @@ function postComment() {
   })
 }
 
-function addComment(comment) {
-  let date = new Date(comment.posted);
+function formatDate(datestring) {
+  let date = new Date(datestring);
   let day = date.getDate();
   let month = date.getMonth();
   let year = date.getFullYear();
   let hour = date.getHours();
-  let minute = date.getMinutes();
+  let minute = (date.getMinutes()<10?'0':'') + date.getMinutes();
 
+  (date.getMinutes()<10?'0':'') + date.getMinutes()
+
+  return `${day}/${month}/${year} at ${hour}:${minute}`;
+}
+
+function addComment(comment) {
   let commentHtml = `
-    <div class="comment-container">
+    <div class="comment-container mb-3">
       <div class="comment-info">
         <p>${comment.postByUsername}</p>
-        <p>${day}/${month}/${year} at ${hour}:${minute}</p>
+        <p>${formatDate(comment.posted)}</p>
       </div>
       <p>${comment.text}</p>
     </div>
