@@ -144,12 +144,15 @@ app.get('/allPortfolios', (req,res) => {
 // Hayley's code
 
 app.get('/portfoliosAndAuthors', async (req, res) => {
-  let query = await Portfolio.aggregate()
-    .lookup({from: "members",
-              localField: "memberId",
-              foreignField: "_id",
-              as: "authorInfo"})
-    .exec();
+  let query = await Portfolio.aggregate([
+    { $lookup: {
+                from: "members",
+                localField: "memberId",
+                foreignField: "_id",
+                as: "authorInfo"
+    }},
+    { $unwind: "$authorInfo" }
+  ])
   res.send(query);
 })
 
@@ -162,8 +165,16 @@ app.get('/portfolioWithAuthor/:id', async (req, res) => {
                 localField: "memberId",
                 foreignField: "_id",
                 as: "authorInfo"
+    }},
+    { $unwind: "$authorInfo" },
+    { $lookup: {
+                from: "comments",
+                localField: "_id",
+                foreignField: "portfolioID",
+                as: "comments"
     }}
   ])
+  console.log(query);
   res.send(query);
 });
 
@@ -181,7 +192,8 @@ app.get('/filterPortfolios/:minPrice/:maxPrice/:category', async (req, res) => {
                   localField: "memberId",
                   foreignField: "_id",
                   as: "authorInfo"
-      }}
+      }},
+      { $unwind: "$authorInfo" }
     ])
   } else {
     query = await Portfolio.aggregate([
@@ -191,7 +203,8 @@ app.get('/filterPortfolios/:minPrice/:maxPrice/:category', async (req, res) => {
                   localField: "memberId",
                   foreignField: "_id",
                   as: "authorInfo"
-      }}
+      }},
+      { $unwind: "$authorInfo" }
     ])
   }
 
@@ -202,24 +215,22 @@ app.get('/filterPortfolios/:minPrice/:maxPrice/:category', async (req, res) => {
   }
 })
 
+app.post('/addComment', (req, res) => {
+  let comment = new Comment({
+    _id : new mongoose.Types.ObjectId,
+    portfolioID: req.body.portfolioID,
+    postByID: mongoose.Types.ObjectId(req.body.postByID),
+    postByUsername: req.body.postByUsername,
+    posted: req.body.postDate,
+    text: req.body.content
+  })
+
+  comment.save()
+          .then(result => res.send(result))
+          .catch(err => res.send(err))
+})
+
 
 // Hayley's code ends
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

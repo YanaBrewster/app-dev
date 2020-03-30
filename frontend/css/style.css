@@ -311,12 +311,8 @@ p {
   left: 35%;
 }
 
-.nav-border {
-  border-bottom: 4px solid #99cccc !important;
-  width: 100%;
-}
 
-#viewMorePage {
+#viewMorePage-artInfo {
   width: 100vw;
   border-top: #339999 !important 4px solid;
   padding-top: 3rem;
@@ -340,6 +336,22 @@ p {
 .viewMore-endBoarder {
   padding-bottom: 2rem;
   border-bottom: lightgrey 2px solid;
+}
+
+.viewMorePage-commentsWrapper {
+  padding-left: 10vw;
+  padding-right: 10vw;
+  max-width: 100%;
+}
+
+.comment-container {
+  padding: 1rem;
+  border: #339999 1px solid;
+  border-radius: 20px;
+}
+
+.comment-info {
+  display: flex;
 }
 
 /*# sourceMappingURL=style.css.map */
