@@ -35,6 +35,14 @@
     padding: 1rem;
     border: $primary 1px solid;
     border-radius: 20px;
+    
+    &--right {
+        text-align: right;
+    }
+
+    &--left {
+        text-align: left;
+    }
 }
 
 .comment-info {

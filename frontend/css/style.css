@@ -363,6 +363,12 @@ p {
   border: #339999 !important 1px solid;
   border-radius: 20px;
 }
+.comment-container--right {
+  text-align: right;
+}
+.comment-container--left {
+  text-align: left;
+}
 
 .comment-info {
   display: flex;
