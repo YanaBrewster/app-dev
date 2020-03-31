@@ -89,12 +89,12 @@ p {
 }
 
 .radius {
-  border-radius: 50px !important;
+  border-radius: 50px;
 }
 
 .border {
-  border-width: 2px !important;
-  border-radius: 50px !important;
+  border-width: 2px;
+  border-radius: 50px;
 }
 
 .logo {
@@ -148,12 +148,12 @@ p {
 }
 
 .radius {
-  border-radius: 50px !important;
+  border-radius: 50px;
 }
 
 .border {
-  border-width: 2px !important;
-  border-radius: 50px !important;
+  border-width: 2px;
+  border-radius: 50px;
 }
 
 .logo {
@@ -196,9 +196,9 @@ p {
 }
 
 .container-form {
-  background-color: white !important;
+  background-color: white;
   height: 100vh;
-  margin: 0 auto !important;
+  margin: 0 auto;
   width: 70%;
 }
 @media (max-width: 900px) {
@@ -208,9 +208,9 @@ p {
 }
 
 .form-box {
-  background-color: white !important;
+  background-color: white;
   height: 85vh;
-  margin: 0 auto !important;
+  margin: 0 auto;
   width: 60%;
 }
 @media (max-width: 900px) {
@@ -240,7 +240,7 @@ p {
 .landingPage-banner {
   background-image: url("../images/BarneyBrewsterBanner.jpg");
   background-size: cover;
-  height: 30vh;
+  height: 50vh;
 }
 
 .filterDropdown {
@@ -360,7 +360,7 @@ p {
 
 .comment-container {
   padding: 1rem;
-  border: #339999 !important 1px solid;
+  border: #339999 1px solid;
   border-radius: 20px;
 }
 
