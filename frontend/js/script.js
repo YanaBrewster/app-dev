@@ -385,7 +385,6 @@ function generateLandingPageCards() {
 function makeProductCards(arr) {
   document.getElementById('artsDeck').innerHTML = arr.map(art =>
     `<div class="card artcard border-bottom">
-
       <div class="image-container">
         <img src="${art.image}" alt="Avatar" class="card-img-top art-image" style="width:100%">
       </div>
@@ -408,8 +407,6 @@ function makeProductCards(arr) {
   ).join(' ');
 
   let viewMoreButtons = document.getElementsByClassName('viewMoreButton');
-
-
   for (let i = 0; i < viewMoreButtons.length; i++) {
     viewMoreButtons[i].addEventListener('click', getArtworkInfo)
   }
@@ -424,9 +421,10 @@ function getArtworkInfo(e) {
     type: 'GET',
     dataType: 'json',
     success: function(portfolio) {
-
       generateViewMoreHTML(portfolio[0]);
-      generateCommentsHTML(portfolio[0].comments)
+      generateCommentsHTML(portfolio[0].comments);
+      sessionStorage.setItem('currentPortfolio', portfolio[0]._id);
+      $("#viewMorePage").show();
       $("#landingPage").hide();
     },
     error: function(error) {
@@ -458,6 +456,12 @@ function generateViewMoreHTML(portfolio) {
       <button id="backToLanding" type="button" class="btn btn-dark mt-3 mb-5">Back</button>
     </div>
   `
+  document.getElementById('backToLanding').addEventListener('click', function() {
+    $("#viewMorePage").hide();
+    $("#landingPage").show();
+    sessionStorage.removeItem('currentPortfolio');
+    console.log(sessionStorage);
+  })
 }
 
 function generateCommentsHTML(comments) {
@@ -508,14 +512,17 @@ document.getElementById('viewMorePage-postCommentButton').addEventListener('clic
 function postComment() {
   let _content = $('textarea#viewMorePage-postComment').val();
   let _date = Date.now();
+  let _portfolioID = sessionStorage.getItem('currentPortfolio');
+  let _userID = sessionStorage.getItem('memberId');
+  let _username = sessionStorage.getItem('userName');
 
   $.ajax({
     url: `${url}/addComment`,
     type: 'POST',
     data: {
-      portfolioID: '5e7d3f104ac7d036781d1097',
-      postByID: '5e7954aff0f43e339cf0a715',
-      postByUsername: 'Hayley',
+      portfolioID: _portfolioID,
+      postByID: _userID,
+      postByUsername: _username,
       postDate: _date,
       content: _content
     },
@@ -554,10 +561,5 @@ function addComment(comment) {
   `;
   document.getElementById('viewMorePage-comments').innerHTML += commentHtml;
 }
-
-document.getElementById('backToLanding').addEventListener('click', function() {
-  $("#viewMorePage").hide();
-  $("#landingPage").show();
-})
 
 // Hayley's code ends

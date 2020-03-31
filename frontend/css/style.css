@@ -11,48 +11,48 @@ button {
 
 h1 {
   font-family: 'Quicksand', sans-serif;
-  color: #333333 !important;
+  color: #333333;
   font-size: 3em;
   font-weight: 700;
 }
 
 h2 {
   font-family: 'Quicksand', sans-serif;
-  color: #333333 !important;
+  color: #333333;
   font-size: 2.250em;
   font-weight: 700;
 }
 
 h3 {
   font-family: 'Quicksand', sans-serif;
-  color: #99cccc !important;
+  color: #99cccc;
   font-size: 1.750em;
   font-weight: 700;
 }
 
 h4 {
   font-family: 'Quicksand', sans-serif;
-  color: #333333 !important;
+  color: #333333;
   font-size: 1.250em;
   font-weight: 700;
 }
 
 h5 {
   font-family: 'Open Sans', sans-serif;
-  color: #333333 !important;
+  color: #333333;
   font-size: 1.250em;
   font-weight: 700;
 }
 
 p {
   font-family: 'Open Sans', sans-serif;
-  color: #333333 !important;
+  color: #333333;
   text-align: left;
 }
 
 .h5-cyan {
   font-family: 'Open Sans', sans-serif;
-  color: #339999 !important;
+  color: #339999;
   font-size: 1.250em;
   font-weight: 700;
 }
@@ -114,13 +114,18 @@ p {
 }
 
 .button {
+  padding: 6px 15px;
   cursor: pointer;
   color: white;
+  width: 80px;
+  height: 36px;
+  background-color: #339999;
   text-align: center;
+  border-radius: 20px;
 }
 
 .signUpButton {
-  background-color: #333333 !important;
+  background-color: #333333;
   padding: 6px 15px;
   border-radius: 8px;
   width: 90px;
@@ -168,13 +173,18 @@ p {
 }
 
 .button {
+  padding: 6px 15px;
   cursor: pointer;
   color: white;
+  width: 80px;
+  height: 36px;
+  background-color: #339999;
   text-align: center;
+  border-radius: 20px;
 }
 
 .signUpButton {
-  background-color: #333333 !important;
+  background-color: #333333;
   padding: 6px 15px;
   border-radius: 8px;
   width: 90px;
@@ -235,7 +245,7 @@ p {
 
 .filterDropdown {
   justify-content: center;
-  background-color: #cccccc !important;
+  background-color: #cccccc;
   padding-top: 20px;
   padding-bottom: 20px;
 }
@@ -296,7 +306,7 @@ p {
 }
 
 .artcard-category {
-  color: #339999 !important;
+  color: #339999;
 }
 
 .noResultText-wrapper {
@@ -312,13 +322,13 @@ p {
 }
 
 .nav-border {
-  border-bottom: 4px solid #99cccc !important;
+  border-bottom: 4px solid #99cccc;
   width: 100%;
 }
 
 #viewMorePage-artInfo {
   width: 100vw;
-  border-top: #339999 !important 4px solid;
+  border-top: #339999 4px solid;
   padding-top: 3rem;
   padding-right: 10vw;
   padding-left: 10vw;
