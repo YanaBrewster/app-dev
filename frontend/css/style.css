@@ -314,6 +314,8 @@ p {
 
 .portfolioPage-buttonGroup {
   display: flex;
+  width: 42%;
+  justify-content: space-between;
 }
 
 .landingPage-banner {

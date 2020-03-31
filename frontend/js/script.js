@@ -317,9 +317,7 @@ $('#addPortfolioForm').submit(function(){
 function generateMyPortfolios() {
   let currentUserId = sessionStorage.getItem('memberId');
 
-  if (!currentUserId) {
-    return;
-  }
+  if (!currentUserId) { return; }
 
   $.ajax({
     url: `${url}/myPortfolios/${currentUserId}`,
