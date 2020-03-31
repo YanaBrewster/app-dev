@@ -360,7 +360,7 @@ p {
 
 .comment-container {
   padding: 1rem;
-  border: #339999 1px solid;
+  border: #339999 !important 1px solid;
   border-radius: 20px;
 }
 
