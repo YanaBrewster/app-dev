@@ -35,16 +35,29 @@
     padding: 1rem;
     border: $primary 1px solid;
     border-radius: 20px;
-    
-    &--right {
-        text-align: right;
-    }
-
-    &--left {
-        text-align: left;
-    }
+    // &--right {
+    //     text-align: right;
+    // }
+    //
+    // &--left {
+    //     text-align: left;
+    // }
 }
 
 .comment-info {
     display: flex;
 }
+
+// yana code
+
+.comment-right {
+        text-align: right;
+        background-color: $blue;
+}
+
+.comment-left {
+        text-align: left;
+        background-color: white;
+}
+
+// yana code ends

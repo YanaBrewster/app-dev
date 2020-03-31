@@ -7,23 +7,23 @@
 
 // dark grey for text and buttons
 $gray-dark: #333333;
-$dark: #333333;
+$dark: #333333 !default;
 
 // light grey for background colour and boarders
 $gray: #cccccc;
-$secondary: #cccccc;
+$secondary: #cccccc !default;
 
 // Light blue for boarders
 $blue: #99cccc;
-$info: #99cccc;
+$info: #99cccc !default;
 
 // For blue button background colour and category name colour
 $cyan: #339999;
-$primary: #339999;
+$primary: #339999 !default;
 
 // red for delete buttons
 $red: #FF9966;
-$danger: #FF9966;
+$danger: #FF9966 !default;
 
 //Light grey for photo background
 $grey-light: #f5f9f8;

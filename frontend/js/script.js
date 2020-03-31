@@ -37,7 +37,8 @@ if (sessionStorage['userName']) {
   $('#signUpPage').hide();
   $('#projectPage').hide();
   $('#uploadPortfolioPage').hide();
-  $('#updatePortfolio').hide();
+  $('#updatePortfolioPage').hide();
+  $('#deletePortfolioPage').hide();
 } else {
   console.log('Please login');
   // buttons
@@ -52,7 +53,8 @@ if (sessionStorage['userName']) {
   $('#signUpPage').hide();
   $('#projectPage').hide();
   $('#uploadPortfolioPage').hide();
-  $('#updatePortfolio').hide();
+  $('#updatePortfolioPage').hide();
+  $('#deletePortfolioPage').hide();
 }
 
 //Home button to show landing page
@@ -64,7 +66,8 @@ $('#homeBtn').click(function(){
   $('#signUpPage').hide();
   $('#projectPage').hide();
   $('#uploadPortfolioPage').hide();
-  $('#updatePortfolio').hide();
+  $('#updatePortfolioPage').hide();
+  $('#deletePortfolioPage').hide();
 });
 
 //Login button to show login page
@@ -76,7 +79,8 @@ $('#loginBtn').click(function(){
   $('#signUpPage').hide();
   $('#projectPage').hide();
   $('#uploadPortfolioPage').hide();
-  $('#updatePortfolio').hide();
+  $('#updatePortfolioPage').hide();
+  $('#deletePortfolioPage').hide();
 });
 
 
@@ -89,7 +93,8 @@ $('#signUpBtn').click(function(){
   $('#landingPage').hide();
   $('#viewMorePage').hide();
   $('#uploadPortfolioPage').hide();
-  $('#updatePortfolio').hide();
+  $('#updatePortfolioPage').hide();
+  $('#deletePortfolioPage').hide();
 });
 
 // my portfolio button to show my portfolio page
@@ -102,7 +107,8 @@ $('#myPortfolioBtn').click(function(){
   $('#landingPage').hide();
   $('#viewMorePage').hide();
   $('#uploadPortfolioPage').hide();
-  $('#updatePortfolio').hide();
+  $('#updatePortfolioPage').hide();
+  $('#deletePortfolioPage').hide();
 });
 
 //upload projects button to show upload project page
@@ -114,7 +120,8 @@ $('#addPortfolioBtn').click(function(){
   $('#loginPage').hide();
   $('#landingPage').hide();
   $('#viewMorePage').hide();
-  $('#updatePortfolio').hide();
+  $('#updatePortfolioPage').hide();
+  $('#deletePortfolioPage').hide();
 });
 
 // back button to my portfolio page
@@ -126,7 +133,34 @@ $('.back-portfolio').click(function(){
   $('#loginPage').hide();
   $('#landingPage').hide();
   $('#viewMorePage').hide();
-  $('#updatePortfolio').hide();
+  $('#updatePortfolioPage').hide();
+  $('#deletePortfolioPage').hide();
+});
+
+//update projects button to show update project page
+$('#updateProject').click(function(){
+  // pages
+  $('#uploadPortfolioPage').hide();
+  $('#projectPage').hide();
+  $('#signUpPage').hide();
+  $('#loginPage').hide();
+  $('#landingPage').hide();
+  $('#viewMorePage').hide();
+  $('#updatePortfolioPage').show();
+  $('#deletePortfolioPage').hide();
+});
+
+// delete projects button to show delete project page
+$('#deleteProject').click(function(){
+  // pages
+  $('#uploadPortfolioPage').hide();
+  $('#projectPage').hide();
+  $('#signUpPage').hide();
+  $('#loginPage').hide();
+  $('#landingPage').hide();
+  $('#viewMorePage').hide();
+  $('#updatePortfolioPage').hide();
+  $('#deletePortfolioPage').show();
 });
 
 
@@ -372,25 +406,26 @@ function generateLandingPageCards() {
 
 function makeProductCards(arr) {
   document.getElementById('artsDeck').innerHTML = arr.map(art =>
-    `<div class="card artcard border-bottom">
-      <div class="image-container">
-        <img src="${art.image}" alt="Avatar" class="card-img-top art-image" style="width:100%">
-      </div>
+    `<div class="col-sm-12 col-md-6 col-lg-4 my-xs-1 my-sm-1 my-md-3 my-lg-3">
+        <div class="card card-border rounded-0 mb-4">
 
-      <div class="card-body artcard-body">
-        <div class="artcard-columnwrap mb-3">
-          <h5 class="card-title h4 artcard-title">${art.title}</h5>
-          <h5 class="card-title h4 artcard-price">&dollar;${art.price}</h5>
-        </div>
-        <h6 class="card-title mb-3">${art.authorInfo.username}, ${art.authorInfo.location}</h6>
-        <p class="card-text artcard-description mb-3">${art.description}</p>
-        <a href="${art.authorInfo.website}" class="card-link artcard-link">Artist Website</a>
-        <div class="artcard-columnwrap mt-5">
-          <p class="card-title h5-cyan">${art.category}</p>
-          <div class="button viewMoreButton" id="${art._id}">View</div>
-        </div>
-      </div>
+        <img src="${art.image}" alt="Avatar" class="card-img-top radius">
 
+        <div class="card-body artcard-body mx-1 my-1">
+          <div class="artcard-columnwrap">
+            <h4 class="card-title artcard-title mb-3">${art.title}</h4>
+            <h5 class="card-title artcard-price">&dollar;${art.price}</h5>
+          </div>
+          <p class="card-title"><b>${art.authorInfo.username}, ${art.authorInfo.location}</b></p>
+          <p class="mb-3 text-truncate">${art.description}</p>
+          <a href="${art.authorInfo.website}" class="card-link artcard-link">Artist Website</a>
+          <div class="artcard-columnwrap mt-4">
+            <p class="card-title h5-cyan">${art.category}</p>
+            <div class="button viewMoreButton btn-font" id="${art._id}">View</div>
+          </div>
+        </div>
+
+      </div>
     </div>`
   ).join(' ');
 
@@ -441,9 +476,9 @@ function generateViewMoreHTML(portfolio) {
       <a href="${portfolio.authorInfo.website}" class="artcard-link">${portfolio.authorInfo.website}</a>
       <div class="artcard-columnwrap mt-5 viewMore-endBoarder">
         <p class="card-title h5-cyan">${portfolio.category}</p>
-        <div class="button" id="${portfolio._id}">Buy</div>
+        <div class="bg-info text-white radius py-2 px-3 btn-font" id="${portfolio._id}">Buy Now</div>
       </div>
-      <button id="backToLanding" type="button" class="btn btn-dark mt-3 mb-5">Back</button>
+      <button id="backToLanding" type="button" class="btn btn-dark mt-3 mb-5 btn-font">Back</button>
     </div>
   `
   document.getElementById('backToLanding').addEventListener('click', function() {
@@ -456,20 +491,20 @@ function generateViewMoreHTML(portfolio) {
 
 function generateCommentsHTML(comments) {
   let currentUser = sessionStorage.getItem('userName');
-  for (let i = 0; i < comments.length; i++) {  
+  for (let i = 0; i < comments.length; i++) {
     if (currentUser && (comments[i].postByUsername === currentUser)) {
       document.getElementById('viewMorePage-comments').innerHTML += `
-        <div class="comment-container comment-container--right mb-3">
+        <div class="comment-container comment-right mb-3">
           <div class="comment-info">
             <strong class="mr-1">You</strong>
             <p>on ${formatDate(comments[i].posted)}</p>
           </div>
-          <p>${comments[i].text}</p>
+          <p><b>${comments[i].text}</b></p>
         </div>
       `
     } else if (comments[i].postByUsername !== currentUser) {
       document.getElementById('viewMorePage-comments').innerHTML += `
-        <div class="comment-container comment-container--left mb-3">
+        <div class="comment-container comment-left mb-3">
           <div class="comment-info">
             <strong class="mr-1">${comments[i].postByUsername}</strong>
             <p>on ${formatDate(comments[i].posted)}</p>
@@ -477,7 +512,7 @@ function generateCommentsHTML(comments) {
           <p>${comments[i].text}</p>
         </div>
       `
-    }    
+    }
   }
 }
 
