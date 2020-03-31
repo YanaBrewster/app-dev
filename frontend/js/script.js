@@ -415,6 +415,7 @@ function getArtworkInfo(e) {
     success: function(portfolio) {
       generateViewMoreHTML(portfolio[0]);
       generateCommentsHTML(portfolio[0].comments);
+      console.log(portfolio[0].comments);
       sessionStorage.setItem('currentPortfolio', portfolio[0]._id);
       $("#viewMorePage").show();
       $("#landingPage").hide();
@@ -457,16 +458,29 @@ function generateViewMoreHTML(portfolio) {
 }
 
 function generateCommentsHTML(comments) {
-  for (let i = 0; i < comments.length; i++) {
-    document.getElementById('viewMorePage-comments').innerHTML += `
-      <div class="comment-container mb-3">
-        <div class="comment-info">
-          <strong class="mr-1">${comments[i].postByUsername}</strong>
-          <p>on ${formatDate(comments[i].posted)}</p>
+  let currentUser = sessionStorage.getItem('userName');
+  for (let i = 0; i < comments.length; i++) {  
+    if (currentUser && (comments[i].postByUsername === currentUser)) {
+      document.getElementById('viewMorePage-comments').innerHTML += `
+        <div class="comment-container comment-container--right mb-3">
+          <div class="comment-info">
+            <strong class="mr-1">You</strong>
+            <p>on ${formatDate(comments[i].posted)}</p>
+          </div>
+          <p>${comments[i].text}</p>
         </div>
-        <p>${comments[i].text}</p>
-      </div>
-    `
+      `
+    } else if (comments[i].postByUsername !== currentUser) {
+      document.getElementById('viewMorePage-comments').innerHTML += `
+        <div class="comment-container comment-container--left mb-3">
+          <div class="comment-info">
+            <strong class="mr-1">${comments[i].postByUsername}</strong>
+            <p>on ${formatDate(comments[i].posted)}</p>
+          </div>
+          <p>${comments[i].text}</p>
+        </div>
+      `
+    }    
   }
 }
 
@@ -545,7 +559,7 @@ function addComment(comment) {
   let commentHtml = `
     <div class="comment-container mb-3">
       <div class="comment-info">
-        <strong class="mr-1">${comment.postByUsername}</strong>
+        <strong class="mr-1">You</strong>
         <p>on ${formatDate(comment.posted)}</p>
       </div>
       <p>${comment.text}</p>
