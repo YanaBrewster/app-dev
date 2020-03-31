@@ -131,19 +131,28 @@ app.get('/allPortfolios', (req,res) => {
   })
 });
 
+// get all my portfolio projects
+// Yanas code
+
+
+
 
 //  Yanas code ends
 // =============================================================================
 
+
 // Hayley's code
 
 app.get('/portfoliosAndAuthors', async (req, res) => {
-  let query = await Portfolio.aggregate()
-    .lookup({from: "members",
-              localField: "memberId",
-              foreignField: "_id",
-              as: "authorInfo"})
-    .exec();
+  let query = await Portfolio.aggregate([
+    { $lookup: {
+                from: "members",
+                localField: "memberId",
+                foreignField: "_id",
+                as: "authorInfo"
+    }},
+    { $unwind: "$authorInfo" }
+  ])
   res.send(query);
 })
 
@@ -156,29 +165,72 @@ app.get('/portfolioWithAuthor/:id', async (req, res) => {
                 localField: "memberId",
                 foreignField: "_id",
                 as: "authorInfo"
+    }},
+    { $unwind: "$authorInfo" },
+    { $lookup: {
+                from: "comments",
+                localField: "_id",
+                foreignField: "portfolioID",
+                as: "comments"
     }}
   ])
+  console.log(query);
   res.send(query);
 });
 
+app.get('/filterPortfolios/:minPrice/:maxPrice/:category', async (req, res) => {
+  let _minPrice = parseInt(req.params.minPrice);
+  let _maxPrice = parseInt(req.params.maxPrice);
+  let _category = req.params.category;
+  let query;
+
+  if(_category === "all") {
+    query = await Portfolio.aggregate([
+      { $match: { price: { $gt: _minPrice, $lt: _maxPrice }}},
+      { $lookup: {
+                  from: "members",
+                  localField: "memberId",
+                  foreignField: "_id",
+                  as: "authorInfo"
+      }},
+      { $unwind: "$authorInfo" }
+    ])
+  } else {
+    query = await Portfolio.aggregate([
+      { $match: { $and: [{ category: _category }, { price: { $gt: _minPrice, $lt: _maxPrice }}]}},
+      { $lookup: {
+                  from: "members",
+                  localField: "memberId",
+                  foreignField: "_id",
+                  as: "authorInfo"
+      }},
+      { $unwind: "$authorInfo" }
+    ])
+  }
+
+  if(query.length > 0) {
+    res.send(query);
+  } else {
+    res.send('Sorry, there is no artwork that matches your search!')
+  }
+})
+
+app.post('/addComment', (req, res) => {
+  let comment = new Comment({
+    _id : new mongoose.Types.ObjectId,
+    portfolioID: req.body.portfolioID,
+    postByID: mongoose.Types.ObjectId(req.body.postByID),
+    postByUsername: req.body.postByUsername,
+    posted: req.body.postDate,
+    text: req.body.content
+  })
+
+  comment.save()
+          .then(result => res.send(result))
+          .catch(err => res.send(err))
+})
+
 
 // Hayley's code ends
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

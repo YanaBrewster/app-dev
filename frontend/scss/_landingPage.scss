@@ -37,10 +37,6 @@
     margin-right: 50px;
 }
 
-// .artcard-price {
-//     align-self: flex-end;
-// }
-
 .artcard-body {
     padding-right: 30px;
     padding-left: 30px;
@@ -75,5 +71,21 @@
     color: $primary;
 }
 
+.noResultText-wrapper {
+    position: absolute;
+    width: 80vw;
+    height: 40vh;
+}
 
+.noResultText {
+    position: relative;
+    top: 20%;
+    left: 35%;
+}
 // Hayley's code ends
+
+// Yanas code
+.nav-border{
+  border-bottom: 4px solid $blue;
+  width: 100%;
+}

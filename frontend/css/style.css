@@ -11,48 +11,48 @@ button {
 
 h1 {
   font-family: 'Quicksand', sans-serif;
-  color: #333333;
+  color: #333333 !important;
   font-size: 3em;
   font-weight: 700;
 }
 
 h2 {
   font-family: 'Quicksand', sans-serif;
-  color: #333333;
+  color: #333333 !important;
   font-size: 2.250em;
   font-weight: 700;
 }
 
 h3 {
   font-family: 'Quicksand', sans-serif;
-  color: #99cccc;
+  color: #99cccc !important;
   font-size: 1.750em;
   font-weight: 700;
 }
 
 h4 {
   font-family: 'Quicksand', sans-serif;
-  color: #333333;
+  color: #333333 !important;
   font-size: 1.250em;
   font-weight: 700;
 }
 
 h5 {
   font-family: 'Open Sans', sans-serif;
-  color: #333333;
+  color: #333333 !important;
   font-size: 1.250em;
   font-weight: 700;
 }
 
 p {
   font-family: 'Open Sans', sans-serif;
-  color: #333333;
+  color: #333333 !important;
   text-align: left;
 }
 
 .h5-cyan {
   font-family: 'Open Sans', sans-serif;
-  color: #339999;
+  color: #339999 !important;
   font-size: 1.250em;
   font-weight: 700;
 }
@@ -97,10 +97,6 @@ p {
   border-radius: 50px !important;
 }
 
-.border-info {
-  color: #99cccc !important;
-}
-
 .logo {
   width: 200px;
 }
@@ -110,7 +106,6 @@ p {
   justify-content: space-between;
   align-items: center;
   margin: 1rem;
-  height: 80px;
 }
 
 .nav {
@@ -119,18 +114,13 @@ p {
 }
 
 .button {
-  padding: 6px 15px;
   cursor: pointer;
   color: white;
-  width: 80px;
-  height: 36px;
-  border-radius: 20px;
-  background-color: #339999;
   text-align: center;
 }
 
 .signUpButton {
-  background-color: #333333;
+  background-color: #333333 !important;
   padding: 6px 15px;
   border-radius: 8px;
   width: 90px;
@@ -161,10 +151,6 @@ p {
   border-radius: 50px !important;
 }
 
-.border-info {
-  color: #99cccc !important;
-}
-
 .logo {
   width: 200px;
 }
@@ -174,7 +160,6 @@ p {
   justify-content: space-between;
   align-items: center;
   margin: 1rem;
-  height: 80px;
 }
 
 .nav {
@@ -183,13 +168,8 @@ p {
 }
 
 .button {
-  padding: 6px 15px;
   cursor: pointer;
   color: white;
-  width: 80px;
-  height: 36px;
-  border-radius: 20px;
-  background-color: #339999;
   text-align: center;
 }
 
@@ -211,12 +191,22 @@ p {
   margin: 0 auto !important;
   width: 70%;
 }
+@media (max-width: 900px) {
+  .container-form {
+    width: 100%;
+  }
+}
 
 .form-box {
   background-color: white !important;
   height: 85vh;
   margin: 0 auto !important;
   width: 60%;
+}
+@media (max-width: 900px) {
+  .form-box {
+    width: 100%;
+  }
 }
 
 .bg-page {
@@ -245,7 +235,7 @@ p {
 
 .filterDropdown {
   justify-content: center;
-  background-color: #cccccc;
+  background-color: #cccccc !important;
   padding-top: 20px;
   padding-bottom: 20px;
 }
@@ -309,9 +299,22 @@ p {
   color: #339999 !important;
 }
 
-#viewMorePage {
+.noResultText-wrapper {
+  position: absolute;
+  width: 80vw;
+  height: 40vh;
+}
+
+.noResultText {
+  position: relative;
+  top: 20%;
+  left: 35%;
+}
+
+
+#viewMorePage-artInfo {
   width: 100vw;
-  border-top: #339999 4px solid;
+  border-top: #339999 !important 4px solid;
   padding-top: 3rem;
   padding-right: 10vw;
   padding-left: 10vw;
@@ -333,6 +336,22 @@ p {
 .viewMore-endBoarder {
   padding-bottom: 2rem;
   border-bottom: lightgrey 2px solid;
+}
+
+.viewMorePage-commentsWrapper {
+  padding-left: 10vw;
+  padding-right: 10vw;
+  max-width: 100%;
+}
+
+.comment-container {
+  padding: 1rem;
+  border: #339999 1px solid;
+  border-radius: 20px;
+}
+
+.comment-info {
+  display: flex;
 }
 
 /*# sourceMappingURL=style.css.map */

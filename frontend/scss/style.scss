@@ -6,24 +6,24 @@
 // colours for app
 
 // dark grey for text and buttons
-$gray-dark: #333333;
-$dark: #333333;
+$gray-dark: #333333 !important;
+$dark: #333333 !important;
 
 // light grey for background colour and boarders
-$gray: #cccccc;
-$secondary: #cccccc;
+$gray: #cccccc !important;
+$secondary: #cccccc !important;
 
 // Light blue for boarders
-$blue: #99cccc;
-$info: #99cccc;
+$blue: #99cccc !important;
+$info: #99cccc !important;
 
 // For blue button background colour and category name colour
-$cyan: #339999;
-$primary: #339999;
+$cyan: #339999 !important;
+$primary: #339999 !important;
 
 // red for delete buttons
-$red: #FF9966;
-$danger: #FF9966;
+$red: #FF9966 !important;
+$danger: #FF9966 !important;
 
 //Light grey for photo background
 $grey-light: #f5f9f8;
@@ -39,7 +39,6 @@ $grey-light: #f5f9f8;
 @import 'module';
 @import 'theme';
 @import 'portfolioPage';
-//yanas code ends
 //yanas code ends
 @import 'landingPage';
 @import 'viewMorePage';

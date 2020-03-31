@@ -27,9 +27,11 @@ module.exports = function(grunt) {
     // grunt-contrib-watch v1.1.0
     watch: {
       all: {
-        files: ['sass/style.scss','css/style.css', 'js/script.js'],
-        tasks: ['sass'],
-
+        files: ['sass/*.scss','css/*.css', 'js/script.js'],
+        tasks: ['sass','csslint','jshint'],
+        options: {
+          livereload: true
+        }
       },
     },
     // grunt-contrib-csslint v2.0.0
