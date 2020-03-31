@@ -105,7 +105,7 @@ p {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 1rem;
+  height: 10%;
 }
 
 .nav {
@@ -159,7 +159,7 @@ p {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 1rem;
+  height: 10%;
 }
 
 .nav {
@@ -311,6 +311,10 @@ p {
   left: 35%;
 }
 
+.nav-border {
+  border-bottom: 4px solid #99cccc !important;
+  width: 100%;
+}
 
 #viewMorePage-artInfo {
   width: 100vw;
@@ -346,7 +350,7 @@ p {
 
 .comment-container {
   padding: 1rem;
-  border: #339999 1px solid;
+  border: #339999 !important 1px solid;
   border-radius: 20px;
 }
 

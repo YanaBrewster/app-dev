@@ -32,6 +32,7 @@ if (sessionStorage['userName']) {
   // showMemberName(sessionStorage.userName);
   // pages
   $('#landingPage').show();
+  $('#viewMorePage').hide();
   $('#loginPage').hide();
   $('#signUpPage').hide();
   $('#projectPage').hide();
@@ -46,6 +47,7 @@ if (sessionStorage['userName']) {
   $('#signUpBtn').show();
   // pages
   $('#landingPage').show();
+  $('#viewMorePage').hide();
   $('#loginPage').hide();
   $('#signUpPage').hide();
   $('#projectPage').hide();
@@ -57,6 +59,7 @@ if (sessionStorage['userName']) {
 $('#homeBtn').click(function(){
   // pages
   $('#landingPage').show();
+  $('#viewMorePage').hide();
   $('#loginPage').hide();
   $('#signUpPage').hide();
   $('#projectPage').hide();
@@ -69,6 +72,7 @@ $('#loginBtn').click(function(){
   // pages
   $('#loginPage').show();
   $('#landingPage').hide();
+  $('#viewMorePage').hide();
   $('#signUpPage').hide();
   $('#projectPage').hide();
   $('#uploadPortfolioPage').hide();
@@ -83,6 +87,7 @@ $('#signUpBtn').click(function(){
   $('#projectPage').hide();
   $('#loginPage').hide();
   $('#landingPage').hide();
+  $('#viewMorePage').hide();
   $('#uploadPortfolioPage').hide();
   $('#updatePortfolio').hide();
 });
@@ -95,6 +100,7 @@ $('#myPortfolioBtn').click(function(){
   $('#signUpPage').hide();
   $('#loginPage').hide();
   $('#landingPage').hide();
+  $('#viewMorePage').hide();
   $('#uploadPortfolioPage').hide();
   $('#updatePortfolio').hide();
 });
@@ -107,6 +113,7 @@ $('#addPortfolioBtn').click(function(){
   $('#signUpPage').hide();
   $('#loginPage').hide();
   $('#landingPage').hide();
+  $('#viewMorePage').hide();
   $('#updatePortfolio').hide();
 });
 
@@ -118,6 +125,7 @@ $('.back-portfolio').click(function(){
   $('#signUpPage').hide();
   $('#loginPage').hide();
   $('#landingPage').hide();
+  $('#viewMorePage').hide();
   $('#updatePortfolio').hide();
 });
 
