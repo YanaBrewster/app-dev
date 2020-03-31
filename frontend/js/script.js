@@ -509,7 +509,6 @@ function getFilteredArtworks() {
         <div class="noResultText-wrapper">
         <h3 class="noResultText">Sorry, there is no artwork that matches your search!</h3>
         </div>
-
         `
       } else {
         makeProductCards(response);
