@@ -94,7 +94,7 @@ $('#signUpBtn').click(function(){
 
 // my portfolio button to show my portfolio page
 $('#myPortfolioBtn').click(function(){
-  showMyProjects()
+  generateMyPortfolios();
   // pages
   $('#projectPage').show();
   $('#signUpPage').hide();
@@ -312,47 +312,42 @@ $('#addPortfolioForm').submit(function(){
 }); // submit add portfolio
 
 // View my portfolio project cards =============================================
-// Yanas code
 
-function showMyProjects(){
+// Hayley's code
+function generateMyPortfolios() {
+  let currentUserId = sessionStorage.getItem('memberId');
   $.ajax({
-    url :`${url}/allPortfolios`,
-    type :'GET',
-    dataType :'json',
-    success : function(portfoliosFromMongo){
-      let currentMemberId = sessionStorage.getItem('memberId');
-      myProjects = portfoliosFromMongo.filter(item=>item.memberId === currentMemberId);
-      renderAllCards(myProjects);
+    url: `${url}/myPortfolios/${currentUserId}`,
+    type: 'GET',
+    success: function(results) {
+      console.log(results);
+      makePortfolioCards(results);
+
+    },
+    error: function(error) {
+      console.log(error);
     }
-  });
-};
-
-function renderAllCards(projects){
-
-  document.getElementById('myProjectCards').innerHTML = "";
-  for(let i=0; i<projects.length; i++){
-    let project = projects[i];
-    let card = renderCard(project);
-    document.getElementById('myProjectCards').innerHTML += card;
-  }
+  })
 }
 
-function renderCard(project){
-  return  `<div class="col-md-3 col-lg-3 col-sm-12">
-  <div class="card mb-4 border-0">
-  <img src="${project.image}" class="card-img-top radius" alt="Picture from my project">
-  <div class="card-body">
-  <h4 class="card-text">${project.title}</h4>
-  <div class="d-flex justify-content-between align-items-center">
-  <div class="btn-group pt-2 pb-3 border-bottom mx-auto">
-  <button id="viewProject${project._id}" onclick="getArtworkInfo()" type="button" class="viewMoreButton mx-2 btn btn-info btn-font">View</button>
-  <button id="updateProject${project._id}" type="button" class="mx-2 btn btn-dark btn-font">Update</button>
-  <button id="deleteProject${project._id}" type="button" class="mx-2 btn btn-danger btn-font">Delete</button>
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>`;
+function makePortfolioCards(arr) {
+  document.getElementById('myProjectCards').innerHTML = arr.map(item => `
+    <div class="col-md-3 col-lg-3 col-sm-12">
+      <div class="card mb-4 border-0">
+        <img src="${item.image}" class="card-img-top radius" alt="Picture from my project">
+        <div class="card-body">
+          <h4 class="card-text">${item.title}</h4>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group pt-2 pb-3 border-bottom mx-auto">
+              <div class="button viewMoreButton" id="${item._id}">View</div>
+              <button id="updateProject${item._id}" type="button" class="mx-2 btn btn-dark btn-font">Update</button>
+              <button id="deleteProject${item._id}" type="button" class="mx-2 btn btn-danger btn-font">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `).join(' ');
 
   let viewMoreButtons = document.getElementsByClassName('viewMoreButton');
   console.log(viewMoreButtons);
@@ -362,18 +357,12 @@ function renderCard(project){
   }
 }
 
-
-// Yanas code ends
-
-// Hayley's code
 function generateLandingPageCards() {
-
   $.ajax({
     url: `${url}/portfoliosAndAuthors`,
     type: 'GET',
     dataType: 'json',
     success: function(portfolios) {
-      console.log(portfolios);
       makeProductCards(portfolios);
     },
     error: function(error) {
@@ -426,6 +415,7 @@ function getArtworkInfo(e) {
       console.log(portfolio[0].comments);
       sessionStorage.setItem('currentPortfolio', portfolio[0]._id);
       $("#viewMorePage").show();
+      $("#projectPage").hide();
       $("#landingPage").hide();
     },
     error: function(error) {
