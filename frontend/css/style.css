@@ -136,6 +136,28 @@ p {
   cursor: pointer;
 }
 
+.button-red {
+  padding: 6px 15px;
+  cursor: pointer;
+  color: white;
+  width: 80px;
+  height: 36px;
+  background-color: #FF9966;
+  text-align: center;
+  border-radius: 20px;
+}
+
+.button-black {
+  padding: 6px 15px;
+  cursor: pointer;
+  color: white;
+  width: 80px;
+  height: 36px;
+  background-color: #333333;
+  text-align: center;
+  border-radius: 20px;
+}
+
 .btn-font {
   text-align: center;
   font-family: 'Quicksand', sans-serif;
@@ -195,6 +217,28 @@ p {
   cursor: pointer;
 }
 
+.button-red {
+  padding: 6px 15px;
+  cursor: pointer;
+  color: white;
+  width: 80px;
+  height: 36px;
+  background-color: #FF9966;
+  text-align: center;
+  border-radius: 20px;
+}
+
+.button-black {
+  padding: 6px 15px;
+  cursor: pointer;
+  color: white;
+  width: 80px;
+  height: 36px;
+  background-color: #333333;
+  text-align: center;
+  border-radius: 20px;
+}
+
 .container-form {
   background-color: white;
   height: 100vh;
@@ -235,6 +279,41 @@ p {
 
 .bg-register {
   background-image: url("../images/KateLeslie_HolidaySeries2.jpg");
+}
+
+.portfolioCard {
+  width: 390px;
+  height: 400px;
+  margin-left: 70px;
+  margin-right: 70px;
+  margin-bottom: 40px;
+  border: none;
+}
+
+.portfolioPage-image {
+  background-color: #f5f9f8;
+  width: 100%;
+  height: 250px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 50px;
+}
+
+#myProjectCards {
+  display: flex;
+  height: auto;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+}
+
+.portfolioPage-buttonsWrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.portfolioPage-buttonGroup {
+  display: flex;
 }
 
 .landingPage-banner {

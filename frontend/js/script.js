@@ -316,6 +316,11 @@ $('#addPortfolioForm').submit(function(){
 // Hayley's code
 function generateMyPortfolios() {
   let currentUserId = sessionStorage.getItem('memberId');
+
+  if (!currentUserId) {
+    return;
+  }
+
   $.ajax({
     url: `${url}/myPortfolios/${currentUserId}`,
     type: 'GET',
@@ -332,20 +337,16 @@ function generateMyPortfolios() {
 
 function makePortfolioCards(arr) {
   document.getElementById('myProjectCards').innerHTML = arr.map(item => `
-    <div class="col-md-3 col-lg-3 col-sm-12">
-      <div class="card mb-4 border-0">
-        <img src="${item.image}" class="card-img-top radius" alt="Picture from my project">
-        <div class="card-body">
-          <h4 class="card-text">${item.title}</h4>
-          <div class="d-flex justify-content-between align-items-center">
-            <div class="btn-group pt-2 pb-3 border-bottom mx-auto">
-              <div class="button viewMoreButton" id="${item._id}">View</div>
-              <button id="updateProject${item._id}" type="button" class="mx-2 btn btn-dark btn-font">Update</button>
-              <button id="deleteProject${item._id}" type="button" class="mx-2 btn btn-danger btn-font">Delete</button>
-            </div>
-          </div>
+    <div class="card portfolioCard">
+      <div style="background-image:url(${item.image})" class="portfolioPage-image mb-3"></div>
+      <h5 class="card-text mb-3">${item.title}</h5>
+      <div class="portfolioPage-buttonsWrapper">
+        <div class="portfolioPage-buttonGroup">
+          <div class="button viewMoreButton" id="${item._id}">View</div>
+          <div class="button-black editButton" id="${item._id}">Edit</div>
         </div>
-      </div>
+          <div class="button-red deleteButton" id="${item._id}">Delete</div>
+      </div>        
     </div>
   `).join(' ');
 
