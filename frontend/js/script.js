@@ -445,8 +445,13 @@ function getArtworkInfo(e) {
     dataType: 'json',
     success: function(portfolio) {
       generateViewMoreHTML(portfolio[0]);
-      generateCommentsHTML(portfolio[0].comments);
-      console.log(portfolio[0].comments);
+      if (portfolio[0].comments.length === 0) {
+        document.getElementById('viewMorePage-comments').innerHTML = `
+          <div>There has not been any question about this artwork</div>
+        `
+      } else {
+        generateCommentsHTML(portfolio[0].comments);
+      }
       sessionStorage.setItem('currentPortfolio', portfolio[0]._id);
       $("#viewMorePage").show();
       $("#projectPage").hide();
