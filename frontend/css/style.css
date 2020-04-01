@@ -50,6 +50,20 @@ p {
   text-align: left;
 }
 
+.h5-label {
+  font-family: 'Open Sans', sans-serif;
+  color: #333333;
+  font-size: 1.250em;
+  font-weight: 700;
+}
+
+.h3-label {
+  font-family: 'Quicksand', sans-serif;
+  color: #99cccc;
+  font-size: 1.750em;
+  font-weight: 700;
+}
+
 .h5-cyan {
   font-family: 'Open Sans', sans-serif;
   color: #339999;
@@ -364,7 +378,7 @@ p {
 @media (max-width: 900px) {
   .landingPage-banner {
     height: 25vh;
-    background-size: no-repeat;
+    background-repeat: no-repeat;
   }
 }
 
@@ -478,7 +492,6 @@ p {
 
 #viewMorePage-artInfo {
   width: 100vw;
-  border-top: #339999 4px solid;
   padding-top: 3rem;
   padding-right: 10vw;
   padding-left: 10vw;
