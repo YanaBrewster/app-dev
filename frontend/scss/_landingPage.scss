@@ -3,6 +3,10 @@
     background-image: url('../images/BarneyBrewsterBanner.jpg');
     background-size: cover;
     height: 50vh;
+    @media (max-width: 900px) {
+      height: 25vh;
+      background-size: no-repeat;
+  }
 }
 
 .filterDropdown {
@@ -105,5 +109,11 @@
     @media (max-width: 900px) {
       height: 50vw;
   }
+}
+
+#memberName{
+  @media (max-width: 900px) {
+    display: none;
+}
 }
 // Yana code ends

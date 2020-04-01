@@ -28,7 +28,7 @@ if (sessionStorage['userName']) {
   $('#myPortfolioBtn').show();
   $('#loginBtn').hide();
   $('#signUpBtn').hide();
-  // showMemberName(sessionStorage.userName);
+  showMemberName(sessionStorage.userName);
   // pages
   $('#landingPage').show();
   $('#viewMorePage').hide();
@@ -120,6 +120,7 @@ $('#addPortfolioBtn').click(function(){
   $('#viewMorePage').hide();
   $('#updatePortfolioPage').hide();
   $('#deletePortfolioPage').hide();
+
 });
 
 // back button to my portfolio page
@@ -273,7 +274,7 @@ $('#loginSubmitBtn').click(function(){
         sessionStorage.setItem('userName',loginData['username']);
         sessionStorage.setItem('userEmail',loginData['email']);
         // console.log(sessionStorage);
-        // showMemberName(username);
+        showMemberName(username);
         $('#logoutBtn').show();
         $('#myPortfolioBtn').show();
         $('#loginBtn').hide();
@@ -289,6 +290,12 @@ $('#loginSubmitBtn').click(function(){
     }//error
   });//ajax
 });
+
+// show members name
+
+function showMemberName(name){
+  document.getElementById('memberName').innerHTML = "<b>" + name +"</b>";
+}
 
 // add portfolio form ===============================================================
 // Yanas code
@@ -371,16 +378,16 @@ function generateMyPortfolios() {
 
 function makePortfolioCards(arr) {
   document.getElementById('myProjectCards').innerHTML = arr.map(item => `
-    <div class="card portfolioCard">
+    <div class="card portfolioCard border-bottom">
       <div style="background-image:url(${item.image})" class="portfolioPage-image mb-3"></div>
       <h5 class="card-text mb-3">${item.title}</h5>
       <div class="portfolioPage-buttonsWrapper">
         <div class="portfolioPage-buttonGroup">
-          <div class="button viewMoreButton" id="${item._id}">View</div>
-          <div class="button-black editButton" id="${item._id}">Edit</div>
+          <div class="button viewMoreButton btn-font" id="${item._id}">View</div>
+          <div class="button-black editButton btn-font" id="${item._id}">Edit</div>
         </div>
-          <div class="button-red deleteButton" id="${item._id}">Delete</div>
-      </div>        
+          <div class="button-red deleteButton btn-font" id="${item._id}">Delete</div>
+      </div>
     </div>
   `).join(' ');
 
@@ -485,6 +492,8 @@ function generateViewMoreHTML(portfolio) {
       <button id="backToLanding" type="button" class="btn btn-dark mt-3 mb-5 btn-font">Back</button>
     </div>
   `
+  $("html, body").animate({ scrollTop: 0 }, "fast");
+
   document.getElementById('backToLanding').addEventListener('click', function() {
     $("#viewMorePage").hide();
     $("#landingPage").show();

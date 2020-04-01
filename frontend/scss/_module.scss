@@ -23,6 +23,24 @@
 
 // background colours
 
+.bg-blue{
+  background-color: $blue;
+}
+
+.bg-cyan{
+  background-color: $cyan;
+}
+
+// borders
+
+.border-blue{
+border: 3px solid $blue;
+}
+
+.border-gray{
+border: 3px solid $gray;
+}
+
 //Yanas code ends
 // Hayley's code
 .logo {
