@@ -318,6 +318,12 @@ p {
   justify-content: space-between;
 }
 
+.noPortfolio {
+  width: 100%;
+  font-size: x-large;
+  margin-bottom: 8rem;
+}
+
 .landingPage-banner {
   background-image: url("../images/BarneyBrewsterBanner.jpg");
   background-size: cover;
