@@ -5,7 +5,6 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     // grunt uglify
     uglify: {
-
       build: {
         src: 'js/script.js',
         dest: 'js/script.min.js'
@@ -17,7 +16,7 @@ module.exports = function(grunt) {
       target: {
         files: [{
           expand: true,
-          cwd: 'formative3-1/css',
+          cwd: 'app-dev/css',
           src: ['style.css', '!style.min.css'],
           dest: 'css/style.min.css',
           ext: '.min.css'
@@ -62,9 +61,12 @@ module.exports = function(grunt) {
       },
     },
     // grunt-contrib-jshint
-    // jshint: {
-    //   all: ['Gruntfile.js', 'js/script.js']
-    // }
+    jshint: {
+      all: ['Gruntfile.js', 'js/script.js'],
+      options: {
+      'esversion': 6,
+  },
+    }
   });
 
   // Load the plugin that provides tasks.
