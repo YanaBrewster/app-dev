@@ -358,6 +358,12 @@ function generateMyPortfolios() {
     type: 'GET',
     success: function(results) {
       console.log(results);
+      if (results === "No portfolio by this user found") {
+        document.getElementById('myProjectCards').innerHTML = `
+          <div class="noPortfolio text-center">You have not upload any project yet!</div>
+        `
+        return;
+      }
       makePortfolioCards(results);
 
     },
@@ -445,17 +451,17 @@ function getArtworkInfo(e) {
     dataType: 'json',
     success: function(portfolio) {
       generateViewMoreHTML(portfolio[0]);
-      if (portfolio[0].comments.length === 0) {
-        document.getElementById('viewMorePage-comments').innerHTML = `
-          <div>There has not been any question about this artwork</div>
-        `
-      } else {
-        generateCommentsHTML(portfolio[0].comments);
-      }
       sessionStorage.setItem('currentPortfolio', portfolio[0]._id);
       $("#viewMorePage").show();
       $("#projectPage").hide();
       $("#landingPage").hide();
+      if (portfolio[0].comments.length === 0) {
+        document.getElementById('viewMorePage-comments').innerHTML = `
+          <div class="text-center">There has not been any question about this artwork</div>
+        `
+        return;
+      } 
+      generateCommentsHTML(portfolio[0].comments);
     },
     error: function(error) {
       console.log('Error: ' + error);
