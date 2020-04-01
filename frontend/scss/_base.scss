@@ -1,3 +1,4 @@
+// yanas code
 * {
     box-sizing: border-box;
     padding: 0;
@@ -53,21 +54,27 @@ p{
 	text-align: left;
 }
 
+// forms
+
+.h5-label{
+  font-family:'Open Sans', sans-serif;
+  color: $gray-dark;
+  font-size: 1.250em;
+  font-weight: 700;
+}
+
+.h3-label{
+  font-family:'Quicksand', sans-serif;
+	color: $blue;
+	font-size: 1.750em;
+	font-weight: 700;
+}
+
+// yanas code ends
+
 .h5-cyan {
 	font-family:'Open Sans', sans-serif;
 	color: $primary;
 	font-size: 1.250em;
 	font-weight: 700;
 }
-
-// .display-1 {
-//
-// }
-//
-// .display-2 {
-//
-// }
-//
-// .display-3 {
-//
-// }

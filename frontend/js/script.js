@@ -110,7 +110,7 @@ $('#myPortfolioBtn').click(function(){
 });
 
 //upload projects button to show upload project page
-$('#addPortfolioBtn').click(function(){
+$('#addPortfolio').click(function(){
   // pages
   $('#uploadPortfolioPage').show();
   $('#projectPage').hide();
@@ -460,7 +460,7 @@ function getArtworkInfo(e) {
           <div class="text-center">There has not been any question about this artwork</div>
         `
         return;
-      } 
+      }
       generateCommentsHTML(portfolio[0].comments);
     },
     error: function(error) {

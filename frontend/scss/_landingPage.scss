@@ -1,90 +1,90 @@
 // Hayley's code
 .landingPage-banner {
-    background-image: url('../images/BarneyBrewsterBanner.jpg');
-    background-size: cover;
-    height: 50vh;
-    @media (max-width: 900px) {
-      height: 25vh;
-      background-size: no-repeat;
+  background-image: url('../images/BarneyBrewsterBanner.jpg');
+  background-size: cover;
+  height: 50vh;
+  @media (max-width: 900px) {
+    height: 25vh;
+    background-repeat: no-repeat;
   }
 }
 
 .filterDropdown {
-    justify-content: center;
-    background-color: $secondary;
-    padding-top: 20px;
-    padding-bottom: 20px;
+  justify-content: center;
+  background-color: $secondary;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .filterInputGroup {
-    border-radius: 20px;
+  border-radius: 20px;
 }
 
 #artsDeck {
-    display: flex;
-    height: auto;
-    flex-flow: row wrap;
-    justify-content: flex-start;
+  display: flex;
+  height: auto;
+  flex-flow: row wrap;
+  justify-content: flex-start;
 }
 
 .artcard {
-    width: 450px;
-    height: 700px;
-    margin-left: 70px;
-    margin-right: 70px;
-    margin-bottom: 50px;
-    border: none;
+  width: 450px;
+  height: 700px;
+  margin-left: 70px;
+  margin-right: 70px;
+  margin-bottom: 50px;
+  border: none;
 }
 
 .artcard-title {
-    height: 56px;
-    margin-right: 50px;
+  height: 56px;
+  margin-right: 50px;
 }
 
 .artcard-body {
-    padding-right: 30px;
-    padding-left: 30px;
+  padding-right: 30px;
+  padding-left: 30px;
 }
 
 .artcard-columnwrap {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .artcard-description {
-    height: 72px;
-    overflow: hidden;
-    text-align: justify;
+  height: 72px;
+  overflow: hidden;
+  text-align: justify;
 }
 
 .art-image {
-    border: none;
-    max-height: 300px;
-    max-width: 449px;
-    height: auto;
-    width: auto;
-    border-radius: 50px;
+  border: none;
+  max-height: 300px;
+  max-width: 449px;
+  height: auto;
+  width: auto;
+  border-radius: 50px;
 }
 
 .artcard-link {
-    color: black;
-    text-decoration: underline;
+  color: black;
+  text-decoration: underline;
 }
 
 .artcard-category {
-    color: $primary;
+  color: $primary;
 }
 
 .noResultText-wrapper {
-    position: absolute;
-    width: 80vw;
-    height: 40vh;
+  position: absolute;
+  width: 80vw;
+  height: 40vh;
 }
 
 .noResultText {
-    position: relative;
-    top: 20%;
-    left: 35%;
+  position: relative;
+  top: 20%;
+  left: 35%;
 }
 // Hayley's code ends
 
@@ -103,17 +103,17 @@
 }
 
 .card-img-top {
-    width: 100%;
-    height: 20vw;
-    object-fit: cover;
-    @media (max-width: 900px) {
-      height: 50vw;
+  width: 100%;
+  height: 20vw;
+  object-fit: cover;
+  @media (max-width: 900px) {
+    height: 50vw;
   }
 }
 
 #memberName{
   @media (max-width: 900px) {
     display: none;
-}
+  }
 }
 // Yana code ends
