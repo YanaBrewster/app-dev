@@ -23,7 +23,6 @@ $(document).ready(function(){
 
 //check if there is any session sessionStorage
 if (sessionStorage['userName']) {
-  console.log('You are logged in');
   // buttons
   $('#logoutBtn').show();
   $('#myPortfolioBtn').show();
@@ -40,7 +39,6 @@ if (sessionStorage['userName']) {
   $('#updatePortfolioPage').hide();
   $('#deletePortfolioPage').hide();
 } else {
-  console.log('Please login');
   // buttons
   $('#logoutBtn').hide();
   $('#myPortfolioBtn').hide();
@@ -324,7 +322,6 @@ $('#addPortfolioForm').submit(function(){
         memberId : sessionStorage.getItem('memberId')
       },
       success:function(portfolio){
-        console.log(portfolio);
         if (!(portfolio == 'Title taken already, please try another one')) {
           alert('added the portfolio');
         } else {
@@ -365,7 +362,6 @@ function generateMyPortfolios() {
         return;
       }
       makePortfolioCards(results);
-
     },
     error: function(error) {
       console.log(error);
@@ -389,7 +385,6 @@ function makePortfolioCards(arr) {
   `).join(' ');
 
   let viewMoreButtons = document.getElementsByClassName('viewMoreButton');
-  console.log(viewMoreButtons);
 
   for (let i = 0; i < viewMoreButtons.length; i++) {
     viewMoreButtons[i].addEventListener('click', getArtworkInfo)
@@ -440,8 +435,6 @@ function makeProductCards(arr) {
     viewMoreButtons[i].addEventListener('click', getArtworkInfo)
   }
 }
-
-console.log(sessionStorage);
 
 function getArtworkInfo(e) {
   let id = e.target.id;
@@ -496,7 +489,6 @@ function generateViewMoreHTML(portfolio) {
     $("#viewMorePage").hide();
     $("#landingPage").show();
     sessionStorage.removeItem('currentPortfolio');
-    console.log(sessionStorage);
   })
 }
 
@@ -576,7 +568,6 @@ function postComment() {
     },
     success: function(comment) {
       $('textarea#viewMorePage-postComment').val('');
-      console.log(comment);
       addComment(comment);
     },
     error: function(err) {
