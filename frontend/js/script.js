@@ -23,7 +23,6 @@ $(document).ready(function(){
 
 //check if there is any session sessionStorage
 if (sessionStorage['userName']) {
-  console.log('You are logged in');
   // buttons
   $('#logoutBtn').show();
   $('#myPortfolioBtn').show();
@@ -40,7 +39,6 @@ if (sessionStorage['userName']) {
   $('#updatePortfolioPage').hide();
   $('#deletePortfolioPage').hide();
 } else {
-  console.log('Please login');
   // buttons
   $('#logoutBtn').hide();
   $('#myPortfolioBtn').hide();
@@ -331,7 +329,6 @@ $('#addPortfolioForm').submit(function(){
         memberId : sessionStorage.getItem('memberId')
       },
       success:function(portfolio){
-        console.log(portfolio);
         if (!(portfolio == 'Title taken already, please try another one')) {
           alert('added the portfolio');
         } else {
@@ -365,8 +362,13 @@ function generateMyPortfolios() {
     type: 'GET',
     success: function(results) {
       console.log(results);
+      if (results === "No portfolio by this user found") {
+        document.getElementById('myProjectCards').innerHTML = `
+          <div class="noPortfolio text-center">You have not upload any project yet!</div>
+        `
+        return;
+      }
       makePortfolioCards(results);
-
     },
     error: function(error) {
       console.log(error);
@@ -390,7 +392,6 @@ function makePortfolioCards(arr) {
   `).join(' ');
 
   let viewMoreButtons = document.getElementsByClassName('viewMoreButton');
-  console.log(viewMoreButtons);
 
   for (let i = 0; i < viewMoreButtons.length; i++) {
     viewMoreButtons[i].addEventListener('click', getArtworkInfo)
@@ -442,8 +443,6 @@ function makeProductCards(arr) {
   }
 }
 
-console.log(sessionStorage);
-
 function getArtworkInfo(e) {
   let id = e.target.id;
   $.ajax({
@@ -452,12 +451,17 @@ function getArtworkInfo(e) {
     dataType: 'json',
     success: function(portfolio) {
       generateViewMoreHTML(portfolio[0]);
-      generateCommentsHTML(portfolio[0].comments);
-      console.log(portfolio[0].comments);
       sessionStorage.setItem('currentPortfolio', portfolio[0]._id);
       $("#viewMorePage").show();
       $("#projectPage").hide();
       $("#landingPage").hide();
+      if (portfolio[0].comments.length === 0) {
+        document.getElementById('viewMorePage-comments').innerHTML = `
+          <div class="text-center">There has not been any question about this artwork</div>
+        `
+        return;
+      } 
+      generateCommentsHTML(portfolio[0].comments);
     },
     error: function(error) {
       console.log('Error: ' + error);
@@ -494,7 +498,6 @@ function generateViewMoreHTML(portfolio) {
     $("#viewMorePage").hide();
     $("#landingPage").show();
     sessionStorage.removeItem('currentPortfolio');
-    console.log(sessionStorage);
   })
 }
 
@@ -574,7 +577,6 @@ function postComment() {
     },
     success: function(comment) {
       $('textarea#viewMorePage-postComment').val('');
-      console.log(comment);
       addComment(comment);
     },
     error: function(err) {
