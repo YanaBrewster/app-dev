@@ -97,6 +97,22 @@ p {
   border-radius: 50px;
 }
 
+.bg-blue {
+  background-color: #99cccc;
+}
+
+.bg-cyan {
+  background-color: #339999;
+}
+
+.border-blue {
+  border: 3px solid #99cccc;
+}
+
+.border-gray {
+  border: 3px solid #cccccc;
+}
+
 .logo {
   width: 200px;
 }
@@ -176,6 +192,22 @@ p {
 .border {
   border-width: 2px;
   border-radius: 50px;
+}
+
+.bg-blue {
+  background-color: #99cccc;
+}
+
+.bg-cyan {
+  background-color: #339999;
+}
+
+.border-blue {
+  border: 3px solid #99cccc;
+}
+
+.border-gray {
+  border: 3px solid #cccccc;
 }
 
 .logo {
@@ -323,6 +355,12 @@ p {
   background-size: cover;
   height: 50vh;
 }
+@media (max-width: 900px) {
+  .landingPage-banner {
+    height: 25vh;
+    background-size: no-repeat;
+  }
+}
 
 .filterDropdown {
   justify-content: center;
@@ -426,6 +464,12 @@ p {
   }
 }
 
+@media (max-width: 900px) {
+  #memberName {
+    display: none;
+  }
+}
+
 #viewMorePage-artInfo {
   width: 100vw;
   border-top: #339999 4px solid;
@@ -462,6 +506,12 @@ p {
   padding: 1rem;
   border: #339999 1px solid;
   border-radius: 20px;
+}
+.comment-container--right {
+  text-align: right;
+}
+.comment-container--left {
+  text-align: left;
 }
 
 .comment-info {
