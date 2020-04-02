@@ -224,7 +224,7 @@ $('#registerForm').submit(function(){
       password : password
     },
     success : function(member){
-      if ( ! (member === 'Username already taken. Please try another one' )) {
+      if (member !== 'Username already taken. Please try another one') {
         alert ('Please login to add artwork and buy art');
         $('#loginBtn').show();
         $('#registerBtn').hide();
@@ -322,7 +322,7 @@ $('#addPortfolioForm').submit(function(){
         memberId : sessionStorage.getItem('memberId')
       },
       success : function(portfolio){
-        if ( ! (portfolio == 'Title taken already, please try another one')) {
+        if (portfolio !== 'Title taken already, please try another one') {
           alert('Added the portfolio');
         } else {
           alert('Title taken already, please try another one');
@@ -389,7 +389,7 @@ function getMyAccountInfo() {
     error: function(error) {
       console.log(error);
     }
-  })
+  });
 }
 
 function generateAccountSummaryHTML(account) {
@@ -414,7 +414,7 @@ function generateAccountSummaryHTML(account) {
     <strong class="userInfoField">Website:</strong>
     <a>${account.website}</a>
   </div>
-  `
+  `;
 }
 
 function makePortfolioCards(arr) {
