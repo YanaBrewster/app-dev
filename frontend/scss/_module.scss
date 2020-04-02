@@ -1,47 +1,39 @@
 // buttons
 // yanas code
-
-.btn-font{
-    text-align: center;
-  	font-family:'Quicksand', sans-serif;
-    font-weight: 700;
+.btn-font
+{
+	font-family: 'Quicksand', sans-serif;
+	font-weight: 700;
+	text-align: center;
 }
-
-.nav-font{
-  font-family:'Open Sans', sans-serif;
-  font-weight: 700;
+.nav-font
+{
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 700;
 }
-
-.radius{
-  border-radius: 50px;
-}
-
-.border{
-  border-width: 2px;
-  border-radius: 50px;
+.radius
+{
+	border-radius: 50px;
 }
 
 // background colours
-
-.bg-blue{
-  background-color: $blue;
+.bg-blue
+{
+	background-color: $blue;
 }
-
-.bg-cyan{
-  background-color: $cyan;
+.bg-cyan
+{
+	background-color: $cyan;
 }
-
 // borders
-
-.border-blue{
-border: 3px solid $blue;
+.border-blue
+{
+	border: 3px solid $blue;
 }
-
-.border-gray{
-border: 3px solid $gray;
+.border-gray
+{
+	border: 3px solid $gray;
 }
-
-//Yanas code ends
 // Hayley's code
 .logo {
   width: 200px;

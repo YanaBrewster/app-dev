@@ -1,80 +1,72 @@
 // yanas code
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+*
+{
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
-
-// button
-
-button {
-  border-radius: 50px !important;
-}
-
 // text
-
-h1{
+h1
+{
 	color: $gray-dark;
-	font-family:'Quicksand', sans-serif;
+	font-family: 'Quicksand', sans-serif;
 	font-size: 3em;
 	font-weight: 700;
 }
-
-h2{
+h2
+{
 	color: $gray-dark;
-	font-family:'Quicksand', sans-serif;
+	font-family: 'Quicksand', sans-serif;
 	font-size: 2.250em;
 	font-weight: 700;
 }
-
-h3{
+h3
+{
 	color: $blue;
-	font-family:'Quicksand', sans-serif;
+	font-family: 'Quicksand', sans-serif;
 	font-size: 1.750em;
 	font-weight: 700;
 }
-
-h4{
+h4
+{
 	color: $gray-dark;
-	font-family:'Quicksand', sans-serif;
+	font-family: 'Quicksand', sans-serif;
 	font-size: 1.250em;
 	font-weight: 700;
 }
-
-h5{
+h5
+{
 	color: $gray-dark;
-	font-family:'Open Sans', sans-serif;
+	font-family: 'Open Sans', sans-serif;
 	font-size: 1.250em;
 	font-weight: 700;
 }
-
-p{
+p
+{
 	color: $gray-dark;
+	font-family: 'Open Sans', sans-serif;
 	text-align: left;
-  	font-family:'Open Sans', sans-serif;
 }
-
 // forms
-
-.h5-label{
-  color: $gray-dark;
-  font-family:'Open Sans', sans-serif;
-  font-size: 1.250em;
-  font-weight: 700;
+.h5-label
+{
+	color: $gray-dark;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1.250em;
+	font-weight: 700;
 }
-
-.h3-label{
+.h3-label
+{
 	color: $blue;
+	font-family: 'Quicksand', sans-serif;
 	font-size: 1.750em;
 	font-weight: 700;
-  	font-family:'Quicksand', sans-serif;
 }
-
 // yanas code ends
-
-.h5-cyan {
-	font-family:'Open Sans', sans-serif;
+.h5-cyan
+{
 	color: $primary;
+	font-family: 'Open Sans', sans-serif;
 	font-size: 1.250em;
 	font-weight: 700;
 }

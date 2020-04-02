@@ -89,20 +89,22 @@
 // Hayley's code ends
 
 // Yanas code
-.nav-border{
-  border-bottom: 4px solid $blue;
-  width: 100%;
+.nav-border
+{
+	border-bottom: 4px solid $blue;
+	width: 100%;
+}
+.card-border
+{
+	border-bottom: 2px solid $gray;
+	border-left: 0;
+	border-right: 0;
+	border-top: 0;
+	width: 100%;
 }
 
-.card-border{
-  border-bottom: 2px solid $gray;
-  border-left: 0px;
-  border-right: 0px;
-  border-top: 0px;
-  width: 100%;
-}
-
-.card-img-top {
+.card-img-top
+{
   height: 20vw;
   object-fit: cover;
   width: 100%;
@@ -111,7 +113,8 @@
   }
 }
 
-#memberName{
+#memberName
+{
   @media (max-width: 900px) {
     display: none;
   }
