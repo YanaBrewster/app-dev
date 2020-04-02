@@ -15,9 +15,9 @@ module.exports = function(grunt) {
       target: {
         files: [{
           expand: true,
-          cwd: 'dev-app/frontend/css',
+          cwd: 'css/',
           src: ['*.css', '!*.min.css'],
-          dest: 'dev-app/frontend/css',
+          dest: 'css/',
           ext: '.min.css'
         }]
       }
@@ -25,7 +25,7 @@ module.exports = function(grunt) {
     // grunt-contrib-watch v1.1.0
     watch: {
       all: {
-        files: ['sass/*.scss','css/*.css', 'js/script.js'],
+        files: ['scss/*.scss','css/*.css', 'js/script.js'],
         tasks: ['sass','csslint','jshint'],
         options: {
           livereload: true
