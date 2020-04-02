@@ -530,7 +530,7 @@ function makePortfolioCards(arr) {
     <p class="card-title h5-cyan">${portfolio.category}</p>
     <div class="bg-info text-white radius py-2 px-3 btn-font" id="${portfolio._id}">Buy Now</div>
     </div>
-    <button id="backToLanding" type="button" class="btn btn-dark mt-3 mb-5 btn-font">Back</button>
+    <button id="backToLanding" type="button" class="btn btn-dark mt-3 mb-5 btn-font radius">Back</button>
     </div>
     `;
     $('html, body').animate({ scrollTop: 0 }, 'fast');
