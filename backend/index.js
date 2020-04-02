@@ -131,8 +131,6 @@ app.get('/allPortfolios', (req,res) => {
     res.json(result);
   });
 });
-
-// get all my portfolio projects
 // Yanas code
 
 

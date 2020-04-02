@@ -78,8 +78,8 @@ p {
   justify-content: space-between;
 }
 
-.flexContainer-row {
-  align-items: center;
+.flexContainer-flexStart {
+  align-items: flex-start;
   display: flex;
   flex-direction: row;
 }
@@ -368,6 +368,10 @@ p {
   font-size: x-large;
   margin-bottom: 8rem;
   width: 100%;
+}
+
+.userInfoField {
+  width: 100px;
 }
 
 .landingPage-banner {

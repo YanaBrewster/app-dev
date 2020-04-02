@@ -384,13 +384,37 @@ function getMyAccountInfo() {
     dataType: 'json',
     success: function(result) {
       console.log(result);
-
+      generateAccountSummaryHTML(result);
     },
     error: function(error) {
       console.log(error);
     }
   })
-  
+}
+
+function generateAccountSummaryHTML(account) {
+  document.getElementById('memberAccount').innerHTML = `
+  <div class="flexContainer-flexStart mb-1">
+    <strong class="userInfoField">Username:</strong>
+    <div>${account.username}</div>
+  </div>
+  <div class="flexContainer-flexStart mb-1">
+    <strong class="userInfoField">Email:</strong>
+    <div>${account.email}</div>
+  </div>
+  <div class="flexContainer-flexStart mb-1">
+    <strong class="userInfoField">About:</strong>
+    <div>${account.about}</div>
+  </div>
+  <div class="flexContainer-flexStart mb-1">
+    <strong class="userInfoField">Location:</strong>
+    <div>${account.location}</div>
+  </div>
+  <div class="flexContainer-flexStart mb-1">
+    <strong class="userInfoField">Website:</strong>
+    <a>${account.website}</a>
+  </div>
+  `
 }
 
 function makePortfolioCards(arr) {
