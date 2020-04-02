@@ -1,7 +1,7 @@
 // Yanas code
-let url;
-$(document).ready(function(){
 
+$(document).ready(function(){
+  var url;
   // get url and port from config.json
   $.ajax({
     url :'config.json',
@@ -15,19 +15,19 @@ $(document).ready(function(){
       // console.log('error: cannot call api');
     }//error
   });//ajax
-});
+
 
 // Show and hide pages ===============================================================
 // Yanas code
 
 //check if there is any session sessionStorage
-if (sessionStorage['userName']) {
+if (sessionStorage.usersName) {
   // buttons
   $('#logoutBtn').show();
   $('#myPortfolioBtn').show();
   $('#loginBtn').hide();
   $('#signUpBtn').hide();
-  showMemberName(sessionStorage.userName);
+  showMemberName(sessionStorage.usersName);
   // pages
   $('#landingPage').show();
   $('#viewMorePage').hide();
@@ -262,9 +262,9 @@ $('#loginSubmitBtn').click(function(){
       } else if (loginData === 'Not Authorized') {
         alert('Incorrect Password');
       }  else {
-        sessionStorage.setItem('memberId',loginData['_id']);
-        sessionStorage.setItem('userName',loginData['username']);
-        sessionStorage.setItem('userEmail',loginData['email']);
+        sessionStorage.setItem('memberId',loginData._id);
+        sessionStorage.setItem('usersName',loginData.username);
+        sessionStorage.setItem('userEmail',loginData.email);
         showMemberName(username);
         $('#logoutBtn').show();
         $('#myPortfolioBtn').show();
@@ -293,7 +293,7 @@ function showMemberName(name){
 
 $('#addPortfolioForm').submit(function(){
   event.preventDefault();
-  if(!sessionStorage['memberId']){
+  if( ! sessionStorage.memberId){
     alert('401, permission denied');
     return;
   }
@@ -318,8 +318,8 @@ $('#addPortfolioForm').submit(function(){
         price: price,
         memberId : sessionStorage.getItem('memberId')
       },
-      success:function(portfolio){
-        if (!(portfolio == 'Title taken already, please try another one')) {
+      success : function(portfolio){
+        if ( ! (portfolio == 'Title taken already, please try another one')) {
           alert('Added the portfolio');
         } else {
           alert('Title taken already, please try another one');
@@ -330,6 +330,10 @@ $('#addPortfolioForm').submit(function(){
         $('#addPortfolioCategory').val();
         $('#addPortfolioPrice').val();
         $('#addPortfolioMemberId').val();
+
+        $('#addPortfolioForm').trigger('reset');
+        $('#uploadPortfolioPage').hide();
+        $('#landingPage').show();
         $('html, body').animate({ scrollTop: 0 }, 'fast');
       },   // success
       error:function(){
@@ -492,7 +496,7 @@ function makePortfolioCards(arr) {
   }
 
   function generateCommentsHTML(comments) {
-    let currentUser = sessionStorage.getItem('userName');
+    let currentUser = sessionStorage.getItem('usersName');
     for (let i = 0; i < comments.length; i++) {
       if (currentUser && (comments[i].postByUsername === currentUser)) {
         document.getElementById('viewMorePage-comments').innerHTML += `
@@ -553,7 +557,7 @@ function makePortfolioCards(arr) {
     let _date = Date.now();
     let _portfolioID = sessionStorage.getItem('currentPortfolio');
     let _userID = sessionStorage.getItem('memberId');
-    let _username = sessionStorage.getItem('userName');
+    let _username = sessionStorage.getItem('usersName');
 
     $.ajax({
       url: `${url}/addComment`,
@@ -601,3 +605,4 @@ function makePortfolioCards(arr) {
   }
 
   // Hayley's code ends
+}); // Document ready ends

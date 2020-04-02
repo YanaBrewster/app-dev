@@ -10,15 +10,14 @@ module.exports = function(grunt) {
         dest: 'js/script.min.js'
       }
     },
-
     // grunt-contrib-cssmin
     cssmin: {
       target: {
         files: [{
           expand: true,
-          cwd: 'app-dev/css',
-          src: ['style.css', '!style.min.css'],
-          dest: 'css/style.min.css',
+          cwd: 'dev-app/frontend/css',
+          src: ['*.css', '!*.min.css'],
+          dest: 'dev-app/frontend/css',
           ext: '.min.css'
         }]
       }
