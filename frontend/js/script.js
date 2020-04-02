@@ -1,6 +1,7 @@
 // Yanas code
 
 $(document).ready(function(){
+  console.log(sessionStorage);
   var url;
   // get url and port from config.json
   $.ajax({
@@ -15,6 +16,7 @@ $(document).ready(function(){
       // console.log('error: cannot call api');
     }//error
   });//ajax
+
 
 
 // Show and hide pages ===============================================================
@@ -97,6 +99,7 @@ $('#signUpBtn').click(function(){
 // my portfolio button to show my portfolio page
 $('#myPortfolioBtn').click(function(){
   generateMyPortfolios();
+  getMyAccountInfo();
   // pages
   $('#projectPage').show();
   $('#signUpPage').hide();
@@ -368,6 +371,50 @@ function generateMyPortfolios() {
       console.log(error);
     }
   });
+}
+
+function getMyAccountInfo() {
+  let currentUserId = sessionStorage.getItem('memberId');
+
+  if (!currentUserId) { return; }
+
+  $.ajax({
+    url: `${url}/myAccountInfo/${currentUserId}`,
+    type: 'GET',
+    dataType: 'json',
+    success: function(result) {
+      console.log(result);
+      generateAccountSummaryHTML(result);
+    },
+    error: function(error) {
+      console.log(error);
+    }
+  })
+}
+
+function generateAccountSummaryHTML(account) {
+  document.getElementById('memberAccount').innerHTML = `
+  <div class="flexContainer-flexStart mb-1">
+    <strong class="userInfoField">Username:</strong>
+    <div>${account.username}</div>
+  </div>
+  <div class="flexContainer-flexStart mb-1">
+    <strong class="userInfoField">Email:</strong>
+    <div>${account.email}</div>
+  </div>
+  <div class="flexContainer-flexStart mb-1">
+    <strong class="userInfoField">About:</strong>
+    <div>${account.about}</div>
+  </div>
+  <div class="flexContainer-flexStart mb-1">
+    <strong class="userInfoField">Location:</strong>
+    <div>${account.location}</div>
+  </div>
+  <div class="flexContainer-flexStart mb-1">
+    <strong class="userInfoField">Website:</strong>
+    <a>${account.website}</a>
+  </div>
+  `
 }
 
 function makePortfolioCards(arr) {

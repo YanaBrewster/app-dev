@@ -11,7 +11,7 @@ const Comment = require('./models/comment.js');
 const Member = require('./models/member.js');
 const Portfolio = require('./models/portfolio.js');
 
-const port = 5000;
+const port = 3000;
 
 app.get('/', (req, res) => res.send('Hello World from Hayley, Rahul and Yana!'));
 
@@ -131,8 +131,6 @@ app.get('/allPortfolios', (req,res) => {
     res.json(result);
   });
 });
-
-// get all my portfolio projects
 // Yanas code
 
 
@@ -143,6 +141,12 @@ app.get('/allPortfolios', (req,res) => {
 
 
 // Hayley's code
+app.get('/myAccountInfo/:accountID', (req, res) => {
+  let _memberId = req.params.accountID;
+  Member.findById(_memberId, function(err, result) {
+    res.send(result);
+  })
+})
 
 app.get('/myPortfolios/:accountID', (req, res) => {
   let _memberId = req.params.accountID;

@@ -1,8 +1,8 @@
 // yanas code
 * {
     box-sizing: border-box;
-    padding: 0;
     margin: 0;
+    padding: 0;
 }
 
 // button
@@ -14,60 +14,60 @@ button {
 // text
 
 h1{
-	font-family:'Quicksand', sans-serif;
 	color: $gray-dark;
+	font-family:'Quicksand', sans-serif;
 	font-size: 3em;
 	font-weight: 700;
 }
 
 h2{
-	font-family:'Quicksand', sans-serif;
 	color: $gray-dark;
+	font-family:'Quicksand', sans-serif;
 	font-size: 2.250em;
 	font-weight: 700;
 }
 
 h3{
-	font-family:'Quicksand', sans-serif;
 	color: $blue;
+	font-family:'Quicksand', sans-serif;
 	font-size: 1.750em;
 	font-weight: 700;
 }
 
 h4{
-	font-family:'Quicksand', sans-serif;
 	color: $gray-dark;
+	font-family:'Quicksand', sans-serif;
 	font-size: 1.250em;
 	font-weight: 700;
 }
 
 h5{
-	font-family:'Open Sans', sans-serif;
 	color: $gray-dark;
+	font-family:'Open Sans', sans-serif;
 	font-size: 1.250em;
 	font-weight: 700;
 }
 
 p{
-  font-family:'Open Sans', sans-serif;
 	color: $gray-dark;
 	text-align: left;
+  	font-family:'Open Sans', sans-serif;
 }
 
 // forms
 
 .h5-label{
-  font-family:'Open Sans', sans-serif;
   color: $gray-dark;
+  font-family:'Open Sans', sans-serif;
   font-size: 1.250em;
   font-weight: 700;
 }
 
 .h3-label{
-  font-family:'Quicksand', sans-serif;
 	color: $blue;
 	font-size: 1.750em;
 	font-weight: 700;
+  	font-family:'Quicksand', sans-serif;
 }
 
 // yanas code ends

@@ -1,8 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans|Quicksand&display=swap");
 * {
   box-sizing: border-box;
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
 
 button {
@@ -10,58 +10,58 @@ button {
 }
 
 h1 {
-  font-family: 'Quicksand', sans-serif;
   color: #333333;
+  font-family: 'Quicksand', sans-serif;
   font-size: 3em;
   font-weight: 700;
 }
 
 h2 {
-  font-family: 'Quicksand', sans-serif;
   color: #333333;
+  font-family: 'Quicksand', sans-serif;
   font-size: 2.250em;
   font-weight: 700;
 }
 
 h3 {
-  font-family: 'Quicksand', sans-serif;
   color: #99cccc;
+  font-family: 'Quicksand', sans-serif;
   font-size: 1.750em;
   font-weight: 700;
 }
 
 h4 {
-  font-family: 'Quicksand', sans-serif;
   color: #333333;
+  font-family: 'Quicksand', sans-serif;
   font-size: 1.250em;
   font-weight: 700;
 }
 
 h5 {
-  font-family: 'Open Sans', sans-serif;
   color: #333333;
+  font-family: 'Open Sans', sans-serif;
   font-size: 1.250em;
   font-weight: 700;
 }
 
 p {
-  font-family: 'Open Sans', sans-serif;
   color: #333333;
   text-align: left;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .h5-label {
-  font-family: 'Open Sans', sans-serif;
   color: #333333;
+  font-family: 'Open Sans', sans-serif;
   font-size: 1.250em;
   font-weight: 700;
 }
 
 .h3-label {
-  font-family: 'Quicksand', sans-serif;
   color: #99cccc;
   font-size: 1.750em;
   font-weight: 700;
+  font-family: 'Quicksand', sans-serif;
 }
 
 .h5-cyan {
@@ -72,16 +72,16 @@ p {
 }
 
 .flexContainer-row {
+  align-items: center;
   display: flex;
   flex-direction: row;
-  align-items: center;
   justify-content: space-between;
 }
 
-.flexContainer-row {
+.flexContainer-flexStart {
+  align-items: flex-start;
   display: flex;
   flex-direction: row;
-  align-items: center;
 }
 
 .container-wrapper {
@@ -132,60 +132,60 @@ p {
 }
 
 .header {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
+  display: flex;
   height: 10%;
+  justify-content: space-between;
 }
 
 .nav {
-  width: 300px;
   justify-content: space-evenly;
+  width: 300px;
 }
 
 .button {
-  padding: 6px 15px;
-  cursor: pointer;
-  color: white;
-  width: 80px;
-  height: 36px;
   background-color: #339999;
-  text-align: center;
   border-radius: 20px;
+  color: white;
+  cursor: pointer;
+  height: 36px;
+  padding: 6px 15px;
+  text-align: center;
+  width: 80px;
 }
 
 .signUpButton {
   background-color: #333333;
-  padding: 6px 15px;
   border-radius: 8px;
+  padding: 6px 15px;
   width: 90px;
 }
 
 .signInButton {
-  padding: 6px 15px;
   cursor: pointer;
+  padding: 6px 15px;
 }
 
 .button-red {
-  padding: 6px 15px;
-  cursor: pointer;
-  color: white;
-  width: 80px;
-  height: 36px;
   background-color: #FF9966;
-  text-align: center;
   border-radius: 20px;
+  color: white;
+  cursor: pointer;
+  height: 36px;
+  padding: 6px 15px;
+  text-align: center;
+  width: 80px;
 }
 
 .button-black {
-  padding: 6px 15px;
-  cursor: pointer;
-  color: white;
-  width: 80px;
-  height: 36px;
   background-color: #333333;
-  text-align: center;
   border-radius: 20px;
+  color: white;
+  cursor: pointer;
+  height: 36px;
+  padding: 6px 15px;
+  text-align: center;
+  width: 80px;
 }
 
 .btn-font {
@@ -229,60 +229,60 @@ p {
 }
 
 .header {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
+  display: flex;
   height: 10%;
+  justify-content: space-between;
 }
 
 .nav {
-  width: 300px;
   justify-content: space-evenly;
+  width: 300px;
 }
 
 .button {
-  padding: 6px 15px;
-  cursor: pointer;
-  color: white;
-  width: 80px;
-  height: 36px;
   background-color: #339999;
-  text-align: center;
   border-radius: 20px;
+  color: white;
+  cursor: pointer;
+  height: 36px;
+  padding: 6px 15px;
+  text-align: center;
+  width: 80px;
 }
 
 .signUpButton {
   background-color: #333333;
-  padding: 6px 15px;
   border-radius: 8px;
+  padding: 6px 15px;
   width: 90px;
 }
 
 .signInButton {
-  padding: 6px 15px;
   cursor: pointer;
+  padding: 6px 15px;
 }
 
 .button-red {
-  padding: 6px 15px;
-  cursor: pointer;
-  color: white;
-  width: 80px;
-  height: 36px;
   background-color: #FF9966;
-  text-align: center;
   border-radius: 20px;
+  color: white;
+  cursor: pointer;
+  height: 36px;
+  padding: 6px 15px;
+  text-align: center;
+  width: 80px;
 }
 
 .button-black {
-  padding: 6px 15px;
-  cursor: pointer;
-  color: white;
-  width: 80px;
-  height: 36px;
   background-color: #333333;
-  text-align: center;
   border-radius: 20px;
+  color: white;
+  cursor: pointer;
+  height: 36px;
+  padding: 6px 15px;
+  text-align: center;
+  width: 80px;
 }
 
 .container-form {
@@ -310,13 +310,13 @@ p {
 }
 
 .bg-page {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   height: 100vh;
   width: 100%;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  overflow: hidden;
   z-index: -2;
+  overflow: hidden;
 }
 
 .bg-upload {
@@ -328,28 +328,28 @@ p {
 }
 
 .portfolioCard {
-  width: 390px;
+  border: none;
   height: 400px;
+  margin-bottom: 40px;
   margin-left: 70px;
   margin-right: 70px;
-  margin-bottom: 40px;
-  border: none;
+  width: 390px;
 }
 
 .portfolioPage-image {
   background-color: #f5f9f8;
-  width: 100%;
-  height: 250px;
   background-position: center;
-  background-size: cover;
   background-repeat: no-repeat;
+  background-size: cover;
   border-radius: 50px;
+  height: 250px;
+  width: 100%;
 }
 
 #myProjectCards {
   display: flex;
-  height: auto;
   flex-flow: row wrap;
+  height: auto;
   justify-content: flex-start;
 }
 
@@ -360,14 +360,18 @@ p {
 
 .portfolioPage-buttonGroup {
   display: flex;
-  width: 42%;
   justify-content: space-between;
+  width: 42%;
 }
 
 .noPortfolio {
-  width: 100%;
   font-size: x-large;
   margin-bottom: 8rem;
+  width: 100%;
+}
+
+.userInfoField {
+  width: 100px;
 }
 
 .landingPage-banner {
@@ -377,16 +381,16 @@ p {
 }
 @media (max-width: 900px) {
   .landingPage-banner {
-    height: 25vh;
     background-repeat: no-repeat;
+    height: 25vh;
   }
 }
 
 .filterDropdown {
-  justify-content: center;
   background-color: #cccccc;
-  padding-top: 20px;
+  justify-content: center;
   padding-bottom: 20px;
+  padding-top: 20px;
 }
 
 .filterInputGroup {
@@ -395,18 +399,18 @@ p {
 
 #artsDeck {
   display: flex;
-  height: auto;
   flex-flow: row wrap;
+  height: auto;
   justify-content: flex-start;
 }
 
 .artcard {
-  width: 450px;
+  border: none;
   height: 700px;
+  margin-bottom: 50px;
   margin-left: 70px;
   margin-right: 70px;
-  margin-bottom: 50px;
-  border: none;
+  width: 450px;
 }
 
 .artcard-title {
@@ -415,8 +419,8 @@ p {
 }
 
 .artcard-body {
-  padding-right: 30px;
   padding-left: 30px;
+  padding-right: 30px;
 }
 
 .artcard-columnwrap {
@@ -431,12 +435,12 @@ p {
 }
 
 .art-image {
+  border-radius: 50px;
   border: none;
+  height: auto;
   max-height: 300px;
   max-width: 449px;
-  height: auto;
   width: auto;
-  border-radius: 50px;
 }
 
 .artcard-link {
@@ -449,15 +453,15 @@ p {
 }
 
 .noResultText-wrapper {
+  height: 40vh;
   position: absolute;
   width: 80vw;
-  height: 40vh;
 }
 
 .noResultText {
+  left: 35%;
   position: relative;
   top: 20%;
-  left: 35%;
 }
 
 .nav-border {
@@ -466,17 +470,17 @@ p {
 }
 
 .card-border {
-  border-top: 0px;
+  border-bottom: 2px solid #cccccc;
   border-left: 0px;
   border-right: 0px;
-  border-bottom: 2px solid #cccccc;
+  border-top: 0px;
   width: 100%;
 }
 
 .card-img-top {
-  width: 100%;
   height: 20vw;
   object-fit: cover;
+  width: 100%;
 }
 @media (max-width: 900px) {
   .card-img-top {
@@ -491,46 +495,46 @@ p {
 }
 
 #viewMorePage-artInfo {
-  width: 100vw;
-  padding-top: 3rem;
-  padding-right: 10vw;
   padding-left: 10vw;
+  padding-right: 10vw;
+  padding-top: 3rem;
+  width: 100vw;
 }
 
 .viewMore-photoBackground {
-  display: flex;
-  justify-content: center;
   align-content: center;
   background-color: #f5f9f8;
+  display: flex;
+  justify-content: center;
   margin-top: 2rem;
 }
 
 .viewMore-mainPhoto {
-  max-width: 70vw;
   height: auto;
+  max-width: 70vw;
 }
 
 .viewMore-endBoarder {
-  padding-bottom: 2rem;
   border-bottom: lightgrey 2px solid;
+  padding-bottom: 2rem;
 }
 
 .viewMorePage-commentsWrapper {
+  max-width: 100%;
   padding-left: 10vw;
   padding-right: 10vw;
-  max-width: 100%;
 }
 
 .comment-container {
-  padding: 1rem;
-  border: #339999 1px solid;
   border-radius: 20px;
-}
-.comment-container--right {
-  text-align: right;
+  border: #339999 1px solid;
+  padding: 1rem;
 }
 .comment-container--left {
   text-align: left;
+}
+.comment-container--right {
+  text-align: right;
 }
 
 .comment-info {
@@ -538,13 +542,13 @@ p {
 }
 
 .comment-right {
-  text-align: right;
   background-color: #99cccc;
+  text-align: right;
 }
 
 .comment-left {
-  text-align: left;
   background-color: white;
+  text-align: left;
 }
 
 /*# sourceMappingURL=style.css.map */
