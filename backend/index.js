@@ -13,11 +13,11 @@ const Portfolio = require('./models/portfolio.js');
 
 const port = 3000;
 
-app.get('/', (req, res) => res.send('Hello World from Hayley, Rahul and Yana!'))
+app.get('/', (req, res) => res.send('Hello World from Hayley, Rahul and Yana!'));
 
-const mongodbURI = `mongodb+srv://${config.MONGO_USER}:${config.MONGO_PASSWORD}@${config.MONGO_CLUSTER_NAME}-tvmnw.mongodb.net/test?retryWrites=true&w=majority`
+const mongodbURI = `mongodb+srv://${config.MONGO_USER}:${config.MONGO_PASSWORD}@${config.MONGO_CLUSTER_NAME}-tvmnw.mongodb.net/test?retryWrites=true&w=majority`;
 mongoose.connect(mongodbURI, {useNewUrlParser: true, useUnifiedTopology: true})
-.then(()=> console.log('DB connected'))
+.then(() => console.log('DB connected'))
 .catch(err =>{
   console.log(`DBConnectionError: ${err.message}`);
 });
@@ -44,9 +44,9 @@ app.use(cors());
 // register a member ============================================================
 // Yanas code
 
-app.post('/registerMember', (req,res) =>{
+app.post('/registerMember', (req,res) => {
   //checking if member is found in the db already
-  Member.findOne({username:req.body.username},(err,memberResult)=>{
+  Member.findOne({username:req.body.username},(err,memberResult)=> {
     if (memberResult){
       res.send('Members name is already taken. Please choose another name');
     } else{
@@ -61,27 +61,27 @@ app.post('/registerMember', (req,res) =>{
         website : req.body.website
       });
 
-      member.save().then(result =>{
+      member.save().then(result => {
         // security measures
         res.send('Your account has been created, please login to activate your account');
       }).catch(err => res.send(err));
     }
-  })
+  });
 });
 
 // get all members =============================================================
 // Yanas code
 
-app.get('/allMembers', (req,res) =>{
-  Member.find().then(result =>{
+app.get('/allMembers', (req,res) => {
+  Member.find().then(result => {
     res.send(result);
-  })
+  });
 });
 
 // login a member ==============================================================
 // Yanas code
 
-app.post('/loginMember', (req,res) =>{
+app.post('/loginMember', (req,res) => {
   Member.findOne({username:req.body.username},(err,memberResult) => {
     if (memberResult){
       if (bcryptjs.compareSync(req.body.password, memberResult.password)){
@@ -99,7 +99,7 @@ app.post('/loginMember', (req,res) =>{
 // add an artwork to portfolio =================================================
 // Yanas code
 
-app.post('/addPortfolio', (req,res) =>{
+app.post('/addPortfolio', (req,res) => {
   //checking if portfolio is found in the db already
   Portfolio.findOne({title:req.body.title},(err,portfolioResult)=>{
     if (portfolioResult){
@@ -115,21 +115,21 @@ app.post('/addPortfolio', (req,res) =>{
         memberId : req.body.memberId
       });
 
-      portfolio.save().then(result =>{
+      portfolio.save().then(result => {
         res.send(result);
       }).catch(err => res.send(err));
     }
-  })
+  });
 });
 
 // get all portfolios ==========================================================
 // Yanas code
 
 app.get('/allPortfolios', (req,res) => {
-  Portfolio.find().then(result =>{
+  Portfolio.find().then(result => {
     console.log(result);
     res.json(result);
-  })
+  });
 });
 
 // get all my portfolio projects
@@ -156,10 +156,10 @@ app.get('/myPortfolios/:accountID', (req, res) => {
     if(results.length > 0) {
       res.send(results);
     } else {
-      res.send('No portfolio by this user found')
+      res.send('No portfolio by this user found');
     }
-  })
-})
+  });
+});
 
 app.get('/portfoliosAndAuthors', async (req, res) => {
   let query = await Portfolio.aggregate([
@@ -170,9 +170,9 @@ app.get('/portfoliosAndAuthors', async (req, res) => {
                 as: "authorInfo"
     }},
     { $unwind: "$authorInfo" }
-  ])
+  ]);
   res.send(query);
-})
+});
 
 app.get('/portfolioWithAuthor/:id', async (req, res) => {
   let artId = req.params.id;
