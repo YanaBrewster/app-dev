@@ -1,6 +1,7 @@
 // Yanas code
 let url;
 $(document).ready(function(){
+  console.log(sessionStorage);
 
   // get url and port from config.json
   $.ajax({
@@ -17,11 +18,13 @@ $(document).ready(function(){
   });//ajax
 });
 
+
 // Show and hide pages ===============================================================
 // Yanas code
 
 //check if there is any session sessionStorage
 if (sessionStorage['userName']) {
+  
   // buttons
   $('#logoutBtn').show();
   $('#myPortfolioBtn').show();
