@@ -2,7 +2,6 @@
     padding-left: 10vw;
     padding-right: 10vw;
     padding-top: 3rem;
-    width: 100vw;
 }
 
 .viewMore-photoBackground {
@@ -30,8 +29,8 @@
 }
 
 .comment-container {
-    border-radius: 20px;
     border: $primary 1px solid;
+    border-radius: 20px;
     padding: 1rem;
 
     &--left {

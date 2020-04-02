@@ -138,17 +138,7 @@ p {
   border-radius: 20px;
   color: white;
   cursor: pointer;
-  height: 36px;
-  padding: 6px 15px;
-  text-align: center;
-  width: 80px;
-}
-
-.signUpButton {
-  background-color: #333333;
-  border-radius: 8px;
-  padding: 6px 15px;
-  width: 90px;
+  padding: 9px 15px;
 }
 
 .signInButton {
@@ -161,10 +151,8 @@ p {
   border-radius: 20px;
   color: white;
   cursor: pointer;
-  height: 36px;
   padding: 6px 15px;
   text-align: center;
-  width: 80px;
 }
 
 .button-black {
@@ -172,10 +160,8 @@ p {
   border-radius: 20px;
   color: white;
   cursor: pointer;
-  height: 36px;
   padding: 6px 15px;
   text-align: center;
-  width: 80px;
 }
 
 .btn-font {
@@ -230,17 +216,7 @@ p {
   border-radius: 20px;
   color: white;
   cursor: pointer;
-  height: 36px;
-  padding: 6px 15px;
-  text-align: center;
-  width: 80px;
-}
-
-.signUpButton {
-  background-color: #333333;
-  border-radius: 8px;
-  padding: 6px 15px;
-  width: 90px;
+  padding: 9px 15px;
 }
 
 .signInButton {
@@ -253,10 +229,8 @@ p {
   border-radius: 20px;
   color: white;
   cursor: pointer;
-  height: 36px;
   padding: 6px 15px;
   text-align: center;
-  width: 80px;
 }
 
 .button-black {
@@ -264,10 +238,8 @@ p {
   border-radius: 20px;
   color: white;
   cursor: pointer;
-  height: 36px;
   padding: 6px 15px;
   text-align: center;
-  width: 80px;
 }
 
 .container-form {
@@ -356,7 +328,6 @@ p {
 }
 
 .userInfoField {
-  background-color: blue;
   width: 100px;
 }
 
@@ -421,8 +392,8 @@ p {
 }
 
 .art-image {
-  border-radius: 50px;
   border: none;
+  border-radius: 50px;
   height: auto;
   max-height: 300px;
   max-width: 449px;
@@ -484,7 +455,6 @@ p {
   padding-left: 10vw;
   padding-right: 10vw;
   padding-top: 3rem;
-  width: 100vw;
 }
 
 .viewMore-photoBackground {
@@ -512,8 +482,8 @@ p {
 }
 
 .comment-container {
-  border-radius: 20px;
   border: #339999 1px solid;
+  border-radius: 20px;
   padding: 1rem;
 }
 .comment-container--left {
