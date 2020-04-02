@@ -34,17 +34,15 @@ module.exports = function(grunt) {
     },
     // grunt-contrib-csslint v2.0.0
     csslint: {
-      strict: {
-        options: {
-          import: 2
-        },
-        src: ['css/*.css','!*.min.css']//do not include min files
-      },
       lax: {
         options: {
-          import: false
+          import: 2,
+          ids: false,
+          "universal-selector": false,
+          "box-sizing": false,
+          "known-properties": false
         },
-        src: ['css/*.css','!*.min.css']
+        src: ['css/*.css','!*.min.css']//do not include min files
       }
     },
 
