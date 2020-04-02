@@ -1,6 +1,7 @@
 // Yanas code
 
 $(document).ready(function(){
+  console.log(sessionStorage);
   var url;
   // get url and port from config.json
   $.ajax({
@@ -98,6 +99,7 @@ $('#signUpBtn').click(function(){
 // my portfolio button to show my portfolio page
 $('#myPortfolioBtn').click(function(){
   generateMyPortfolios();
+  getMyAccountInfo();
   // pages
   $('#projectPage').show();
   $('#signUpPage').hide();
@@ -369,6 +371,26 @@ function generateMyPortfolios() {
       console.log(error);
     }
   });
+}
+
+function getMyAccountInfo() {
+  let currentUserId = sessionStorage.getItem('memberId');
+
+  if (!currentUserId) { return; }
+
+  $.ajax({
+    url: `${url}/myAccountInfo/${currentUserId}`,
+    type: 'GET',
+    dataType: 'json',
+    success: function(result) {
+      console.log(result);
+
+    },
+    error: function(error) {
+      console.log(error);
+    }
+  })
+  
 }
 
 function makePortfolioCards(arr) {

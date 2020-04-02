@@ -143,6 +143,12 @@ app.get('/allPortfolios', (req,res) => {
 
 
 // Hayley's code
+app.get('/myAccountInfo/:accountID', (req, res) => {
+  let _memberId = req.params.accountID;
+  Member.findById(_memberId, function(err, result) {
+    res.send(result);
+  })
+})
 
 app.get('/myPortfolios/:accountID', (req, res) => {
   let _memberId = req.params.accountID;
