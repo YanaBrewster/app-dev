@@ -23,13 +23,13 @@
 
 
 .bg-page{
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
 	height: 100vh;
 	width: 100%;
-	background-position: center;
-	background-size: cover;
-	background-repeat: no-repeat;
-  overflow: hidden;
 	z-index: -2;
+  overflow: hidden;
 }
 
 // background image for upload project form
@@ -47,46 +47,46 @@
 // Hayley's code
 
 .portfolioCard {
-  width: 390px;
+  border: none;
   height: 400px;
+  margin-bottom: 40px;
   margin-left: 70px;
   margin-right: 70px;
-  margin-bottom: 40px;
-  border: none;
+  width: 390px;
 }
 
 .portfolioPage-image {
   background-color: $grey-light;
-  width: 100%;
-  height: 250px;
   background-position: center;
-  background-size: cover;
   background-repeat: no-repeat;
+  background-size: cover;
   border-radius: 50px;
+  height: 250px;
+  width: 100%;
 }
 
 #myProjectCards {
   display: flex;
-  height: auto;
   flex-flow: row wrap;
+  height: auto;
   justify-content: flex-start;
 }
 
 .portfolioPage-buttonsWrapper {
   display: flex;
-  justify-content: space-between;;
+  justify-content: space-between;
 }
 
 .portfolioPage-buttonGroup {
   display: flex;
-  width: 42%;
   justify-content: space-between;
+  width: 42%;
 }
 
 .noPortfolio {
-  width: 100%;
   font-size: x-large;
   margin-bottom: 8rem;
+  width: 100%;
 }
 
 // Hayley's code ends

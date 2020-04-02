@@ -10,15 +10,14 @@ module.exports = function(grunt) {
         dest: 'js/script.min.js'
       }
     },
-
     // grunt-contrib-cssmin
     cssmin: {
       target: {
         files: [{
           expand: true,
-          cwd: 'app-dev/css',
-          src: ['style.css', '!style.min.css'],
-          dest: 'css/style.min.css',
+          cwd: 'dev-app/frontend/css',
+          src: ['*.css', '!*.min.css'],
+          dest: 'dev-app/frontend/css',
           ext: '.min.css'
         }]
       }
@@ -26,7 +25,7 @@ module.exports = function(grunt) {
     // grunt-contrib-watch v1.1.0
     watch: {
       all: {
-        files: ['sass/*.scss','css/*.css', 'js/script.js'],
+        files: ['scss/*.scss','css/*.css', 'js/script.js'],
         tasks: ['sass','csslint','jshint'],
         options: {
           livereload: true

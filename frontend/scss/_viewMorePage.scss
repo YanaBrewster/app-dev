@@ -1,45 +1,45 @@
 #viewMorePage-artInfo {
-    width: 100vw;
-    padding-top: 3rem;
-    padding-right: 10vw;
     padding-left: 10vw;
+    padding-right: 10vw;
+    padding-top: 3rem;
+    width: 100vw;
 }
 
 .viewMore-photoBackground {
+    align-content: center;
+    background-color: $grey-light;
     display: flex;
     justify-content: center;
-    align-content: center;
-
-    background-color: $grey-light;
     margin-top: 2rem;
 }
 
 .viewMore-mainPhoto {
-    max-width: 70vw;
     height: auto;
+    max-width: 70vw;
 }
 
 .viewMore-endBoarder {
-    padding-bottom: 2rem;
     border-bottom: lightgrey 2px solid;
+    padding-bottom: 2rem;
 }
 
 .viewMorePage-commentsWrapper {
+    max-width: 100%;
     padding-left: 10vw;
     padding-right: 10vw;
-    max-width: 100%;
 }
 
 .comment-container {
-    padding: 1rem;
-    border: $primary 1px solid;
     border-radius: 20px;
-    &--right {
-        text-align: right;
-    }
+    border: $primary 1px solid;
+    padding: 1rem;
 
     &--left {
         text-align: left;
+    }
+
+    &--right {
+        text-align: right;
     }
 }
 
@@ -50,13 +50,13 @@
 // yana code
 
 .comment-right {
-        text-align: right;
-        background-color: $blue;
+    background-color: $blue;
+    text-align: right;
 }
 
 .comment-left {
-        text-align: left;
-        background-color: white;
+    background-color: white;
+    text-align: left;
 }
 
 // yana code ends
