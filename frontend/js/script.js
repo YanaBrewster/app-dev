@@ -9,7 +9,9 @@ $(document).ready(function(){
     type :'GET',
     dataType :'json',
     success : function(configData){
-      url = `${configData.SERVER_URL}:${configData.SERVER_PORT}`;
+      // url = `${configData.SERVER_URL}:${configData.SERVER_PORT}`;
+      url = configData.SERVER_URL + ":" + configData.SERVER_PORT;
+      console.log(url);
       generateLandingPageCards();
     },//success
     error:function(){

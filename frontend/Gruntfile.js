@@ -45,7 +45,6 @@ module.exports = function(grunt) {
         src: ['css/*.css','!*.min.css']//do not include min files
       }
     },
-
     // grunt-contrib-sass
     sass: {                              // Task
       dist: {                            // Target
