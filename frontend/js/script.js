@@ -350,31 +350,32 @@ $('#addPortfolioForm').submit(function(){
 
 $('#updatePortfolioForm').submit(function(){
   event.preventDefault();
-  $('#updatePortfolioTitle').val();
-  $('#updatePortfolioDescription').val();
-  $('#updatePortfolioImage').val();
-  $('#updatePortfolioCategory').val();
-  $('#updatePortfolioPrice').val();
-  $('#updatePortfolioId').val();
-
-  $('#updatePortfolioForm').trigger('reset');
-  $('#updatePortfolioPage').hide();
-  $('#landingPage').show();
-  $('html, body').animate({ scrollTop: 0 }, 'fast');
+  let portfolioId = sessionStorage.getItem('projectOnEdit');
+  let _title = $('#updatePortfolioTitle').val();
+  let _description = $('#updatePortfolioDescription').val();
+  let _image = $('#updatePortfolioImage').val();
+  let _category = $('#updatePortfolioCategory').val();
+  let _price = $('#updatePortfolioPrice').val();
+  let _memberId = sessionStorage.getItem('memberId');
 
   $.ajax({
     url :`${url}/updatePortfolio/${portfolioId}`,
     type :'PATCH',
     data : {
-      title : title,
-      description : description,
-      image : image,
-      category : category,
-      price: price,
-      memberId : sessionStorage.getItem.memberId
+      title : _title,
+      description : _description,
+      image : _image,
+      category : _category,
+      price: _price,
+      memberId: _memberId
     },
     success : function(data){
       console.log(data);
+      sessionStorage.removeItem('projectOnEdit');
+      $('#updatePortfolioForm').trigger('reset');
+      $('#updatePortfolioPage').hide();
+      $('#landingPage').show();
+      $('html, body').animate({ scrollTop: 0 }, 'fast');
 
     },//success
     error:function(){
@@ -501,10 +502,10 @@ function makePortfolioCards(arr) {
     <h5 class="card-text mb-3">${item.title}</h5>
     <div class="portfolioPage-buttonsWrapper">
     <div class="portfolioPage-buttonGroup">
-    <div class="button viewMoreButton btn-font" id="${item._id}">View</div>
-    <div class="button-black editButton btn-font" id="${item._id}">Edit</div>
+    <div class="button viewMoreButton btn-font" id="view${item._id}">View</div>
+    <div class="button-black editButton btn-font" id="edit${item._id}">Edit</div>
     </div>
-    <div class="button-red deleteButton btn-font" id="${item._id}">Delete</div>
+    <div class="button-red deleteButton btn-font" id="delete${item._id}">Delete</div>
     </div>
     </div>
     `).join(' ');
@@ -513,6 +514,12 @@ function makePortfolioCards(arr) {
 
     for (let i = 0; i < viewMoreButtons.length; i ++) {
       viewMoreButtons[i].addEventListener('click', getArtworkInfo);
+    }
+
+    let editButtons = document.getElementsByClassName('editButton');
+
+    for (let i = 0; i < editButtons.length; i ++) {
+      editButtons[i].addEventListener('click', prefillUpdateProjectForm);
     }
   }
 
@@ -526,6 +533,30 @@ function makePortfolioCards(arr) {
       },
       error: function(error) {
         console.log('Error: ' + error);
+      }
+    });
+  }
+
+  function prefillUpdateProjectForm(e) {
+    const _id = (e.target.id).slice(4);
+    sessionStorage.setItem('projectOnEdit', _id);
+    console.log(sessionStorage);
+
+    $.ajax({
+      url: `${url}/findProject/${_id}`,
+      type: 'GET',
+      dataType: 'json',
+      success: function(project) {
+
+        //pre-fill editProjectForm with project details
+        $('#updatePortfolioTitle').val(project.title);
+        $('#updatePortfolioDescription').val(project.description);
+        $('#updatePortfolioImage').val(project.image);
+        $('#updatePortfolioCategory').val(project.category);
+        $('#updatePortfolioPrice').val(project.price);
+      },
+      error: function(error) {
+        console.log(error);
       }
     });
   }
@@ -562,7 +593,7 @@ function makePortfolioCards(arr) {
   }
 
   function getArtworkInfo(e) {
-    let id = e.target.id;
+    let id = (e.target.id).slice(4);
     $.ajax({
       url: `${url}/portfolioWithAuthor/${id}`,
       type: 'GET',

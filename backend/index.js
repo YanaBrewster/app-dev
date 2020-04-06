@@ -135,22 +135,26 @@ app.get('/allPortfolios', (req,res) => {
 
 // update portfolios ==========================================================
 
-app.patch('/updatePortfolio/:id',(req,res)=>{
-  const idParam = req.params.id;
-  Portfolio.findById(idParam,(err,portfolio) =>{
-    const updatedPortfolio ={
-      title : req.body.title,
-      description : req.body.description,
-      image : req.body.image,
-      category : req.body.category,
-      price : req.body.price,
-      memberId : req.body.memberId
-    };
-    Portfolio.updateOne({_id:idParam}, updatedPortfolio).then(result=>{
-      res.send(result);
-    }).catch(err=> res.send(err));
-  }).catch(err=>res.send('not found'));
-});
+// app.patch('/updatePortfolio/:id', (req, res) => {
+//   const idParam = req.params.id;
+
+//   Portfolio.findById(idParam, (err, portfolio) => {
+//     const updatedPortfolio = {
+//       title : req.body.title,
+//       description : req.body.description,
+//       image : req.body.image,
+//       category : req.body.category,
+//       price : req.body.price,
+//       memberId : req.body.memberId
+//     };
+
+//   Portfolio.updateOne({ _id: idParam }, updatedPortfolio)
+//               .then(result => {
+//                     res.send(result);
+//                     })
+//               .catch(err=> res.send(err));
+//   }).catch(err=>res.send('not found'));
+// });
 
 // delete portfolios ==========================================================
 
@@ -173,6 +177,40 @@ app.delete('/deletePortfolio/:id',(req,res)=>{
 
 
 // Hayley's code
+
+app.patch('/updatePortfolio/:id', (req, res) => {
+  const _id = req.params.id;
+  const updatedProject = {
+      title : req.body.title,
+      description : req.body.description,
+      image : req.body.image,
+      category : req.body.category,
+      price : req.body.price,
+      memberId : req.body.memberId
+  };
+
+  Portfolio.findByIdAndUpdate(_id, updatedProject, {new: true}, (err, result) => {
+                              res.send({
+                                _id: result._id,
+                                title: result.title,
+                                description: result.description,
+                                image: result.image,
+                                category: result.category,
+                                price: result.price,
+                                memberId: result.memberId
+                              })
+            })
+            .catch(err => res.send(err));
+})
+
+app.get('/findProject/:id', (req, res) => {
+  let _projectID = req.params.id;
+  Portfolio.findById(_projectID, function(err, result) {
+    console.log(result);
+    res.send(result);
+  })
+})
+
 app.get('/myAccountInfo/:accountID', (req, res) => {
   let _memberId = req.params.accountID;
   Member.findById(_memberId, function(err, result) {
