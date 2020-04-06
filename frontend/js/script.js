@@ -107,8 +107,8 @@ $('#myPortfolioBtn').click(function(){
   $('#landingPage').hide();
   $('#viewMorePage').hide();
   $('#uploadPortfolioPage').hide();
-  $('#updatePortfolioPage').hide();
-  $('#deletePortfolioPage').hide();
+  $('#updatePortfolioPage').show();
+  $('#deletePortfolioPage').show();
 });
 
 //upload projects button to show upload project page
@@ -345,6 +345,83 @@ $('#addPortfolioForm').submit(function(){
     }); //ajax
   } //else
 }); // submit add portfolio
+
+// UPDATE PORTFOLIO FORM ===============================================
+
+$('#updatePortfolioForm').submit(function(){
+  event.preventDefault();
+  $('#updatePortfolioTitle').val();
+  $('#updatePortfolioDescription').val();
+  $('#updatePortfolioImage').val();
+  $('#updatePortfolioCategory').val();
+  $('#updatePortfolioPrice').val();
+  $('#updatePortfolioId').val();
+
+  $('#updatePortfolioForm').trigger('reset');
+  $('#updatePortfolioPage').hide();
+  $('#landingPage').show();
+  $('html, body').animate({ scrollTop: 0 }, 'fast');
+
+  $.ajax({
+    url :`${url}/updatePortfolio/${portfolioId}`,
+    type :'PATCH',
+    data : {
+      title : title,
+      description : description,
+      image : image,
+      category : category,
+      price: price,
+      memberId : sessionStorage.getItem.memberId
+    },
+    success : function(data){
+      console.log(data);
+
+    },//success
+    error:function(){
+      console.log('error: cannot call api');
+    }//error
+  });//ajax
+});//submit function for updateItem form
+
+// Delete project
+$('#deletePortfolioBtn').click(function(){
+  $('#deletePortfolioForm').submit(function(){
+    event.preventDefault();
+    if(!sessionStorage.memberId){
+      alert('401, permission denied');
+      return;
+    }
+    let  portfolioId = $('#deletePortfolioId').val();
+    if (portfolioId == '') {
+      alert('Please enter portfolio name');
+    } else { $.ajax({
+      url :`${url}/deletePortfolio/${portfolioId}`,
+      type :'DELETE',
+      data:{
+        title : title,
+        username : username,
+        memberId: sessionStorage.memberId
+      },
+      success : function(data){
+        console.log(data);
+        if (data=='deleted'){
+          alert('deleted');
+          $('#deletePortfolioId').val('');
+        } else {
+          alert('Enter a valid id');
+        }
+      },//success
+      error:function(){
+        console.log('error: cannot call api');
+      }//error
+    });//ajax
+  }
+});//submit function for delete product
+});
+// Yanas code ENDS
+
+
+
 
 // View my portfolio project cards =============================================
 
