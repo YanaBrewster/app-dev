@@ -654,4 +654,105 @@ function makePortfolioCards(arr) {
   }
 
   // Hayley's code ends
+
+
+
+
+  // Rahul's code 
+
+  //updateProduct
+  $('#addPortfolioForm').click(function(){
+      $('#addPortfolioForm').show();
+      $('#deletePortfolioPage').hide();
+      $('#delForm').hide();
+  });
+  $('#addPortfolioForm').submit(function(){
+
+    event.preventDefault();
+
+    let  productId = $('#productId').val();
+    let  productName = $('#productName').val();
+    let  productPrice = $('#productPrice').val();
+    let  userId = $('#userId').val();
+
+    console.log(productId, productName, productPrice, userId);
+    if (productId == '') {
+      alert('Please enter product details');
+    } else { $.ajax({
+            url :`${url}/updateProduct/${productId}`,
+            type :'PATCH',
+            data:{
+              name : productName,
+              price :productPrice,
+              userId :sessionStorage['userID']
+              },
+            success : function(data){
+              console.log(data);
+              if (data == '401 error; user has no permission to update') {
+                alert ('401 error; user has no permission to update');
+              } else{
+                alert('modified');
+              }
+              $('#productId').val('');
+              $('#productName').val('');
+              $('#productPrice').val('');
+              $('#userId').val('');
+            },//success
+            error:function(){
+              console.log('error: cannot call api');
+            }//error
+
+
+          });//ajax
+    }
+  });//submit function for update product
+
+//delete a product
+
+$('#deleteProductBtn').click(function(){
+    $('#delForm').show();
+    $('#productForm').hide();
+    $('#addProductForm').hide();
+});
+
+$('#delForm').submit(function(){
+  event.preventDefault();
+  if(!sessionStorage['userID']){
+        alert('401, permission denied');
+        return;
+    };
+
+  let  productId = $('#delProductId').val();
+
+  console.log(productId);
+
+  if (productId == '') {
+    alert('Please enter product id');
+  } else { $.ajax({
+          url :`${url}/deleteProduct/${productId}`,
+          type :'DELETE',
+          data:{
+            userId: sessionStorage['userID']
+          },
+          success : function(data){
+            console.log(data);
+            if (data=='deleted'){
+              alert('deleted');
+              $('#delProductId').val('');
+            } else {
+              alert('Enter a valid id');
+            }
+
+          },//success
+          error:function(){
+            console.log('error: cannot call api');
+          }//error
+
+
+        });//ajax
+  }
+});//submit function for delete product
+
+  // Rahul's code ends
+
 }); // Document ready ends
