@@ -346,44 +346,6 @@ $('#addPortfolioForm').submit(function(){
   } //else
 }); // submit add portfolio
 
-// UPDATE PORTFOLIO FORM ===============================================
-
-$('#updatePortfolioForm').submit(function(){
-  event.preventDefault();
-  let portfolioId = sessionStorage.getItem('projectOnEdit');
-  let _title = $('#updatePortfolioTitle').val();
-  let _description = $('#updatePortfolioDescription').val();
-  let _image = $('#updatePortfolioImage').val();
-  let _category = $('#updatePortfolioCategory').val();
-  let _price = $('#updatePortfolioPrice').val();
-  let _memberId = sessionStorage.getItem('memberId');
-
-  $.ajax({
-    url :`${url}/updatePortfolio/${portfolioId}`,
-    type :'PATCH',
-    data : {
-      title : _title,
-      description : _description,
-      image : _image,
-      category : _category,
-      price: _price,
-      memberId: _memberId
-    },
-    success : function(data){
-      console.log(data);
-      sessionStorage.removeItem('projectOnEdit');
-      $('#updatePortfolioForm').trigger('reset');
-      $('#updatePortfolioPage').hide();
-      $('#landingPage').show();
-      $('html, body').animate({ scrollTop: 0 }, 'fast');
-
-    },//success
-    error:function(){
-      console.log('error: cannot call api');
-    }//error
-  });//ajax
-});//submit function for updateItem form
-
 // Delete project
 $('#deletePortfolioBtn').click(function(){
   $('#deletePortfolioForm').submit(function(){
@@ -421,12 +383,47 @@ $('#deletePortfolioBtn').click(function(){
 });
 // Yanas code ENDS
 
+// Hayley's code
 
+// UPDATE PORTFOLIO FORM ===============================================
+
+$('#updatePortfolioForm').submit(function(){
+  event.preventDefault();
+  let portfolioId = sessionStorage.getItem('projectOnEdit');
+  let _title = $('#updatePortfolioTitle').val();
+  let _description = $('#updatePortfolioDescription').val();
+  let _image = $('#updatePortfolioImage').val();
+  let _category = $('#updatePortfolioCategory').val();
+  let _price = $('#updatePortfolioPrice').val();
+
+  $.ajax({
+    url : `${url}/updatePortfolio/${portfolioId}`,
+    type : 'PATCH',
+    data : {
+      title : _title,
+      description : _description,
+      image : _image,
+      category : _category,
+      price: _price
+    },
+    success : function(data){
+      sessionStorage.removeItem('projectOnEdit');
+      $('#updatePortfolioForm').trigger('reset');
+      $('#updatePortfolioPage').hide();
+      generateMyPortfolios();
+      $('#projectPage').show();
+      $('html, body').animate({ scrollTop: 0 }, 'fast');
+
+    },
+    error:function(){
+      console.log('error: cannot call api');
+    }
+  });
+});
 
 
 // View my portfolio project cards =============================================
 
-// Hayley's code
 function generateMyPortfolios() {
   let currentUserId = sessionStorage.getItem('memberId');
 
@@ -554,6 +551,8 @@ function makePortfolioCards(arr) {
         $('#updatePortfolioImage').val(project.image);
         $('#updatePortfolioCategory').val(project.category);
         $('#updatePortfolioPrice').val(project.price);
+
+        $('#projectPage').hide();
       },
       error: function(error) {
         console.log(error);

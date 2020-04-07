@@ -185,11 +185,10 @@ app.patch('/updatePortfolio/:id', (req, res) => {
       description : req.body.description,
       image : req.body.image,
       category : req.body.category,
-      price : req.body.price,
-      memberId : req.body.memberId
+      price : req.body.price
   };
 
-  Portfolio.findByIdAndUpdate(_id, updatedProject, {new: true}, (err, result) => {
+  Portfolio.findByIdAndUpdate(_id, {$set: updatedProject}, {upsert: true, new: true}, (err, result) => {
                               res.send({
                                 _id: result._id,
                                 title: result.title,
