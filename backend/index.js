@@ -178,6 +178,26 @@ app.delete('/deletePortfolio/:id',(req,res)=>{
 
 // Hayley's code
 
+app.patch('/updateMember/:id', (req, res) => {
+  const _id = req.params.id;
+  const updatedMember = {
+      username: req.body.username,
+      email: req.body.email,
+      about: req.body.about,
+      location: req.body.location,
+      website: req.body.website
+  }
+
+  Member.findByIdAndUpdate(_id, 
+                            { $set: updatedMember }, 
+                            { useFindAndModify: false, upsert: true, new: true },
+                            (err, result) => {
+                                console.log(result);
+                                res.send(result);
+                            })
+        .catch(err => console.log(err));
+})
+
 app.patch('/updatePortfolio/:id', (req, res) => {
   const _id = req.params.id;
   const updatedProject = {
@@ -188,7 +208,7 @@ app.patch('/updatePortfolio/:id', (req, res) => {
       price : req.body.price
   };
 
-  Portfolio.findByIdAndUpdate(_id, {$set: updatedProject}, {upsert: true, new: true}, (err, result) => {
+  Portfolio.findByIdAndUpdate(_id, {$set: updatedProject}, { upsert: true, new: true}, (err, result) => {
                               res.send({
                                 _id: result._id,
                                 title: result.title,

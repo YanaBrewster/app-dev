@@ -236,7 +236,7 @@ $('#registerForm').submit(function(){
       }
     },//success
     error:function(){
-      // console.log('error: cannot call api');
+      console.log('error: cannot call api');
     }//error
 
   });//ajax
@@ -270,7 +270,7 @@ $('#loginSubmitBtn').click(function(){
         sessionStorage.setItem('email',loginData.email);
         sessionStorage.setItem('location',loginData.location);
         sessionStorage.setItem('website',loginData.website);
-        sessionStorage.setItem('description',loginData.description);
+        sessionStorage.setItem('about',loginData.about);
         showMemberName(username);
         $('#logoutBtn').show();
         $('#myPortfolioBtn').show();
@@ -460,7 +460,6 @@ function getMyAccountInfo() {
     type: 'GET',
     dataType: 'json',
     success: function(result) {
-      console.log(result);
       generateAccountSummaryHTML(result);
     },
     error: function(error) {
@@ -520,7 +519,7 @@ function populateEditUserForm() {
 
 function makeEditUserForm() {
   document.getElementById('memberAccount').innerHTML = `
-  <form>
+  <form id="editUserForm">
     <div class="form-group row">
       <label for="editUserForm__username" class="col-md-3">Username:</label>
       <input type="text" class="form-control col-md-9" id="editUserForm__username">
@@ -542,15 +541,37 @@ function makeEditUserForm() {
       <input type="text" class="form-control col-md-9" id="editUserForm__website">
     </div>
     <button class="btn btn-danger btn-font back-portfolio radius float-left mb-5">Cancel</button>
-    <button id="saveUserInfo" class="button float-right mb-5">Save</button>
+    <button id="saveUserInfo" type="submit" class="button float-right mb-5">Save</button>
   </form>
   `;
-
-  document.getElementById('saveUserInfo').addEventListener('click', updateUser);
+  document.getElementById('editUserForm').addEventListener('submit', updateUser);
+  
 }
 
-function updateUser() {
+function updateUser(e) {
+  e.preventDefault();
+  let _id = sessionStorage.getItem('memberId');
+  let _username = $('#editUserForm__username').val();
+  let _email = $('#editUserForm__email').val();
+  let _about = $('#editUserForm__description').val();
+  let _location = $('#editUserForm__location').val();
+  let _website = $('#editUserForm__website').val();
 
+  $.ajax({
+    url: `${url}/updateMember/${_id}`,
+    type: 'PATCH',
+    data: {
+        username: _username,
+        email: _email,
+        about: _about,
+        location: _location,
+        website: _website
+    },
+    success: function(updatedMember) {
+      generateAccountSummaryHTML(updatedMember);
+      $('#updateMemberBtn').show();
+    }
+  })
 }
 
 function makePortfolioCards(arr) {
