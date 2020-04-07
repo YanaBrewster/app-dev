@@ -208,55 +208,59 @@ app.patch('/updatePortfolio/:id', (req, res) => {
       price : req.body.price
   };
 
-  Portfolio.findByIdAndUpdate(_id, {$set: updatedProject}, { upsert: true, new: true}, (err, result) => {
-                              res.send({
-                                _id: result._id,
-                                title: result.title,
-                                description: result.description,
-                                image: result.image,
-                                category: result.category,
-                                price: result.price,
-                                memberId: result.memberId
-                              })
+  Portfolio.findByIdAndUpdate(_id, 
+                                {$set: updatedProject}, 
+                                { upsert: true, new: true}, 
+                                (err, result) => {
+                                    res.send({
+                                      _id: result._id,
+                                      title: result.title,
+                                      description: result.description,
+                                      image: result.image,
+                                      category: result.category,
+                                      price: result.price,
+                                      memberId: result.memberId
+                                    })
             })
             .catch(err => res.send(err));
 })
 
 app.get('/findProject/:id', (req, res) => {
   let _projectID = req.params.id;
-  Portfolio.findById(_projectID, function(err, result) {
-    console.log(result);
-    res.send(result);
-  })
+
+  Portfolio.findById(_projectID, 
+                      (err, result) => { res.send(result); })
 })
 
 app.get('/myAccountInfo/:accountID', (req, res) => {
   let _memberId = req.params.accountID;
-  Member.findById(_memberId, function(err, result) {
-    res.send(result);
-  })
+
+  Member.findById(_memberId, 
+                  (err, result) => { res.send(result); })
 })
 
 app.get('/myPortfolios/:accountID', (req, res) => {
   let _memberId = req.params.accountID;
-  Portfolio.find({ memberId: _memberId }, function(err, results) {
-    if(results.length > 0) {
-      res.send(results);
-    } else {
-      res.send('No portfolio by this user found');
-    }
+
+  Portfolio.find({ memberId: _memberId },
+                  (err, results) => {
+                      if(results.length > 0) {
+                        res.send(results);
+                      } else {
+                        res.send('No portfolio by this user found');
+                      }
   });
 });
 
 app.get('/portfoliosAndAuthors', async (req, res) => {
   let query = await Portfolio.aggregate([
-    { $lookup: {
-                from: "members",
-                localField: "memberId",
-                foreignField: "_id",
-                as: "authorInfo"
-    }},
-    { $unwind: "$authorInfo" }
+                                        { $lookup: {
+                                                    from: "members",
+                                                    localField: "memberId",
+                                                    foreignField: "_id",
+                                                    as: "authorInfo"
+                                        }},
+                                        { $unwind: "$authorInfo" }
   ]);
   res.send(query);
 });
@@ -264,22 +268,22 @@ app.get('/portfoliosAndAuthors', async (req, res) => {
 app.get('/portfolioWithAuthor/:id', async (req, res) => {
   let artId = req.params.id;
   let query = await Portfolio.aggregate([
-    { $match: { _id: mongoose.Types.ObjectId(artId) }},
-    { $lookup: {
-                from: "members",
-                localField: "memberId",
-                foreignField: "_id",
-                as: "authorInfo"
-    }},
-    { $unwind: "$authorInfo" },
-    { $lookup: {
-                from: "comments",
-                localField: "_id",
-                foreignField: "portfolioID",
-                as: "comments"
-    }}
-  ])
-  console.log(query);
+                                        { $match: { _id: mongoose.Types.ObjectId(artId) }},
+                                        { $lookup: {
+                                                    from: "members",
+                                                    localField: "memberId",
+                                                    foreignField: "_id",
+                                                    as: "authorInfo"
+                                        }},
+                                        { $unwind: "$authorInfo" },
+                                        { $lookup: {
+                                                    from: "comments",
+                                                    localField: "_id",
+                                                    foreignField: "portfolioID",
+                                                    as: "comments"
+                                        }}
+  ]);
+
   res.send(query);
 });
 
@@ -291,25 +295,25 @@ app.get('/filterPortfolios/:minPrice/:maxPrice/:category', async (req, res) => {
 
   if(_category === "all") {
     query = await Portfolio.aggregate([
-      { $match: { price: { $gt: _minPrice, $lt: _maxPrice }}},
-      { $lookup: {
-                  from: "members",
-                  localField: "memberId",
-                  foreignField: "_id",
-                  as: "authorInfo"
-      }},
-      { $unwind: "$authorInfo" }
+                                      { $match: { price: { $gt: _minPrice, $lt: _maxPrice }}},
+                                      { $lookup: {
+                                                  from: "members",
+                                                  localField: "memberId",
+                                                  foreignField: "_id",
+                                                  as: "authorInfo"
+                                      }},
+                                      { $unwind: "$authorInfo" }
     ])
   } else {
     query = await Portfolio.aggregate([
-      { $match: { $and: [{ category: _category }, { price: { $gt: _minPrice, $lt: _maxPrice }}]}},
-      { $lookup: {
-                  from: "members",
-                  localField: "memberId",
-                  foreignField: "_id",
-                  as: "authorInfo"
-      }},
-      { $unwind: "$authorInfo" }
+                                      { $match: { $and: [{ category: _category }, { price: { $gt: _minPrice, $lt: _maxPrice }}]}},
+                                      { $lookup: {
+                                                  from: "members",
+                                                  localField: "memberId",
+                                                  foreignField: "_id",
+                                                  as: "authorInfo"
+                                      }},
+                                      { $unwind: "$authorInfo" }
     ])
   }
 
@@ -322,12 +326,12 @@ app.get('/filterPortfolios/:minPrice/:maxPrice/:category', async (req, res) => {
 
 app.post('/addComment', (req, res) => {
   let comment = new Comment({
-    _id : new mongoose.Types.ObjectId,
-    portfolioID: req.body.portfolioID,
-    postByID: mongoose.Types.ObjectId(req.body.postByID),
-    postByUsername: req.body.postByUsername,
-    posted: req.body.postDate,
-    text: req.body.content
+                            _id : new mongoose.Types.ObjectId,
+                            portfolioID: req.body.portfolioID,
+                            postByID: mongoose.Types.ObjectId(req.body.postByID),
+                            postByUsername: req.body.postByUsername,
+                            posted: req.body.postDate,
+                            text: req.body.content
   })
 
   comment.save()

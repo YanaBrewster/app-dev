@@ -570,8 +570,11 @@ function updateUser(e) {
     success: function(updatedMember) {
       generateAccountSummaryHTML(updatedMember);
       $('#updateMemberBtn').show();
+    },
+    error: function(err) {
+      console.log(err);
     }
-  })
+  });
 }
 
 function makePortfolioCards(arr) {
