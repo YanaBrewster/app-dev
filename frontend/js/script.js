@@ -684,7 +684,7 @@ function makePortfolioCards(arr) {
 
   function getArtworkInfo(e) {
     let id = e.target.id;
-    
+
     $.ajax({
       url: `${url}/portfolioWithAuthor/${id}`,
       type: 'GET',
@@ -710,16 +710,36 @@ function makePortfolioCards(arr) {
   }
 
   function displayDeletePopup(e) {
-    console.log(e);
     let projectCard = e.path[2].children[2];
+    let projectId = (e.target.id).slice(6);
+    sessionStorage.setItem('projectOnDelete', projectId);
+
     projectCard.innerHTML = `
-    <div>
-      <small class="text-center">Are you sure you want to delete this project?</small>
-      <button class="btn btn-danger btn-font back-portfolio radius float-left">Cancel</button>
-      <button id="deleteProject" type="button" class="button float-right">Delete</button>
-    </div>
-      
+        <div>
+          <p class="text-center">Are you sure you want to delete this project?</p>
+          <button class="btn btn-danger btn-font back-portfolio radius float-left">Cancel</button>
+          <button id="confirmDeleteProject" type="button" class="button float-right">Delete</button>
+        </div> 
     `;
+
+    document.getElementById('confirmDeleteProject').addEventListener('click', deleteProject);
+  }
+
+  function deleteProject() {
+    let projectId = sessionStorage.getItem('projectOnDelete');
+
+    $.ajax({
+      url: `${url}/deletePortfolio/${projectId}`,
+      type: 'DELETE',
+      success: function(message) {
+        sessionStorage.removeItem('projectOnDelete');
+        generateMyPortfolios();
+      },
+      error: function(err) {
+        console.log(err);
+      }
+    });
+
   }
 
   function generateViewMoreHTML(portfolio) {
