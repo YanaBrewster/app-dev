@@ -266,8 +266,11 @@ $('#loginSubmitBtn').click(function(){
         alert('Incorrect Password');
       }  else {
         sessionStorage.setItem('memberId',loginData._id);
-        sessionStorage.setItem('usersName',loginData.username);
-        sessionStorage.setItem('userEmail',loginData.email);
+        sessionStorage.setItem('username',loginData.username);
+        sessionStorage.setItem('email',loginData.email);
+        sessionStorage.setItem('location',loginData.location);
+        sessionStorage.setItem('website',loginData.website);
+        sessionStorage.setItem('description',loginData.description);
         showMemberName(username);
         $('#logoutBtn').show();
         $('#myPortfolioBtn').show();
@@ -426,7 +429,6 @@ $('#updatePortfolioForm').submit(function(){
 
 function generateMyPortfolios() {
   let currentUserId = sessionStorage.getItem('memberId');
-
   if (!currentUserId) { return; }
 
   $.ajax({
@@ -492,6 +494,65 @@ function generateAccountSummaryHTML(account) {
   `;
 }
 
+document.getElementById('updateMemberBtn').addEventListener('click', showEditUserForm);
+
+function showEditUserForm() {
+  console.log(sessionStorage);
+  $('#updateMemberBtn').hide();
+  makeEditUserForm();
+  populateEditUserForm();
+}
+
+// Prefill form's value with current user info
+function populateEditUserForm() {
+  let _username = sessionStorage.getItem('username');
+  let _email = sessionStorage.getItem('email');
+  let _description = ((sessionStorage.getItem('description')) !== "undefined") ? (sessionStorage.getItem('description')) : "";
+  let _website = ((sessionStorage.getItem('website')) !== "undefined") ? (sessionStorage.getItem('website')) : "";
+  let _location = ((sessionStorage.getItem('location')) !== "undefined") ? (sessionStorage.getItem('location')) : "";
+
+  $('#editUserForm__username').val(_username);
+  $('#editUserForm__email').val(_email);
+  $('#editUserForm__description').val(_description);
+  $('#editUserForm__website').val(_website);
+  $('#editUserForm__location').val(_location);
+}
+
+function makeEditUserForm() {
+  document.getElementById('memberAccount').innerHTML = `
+  <form>
+    <div class="form-group row">
+      <label for="editUserForm__username" class="col-md-3">Username:</label>
+      <input type="text" class="form-control col-md-9" id="editUserForm__username">
+    </div>
+    <div class="form-group row">
+      <label for="editUserForm__email" class="col-md-3">Email:</label>
+      <input type="email" class="form-control col-md-9" id="editUserForm__email">
+    </div>
+    <div class="form-group row">
+      <label for="editUserForm__description" class="col-md-3">Description:</label>
+      <textarea type="text" class="form-control col-md-9" id="editUserForm__description" rows="4"></textarea>
+    </div>
+    <div class="form-group row">
+      <label for="editUserForm__location" class="col-md-3">Location:</label>
+      <input type="text" class="form-control col-md-9" id="editUserForm__location">
+    </div>
+    <div class="form-group row">
+      <label for="editUserForm__website" class="col-md-3">Website:</label>
+      <input type="text" class="form-control col-md-9" id="editUserForm__website">
+    </div>
+    <button class="btn btn-danger btn-font back-portfolio radius float-left mb-5">Cancel</button>
+    <button id="saveUserInfo" class="button float-right mb-5">Save</button>
+  </form>
+  `;
+
+  document.getElementById('saveUserInfo').addEventListener('click', updateUser);
+}
+
+function updateUser() {
+
+}
+
 function makePortfolioCards(arr) {
   document.getElementById('myProjectCards').innerHTML = arr.map(item => `
     <div class="card portfolioCard border-bottom">
@@ -537,7 +598,6 @@ function makePortfolioCards(arr) {
   function prefillUpdateProjectForm(e) {
     const _id = (e.target.id).slice(4);
     sessionStorage.setItem('projectOnEdit', _id);
-    console.log(sessionStorage);
 
     $.ajax({
       url: `${url}/findProject/${_id}`,
