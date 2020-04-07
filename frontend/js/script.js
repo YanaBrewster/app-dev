@@ -577,6 +577,20 @@ function updateUser(e) {
   });
 }
 
+function generateLandingPageCards() {
+  $.ajax({
+    url: `${url}/portfoliosAndAuthors`,
+    type: 'GET',
+    dataType: 'json',
+    success: function(portfolios) {
+      makeProductCards(portfolios);
+    },
+    error: function(error) {
+      console.log('Error: ' + error);
+    }
+  });
+}
+
 function makePortfolioCards(arr) {
   document.getElementById('myProjectCards').innerHTML = arr.map(item => `
     <div class="card portfolioCard border-bottom">
@@ -584,7 +598,7 @@ function makePortfolioCards(arr) {
     <h5 class="card-text mb-3">${item.title}</h5>
     <div class="portfolioPage-buttonsWrapper">
     <div class="portfolioPage-buttonGroup">
-    <div class="button viewMoreButton btn-font" id="view${item._id}">View</div>
+    <div class="button viewMoreButton btn-font" id="${item._id}">View</div>
     <div class="button-black editButton btn-font" id="edit${item._id}">Edit</div>
     </div>
     <div class="button-red deleteButton btn-font" id="delete${item._id}">Delete</div>
@@ -594,30 +608,23 @@ function makePortfolioCards(arr) {
 
     let viewMoreButtons = document.getElementsByClassName('viewMoreButton');
 
-    for (let i = 0; i < viewMoreButtons.length; i ++) {
+    for (let i = 0; i < viewMoreButtons.length; i++) {
       viewMoreButtons[i].addEventListener('click', getArtworkInfo);
     }
 
     let editButtons = document.getElementsByClassName('editButton');
 
-    for (let i = 0; i < editButtons.length; i ++) {
+    for (let i = 0; i < editButtons.length; i++) {
       editButtons[i].addEventListener('click', prefillUpdateProjectForm);
+    }
+
+    let deleteButtons = document.getElementsByClassName('deleteButton');
+
+    for (let i = 0; i < deleteButtons.length; i++) {
+      deleteButtons[i].addEventListener('click', displayDeletePopup);
     }
   }
 
-  function generateLandingPageCards() {
-    $.ajax({
-      url: `${url}/portfoliosAndAuthors`,
-      type: 'GET',
-      dataType: 'json',
-      success: function(portfolios) {
-        makeProductCards(portfolios);
-      },
-      error: function(error) {
-        console.log('Error: ' + error);
-      }
-    });
-  }
 
   function prefillUpdateProjectForm(e) {
     const _id = (e.target.id).slice(4);
@@ -676,7 +683,8 @@ function makePortfolioCards(arr) {
   }
 
   function getArtworkInfo(e) {
-    let id = (e.target.id).slice(4);
+    let id = e.target.id;
+    
     $.ajax({
       url: `${url}/portfolioWithAuthor/${id}`,
       type: 'GET',
@@ -699,6 +707,19 @@ function makePortfolioCards(arr) {
         console.log('Error: ' + error);
       }
     });
+  }
+
+  function displayDeletePopup(e) {
+    console.log(e);
+    let projectCard = e.path[2].children[2];
+    projectCard.innerHTML = `
+    <div>
+      <small class="text-center">Are you sure you want to delete this project?</small>
+      <button class="btn btn-danger btn-font back-portfolio radius float-left">Cancel</button>
+      <button id="deleteProject" type="button" class="button float-right">Delete</button>
+    </div>
+      
+    `;
   }
 
   function generateViewMoreHTML(portfolio) {

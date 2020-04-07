@@ -181,11 +181,11 @@ app.delete('/deletePortfolio/:id',(req,res)=>{
 app.patch('/updateMember/:id', (req, res) => {
   const _id = req.params.id;
   const updatedMember = {
-      username: req.body.username,
-      email: req.body.email,
-      about: req.body.about,
-      location: req.body.location,
-      website: req.body.website
+                          username: req.body.username,
+                          email: req.body.email,
+                          about: req.body.about,
+                          location: req.body.location,
+                          website: req.body.website
   }
 
   Member.findByIdAndUpdate(_id, 
@@ -201,11 +201,11 @@ app.patch('/updateMember/:id', (req, res) => {
 app.patch('/updatePortfolio/:id', (req, res) => {
   const _id = req.params.id;
   const updatedProject = {
-      title : req.body.title,
-      description : req.body.description,
-      image : req.body.image,
-      category : req.body.category,
-      price : req.body.price
+                          title : req.body.title,
+                          description : req.body.description,
+                          image : req.body.image,
+                          category : req.body.category,
+                          price : req.body.price
   };
 
   Portfolio.findByIdAndUpdate(_id, 
