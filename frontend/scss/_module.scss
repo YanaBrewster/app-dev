@@ -11,10 +11,18 @@
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 700;
 }
+
+.btn-red{
+	color: $red;
+	cursor: pointer;
+	text-align: center;
+}
+
 .radius
 {
 	border-radius: 50px;
 }
+
 
 // background colours
 .bg-blue
@@ -24,6 +32,10 @@
 .bg-cyan
 {
 	background-color: $cyan;
+}
+
+.bg-red{
+	background-color: $red;
 }
 // borders
 .border-blue
@@ -71,10 +83,10 @@
 
 .button-red {
   background-color: $red;
-  border-radius: 20px;
+  // border-radius: 20px;
   color: white;
   cursor: pointer;
-  padding: 6px 15px;
+  // padding: 6px 15px;
   text-align: center;
 }
 

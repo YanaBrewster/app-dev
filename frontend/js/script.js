@@ -107,8 +107,8 @@ $('#myPortfolioBtn').click(function(){
   $('#landingPage').hide();
   $('#viewMorePage').hide();
   $('#uploadPortfolioPage').hide();
-  $('#updatePortfolioPage').show();
-  $('#deletePortfolioPage').show();
+  $('#updatePortfolioPage').hide();
+  $('#deletePortfolioPage').hide();
 });
 
 //upload projects button to show upload project page
@@ -541,11 +541,11 @@ function makeEditUserForm() {
       <input type="text" class="form-control col-md-9" id="editUserForm__website">
     </div>
     <button class="btn btn-danger btn-font back-portfolio radius float-left mb-5">Cancel</button>
-    <button id="saveUserInfo" type="submit" class="button float-right mb-5">Save</button>
+    <button id="saveUserInfo" type="submit" class="float-right mb-5 btn btn-dark btn-font radius ">Save</button>
   </form>
   `;
   document.getElementById('editUserForm').addEventListener('submit', updateUser);
-  
+
 }
 
 function updateUser(e) {
@@ -599,9 +599,9 @@ function makePortfolioCards(arr) {
     <div class="portfolioPage-buttonsWrapper">
     <div class="portfolioPage-buttonGroup">
     <div class="button viewMoreButton btn-font" id="${item._id}">View</div>
-    <div class="button-black editButton btn-font" id="edit${item._id}">Edit</div>
+    <div class="editButton btn btn-dark btn-font radius px-2" id="edit${item._id}">Edit</div>
     </div>
-    <div class="button-red deleteButton btn-font" id="delete${item._id}">Delete</div>
+    <div class="deleteButton btn button-red radius px-2 btn-font" id="delete${item._id}">Delete</div>
     </div>
     </div>
     `).join(' ');
@@ -715,11 +715,11 @@ function makePortfolioCards(arr) {
     sessionStorage.setItem('projectOnDelete', projectId);
 
     projectCard.innerHTML = `
-        <div>
+        <div id="deletePortfolioPage">
           <p class="text-center">Are you sure you want to delete this project?</p>
           <button class="btn btn-danger btn-font back-portfolio radius float-left">Cancel</button>
-          <button id="confirmDeleteProject" type="button" class="button float-right">Delete</button>
-        </div> 
+          <button id="confirmDeleteProject" type="button" class="btn btn-dark btn-font float-right radius">Delete</button>
+        </div>
     `;
 
     document.getElementById('confirmDeleteProject').addEventListener('click', deleteProject);

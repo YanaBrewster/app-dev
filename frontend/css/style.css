@@ -97,6 +97,12 @@ p {
   font-weight: 700;
 }
 
+.btn-red {
+  color: #FF9966;
+  cursor: pointer;
+  text-align: center;
+}
+
 .radius {
   border-radius: 50px;
 }
@@ -107,6 +113,10 @@ p {
 
 .bg-cyan {
   background-color: #339999;
+}
+
+.bg-red {
+  background-color: #FF9966;
 }
 
 .border-blue {
@@ -152,10 +162,8 @@ p {
 
 .button-red {
   background-color: #FF9966;
-  border-radius: 20px;
   color: white;
   cursor: pointer;
-  padding: 6px 15px;
   text-align: center;
 }
 
@@ -179,6 +187,12 @@ p {
   font-weight: 700;
 }
 
+.btn-red {
+  color: #FF9966;
+  cursor: pointer;
+  text-align: center;
+}
+
 .radius {
   border-radius: 50px;
 }
@@ -189,6 +203,10 @@ p {
 
 .bg-cyan {
   background-color: #339999;
+}
+
+.bg-red {
+  background-color: #FF9966;
 }
 
 .border-blue {
@@ -234,10 +252,8 @@ p {
 
 .button-red {
   background-color: #FF9966;
-  border-radius: 20px;
   color: white;
   cursor: pointer;
-  padding: 6px 15px;
   text-align: center;
 }
 
