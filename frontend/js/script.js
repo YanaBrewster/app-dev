@@ -550,15 +550,23 @@ function generateLandingPageCards() {
 function makePortfolioCards(arr) {
   document.getElementById('myProjectCards').innerHTML = arr.map(item => `
     <div class="card portfolioCard border-bottom">
-    <div style="background-image:url(${item.image})" class="portfolioPage-image mb-3"></div>
-    <h5 class="card-text mb-3">${item.title}</h5>
-    <div class="portfolioPage-buttonsWrapper">
-    <div class="portfolioPage-buttonGroup">
+      <div style="background-image:url(${item.image})" class="portfolioPage-image mb-3"></div>
+        <h5 class="card-text mb-3">${item.title}</h5>
+          <div class="">
+
+    <div class="row">
+      <div class="col-sm-12 col-lg-4">
         <div class="button viewMoreButton btn-font" id="${item._id}">View</div>
-        <div class="button-black editButton btn-font" id="edit${item._id}">Edit</div>
+      </div>
+      <div class="col-sm-12 col-lg-4">
+        <div class="editButton btn btn-dark btn-font radius px-3" id="edit${item._id}">Edit</div>
+      </div>
+      <div class="col-sm-12 col-lg-4">
+        <div class="deleteButton btn btn-red radius px-3 btn-font float-right" id="delete${item._id}">Delete</div>
+      </div>
     </div>
-    <div class="button-red deleteButton btn-font" id="delete${item._id}">Delete</div>
-    </div>
+
+      </div>
     </div>
     `).join(' ');
 
@@ -676,7 +684,7 @@ function makePortfolioCards(arr) {
           <p class="text-center">Are you sure you want to delete this project?</p>
           <button id="abortDeleteProject" class="btn btn-danger btn-font back-portfolio radius float-left">Cancel</button>
           <button id="confirmDeleteProject" type="button" class="btn btn-dark btn-font float-right radius">Delete</button>
-        </div> 
+        </div>
     `;
 
     document.getElementById('confirmDeleteProject').addEventListener('click', deleteProject);

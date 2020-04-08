@@ -173,6 +173,16 @@ p {
   text-align: center;
 }
 
+.btn-red {
+  background-color: #FF9966;
+  color: white;
+  cursor: pointer;
+  text-align: center;
+}
+.btn-red :hover {
+  color: white;
+}
+
 .btn-font {
   font-family: 'Quicksand', sans-serif;
   font-weight: 700;
@@ -258,6 +268,16 @@ p {
   cursor: pointer;
   padding: 6px 15px;
   text-align: center;
+}
+
+.btn-red {
+  background-color: #FF9966;
+  color: white;
+  cursor: pointer;
+  text-align: center;
+}
+.btn-red :hover {
+  color: white;
 }
 
 .container-form {

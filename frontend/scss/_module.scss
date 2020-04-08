@@ -91,3 +91,14 @@
 }
 
 // Hayley's code ends
+//  Yanas code
+.btn-red {
+  background-color: $red;
+  color: white;
+	cursor: pointer;
+  text-align: center;
+
+	:hover {
+		color: white;
+	}
+}
