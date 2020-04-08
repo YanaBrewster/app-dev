@@ -501,7 +501,7 @@ function makeEditUserForm() {
   </form>
   `;
   document.getElementById('editUserForm').addEventListener('submit', updateUser);
-  
+
 }
 
 function updateUser(e) {
@@ -676,7 +676,7 @@ function makePortfolioCards(arr) {
           <p class="text-center">Are you sure you want to delete this project?</p>
           <button id="abortDeleteProject" class="btn btn-danger btn-font back-portfolio radius float-left">Cancel</button>
           <button id="confirmDeleteProject" type="button" class="button float-right">Delete</button>
-        </div> 
+        </div>
     `;
 
     document.getElementById('confirmDeleteProject').addEventListener('click', deleteProject);
@@ -728,7 +728,7 @@ function makePortfolioCards(arr) {
     for (let i = 0; i < deleteButtons.length; i++) {
       deleteButtons[i].addEventListener('click', displayDeletePopup);
     }
-    
+
 
   }
 
