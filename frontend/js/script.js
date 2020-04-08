@@ -497,7 +497,7 @@ function makeEditUserForm() {
       <input type="text" class="form-control col-md-9" id="editUserForm__website">
     </div>
     <button class="btn btn-danger btn-font back-portfolio radius float-left mb-5">Cancel</button>
-    <button id="saveUserInfo" type="submit" class="button float-right mb-5">Save</button>
+    <button id="saveUserInfo" type="submit" class="float-right mb-5 btn btn-dark btn-font radius">Save</button>
   </form>
   `;
   document.getElementById('editUserForm').addEventListener('submit', updateUser);
@@ -654,7 +654,7 @@ function makePortfolioCards(arr) {
         $("#landingPage").hide();
         if (portfolio[0].comments.length === 0) {
           document.getElementById('viewMorePage-comments').innerHTML = `
-          <div class="text-center">There has not been any question about this artwork</div>
+          <div id="noCommentNote" class="text-center">There has not been any question about this artwork</div>
           `;
           return;
         }
@@ -675,7 +675,7 @@ function makePortfolioCards(arr) {
         <div>
           <p class="text-center">Are you sure you want to delete this project?</p>
           <button id="abortDeleteProject" class="btn btn-danger btn-font back-portfolio radius float-left">Cancel</button>
-          <button id="confirmDeleteProject" type="button" class="button float-right">Delete</button>
+          <button id="confirmDeleteProject" type="button" class="btn btn-dark btn-font float-right radius">Delete</button>
         </div> 
     `;
 
@@ -765,7 +765,7 @@ function makePortfolioCards(arr) {
   }
 
   function generateCommentsHTML(comments) {
-    let currentUser = sessionStorage.getItem('usersName');
+    let currentUser = sessionStorage.getItem('username');
     console.log(comments);
     for (let i = 0; i < comments.length; i++) {
       if (currentUser && (comments[i].postByUsername === currentUser)) {
@@ -871,6 +871,14 @@ function makePortfolioCards(arr) {
     <p>${comment.text}</p>
     </div>
     `;
+
+    let commentsContainer = document.getElementById('viewMorePage-comments');
+    let noCommentNote = document.getElementById('noCommentNote');
+
+    if (commentsContainer.contains(noCommentNote)) {
+      noCommentNote.remove();
+    }
+
     document.getElementById('viewMorePage-comments').innerHTML += commentHtml;
   }
 
