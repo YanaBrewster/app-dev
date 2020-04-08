@@ -432,18 +432,6 @@ p {
   color: #339999;
 }
 
-.noResultText-wrapper {
-  height: 40vh;
-  position: absolute;
-  width: 80vw;
-}
-
-.noResultText {
-  left: 35%;
-  position: relative;
-  top: 20%;
-}
-
 .nav-border {
   border-bottom: 4px solid #99cccc;
   width: 100%;

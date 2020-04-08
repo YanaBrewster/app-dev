@@ -1,6 +1,7 @@
 // Yanas code
 
 $(document).ready(function(){
+  sessionStorage.clear();
   console.log(sessionStorage);
   var url;
   // get url and port from config.json
@@ -766,7 +767,6 @@ function makePortfolioCards(arr) {
 
   function generateCommentsHTML(comments) {
     let currentUser = sessionStorage.getItem('username');
-    console.log(comments);
     for (let i = 0; i < comments.length; i++) {
       if (currentUser && (comments[i].postByUsername === currentUser)) {
         document.getElementById('viewMorePage-comments').innerHTML += `
@@ -790,6 +790,22 @@ function makePortfolioCards(arr) {
         `;
       }
     }
+
+    if(currentUser) {
+      document.getElementById('viewMorePage-addCommentWrapper').innerHTML = `
+      <div class="col-12 col-sm-12 col-lg-10 col-md-10 mx-auto">
+      <label for="viewMorePage-postComment" class="nav-font">Comment:</label>
+      <textarea id="viewMorePage-postComment" class="col-12 col-sm-12 col-lg-10 col-md-10" rows="4" cols="100"></textarea>
+      <div class="col-12 col-sm-12 col-lg-11 col-md-11">
+          <div id="viewMorePage-postCommentButton" class="button btn-font bg-dark float-right mt-2 mb-5">Submit</div>
+      </div>
+    </div>
+      `;
+    } else if (!currentUser) {
+      document.getElementById('viewMorePage-addCommentWrapper').innerHTML = `
+      <div class="text-center mb-5">Please log in to add comment</div>
+      `
+    }
   }
 
   document.getElementById("filterButton").addEventListener('click', getFilteredArtworks);
@@ -806,8 +822,8 @@ function makePortfolioCards(arr) {
         console.log(response);
         if (response === 'Sorry, there is no artwork that matches your search!') {
           document.getElementById('artsDeck').innerHTML = `
-          <div class="noResultText-wrapper">
-          <h3 class="noResultText">Sorry, there is no artwork that matches your search!</h3>
+          <div class="row mx-auto">
+          <h5 class="text-center mt-5 mb-5">Sorry, there is no artwork that matches your search!</h5>
           </div>
           `;
         } else {
