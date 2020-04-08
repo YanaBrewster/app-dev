@@ -38,7 +38,6 @@ if (sessionStorage.usersName) {
   $('#projectPage').hide();
   $('#uploadPortfolioPage').hide();
   $('#updatePortfolioPage').hide();
-  $('#deletePortfolioPage').hide();
 } else {
   // buttons
   $('#logoutBtn').hide();
@@ -53,7 +52,6 @@ if (sessionStorage.usersName) {
   $('#projectPage').hide();
   $('#uploadPortfolioPage').hide();
   $('#updatePortfolioPage').hide();
-  $('#deletePortfolioPage').hide();
 }
 
 //Home button to show landing page
@@ -66,7 +64,6 @@ $('#homeBtn').click(function(){
   $('#projectPage').hide();
   $('#uploadPortfolioPage').hide();
   $('#updatePortfolioPage').hide();
-  $('#deletePortfolioPage').hide();
 });
 
 //Login button to show login page
@@ -79,7 +76,6 @@ $('#loginBtn').click(function(){
   $('#projectPage').hide();
   $('#uploadPortfolioPage').hide();
   $('#updatePortfolioPage').hide();
-  $('#deletePortfolioPage').hide();
 });
 
 
@@ -93,7 +89,6 @@ $('#signUpBtn').click(function(){
   $('#viewMorePage').hide();
   $('#uploadPortfolioPage').hide();
   $('#updatePortfolioPage').hide();
-  $('#deletePortfolioPage').hide();
 });
 
 // my portfolio button to show my portfolio page
@@ -107,8 +102,6 @@ $('#myPortfolioBtn').click(function(){
   $('#landingPage').hide();
   $('#viewMorePage').hide();
   $('#uploadPortfolioPage').hide();
-  $('#updatePortfolioPage').show();
-  $('#deletePortfolioPage').show();
 });
 
 //upload projects button to show upload project page
@@ -121,7 +114,6 @@ $('#addPortfolio').click(function(){
   $('#landingPage').hide();
   $('#viewMorePage').hide();
   $('#updatePortfolioPage').hide();
-  $('#deletePortfolioPage').hide();
 
 });
 
@@ -135,7 +127,6 @@ $('.back-portfolio').click(function(){
   $('#landingPage').hide();
   $('#viewMorePage').hide();
   $('#updatePortfolioPage').hide();
-  $('#deletePortfolioPage').hide();
 });
 
 //update projects button to show update project page
@@ -148,7 +139,6 @@ $('#updateProject').click(function(){
   $('#landingPage').hide();
   $('#viewMorePage').hide();
   $('#updatePortfolioPage').show();
-  $('#deletePortfolioPage').hide();
 });
 
 // delete projects button to show delete project page
@@ -161,7 +151,6 @@ $('#deleteProject').click(function(){
   $('#landingPage').hide();
   $('#viewMorePage').hide();
   $('#updatePortfolioPage').hide();
-  $('#deletePortfolioPage').show();
 });
 
 
@@ -308,9 +297,10 @@ $('#addPortfolioForm').submit(function(){
   let image = $('#addPortfolioImage').val();
   let category = $('#addPortfolioCategory').val();
   let price = $('#addPortfolioPrice').val();
-  let memberId = $('#addPortfolioMemberId').val();
+  let _memberId = sessionStorage.getItem('memberId');
+  console.log(_memberId);
 
-  if (title == '' || description == '' || image == '' || category == '' || price == '' || memberId == ''){
+  if (title == '' || description == '' || image == '' || category == '' || price == ''){
     alert('Please enter all details');
   } else {
     $.ajax({
@@ -322,7 +312,7 @@ $('#addPortfolioForm').submit(function(){
         image : image,
         category : category,
         price: price,
-        memberId : sessionStorage.getItem('memberId')
+        memberId : _memberId
       },
       success : function(portfolio){
         if (portfolio !== 'Title taken already, please try another one') {
@@ -339,8 +329,9 @@ $('#addPortfolioForm').submit(function(){
 
         $('#addPortfolioForm').trigger('reset');
         $('#uploadPortfolioPage').hide();
-        $('#landingPage').show();
-        $('html, body').animate({ scrollTop: 0 }, 'fast');
+        generateMyPortfolios();
+        $('#projectPage').show();
+        $('html, body').animate({ scrollTop: 50}, 'fast');
       },   // success
       error:function(){
         // console.log('error: cannot call api');
@@ -349,41 +340,6 @@ $('#addPortfolioForm').submit(function(){
   } //else
 }); // submit add portfolio
 
-// Delete project
-$('#deletePortfolioBtn').click(function(){
-  $('#deletePortfolioForm').submit(function(){
-    event.preventDefault();
-    if(!sessionStorage.memberId){
-      alert('401, permission denied');
-      return;
-    }
-    let  portfolioId = $('#deletePortfolioId').val();
-    if (portfolioId == '') {
-      alert('Please enter portfolio name');
-    } else { $.ajax({
-      url :`${url}/deletePortfolio/${portfolioId}`,
-      type :'DELETE',
-      data:{
-        title : title,
-        username : username,
-        memberId: sessionStorage.memberId
-      },
-      success : function(data){
-        console.log(data);
-        if (data=='deleted'){
-          alert('deleted');
-          $('#deletePortfolioId').val('');
-        } else {
-          alert('Enter a valid id');
-        }
-      },//success
-      error:function(){
-        console.log('error: cannot call api');
-      }//error
-    });//ajax
-  }
-});//submit function for delete product
-});
 // Yanas code ENDS
 
 // Hayley's code
@@ -644,6 +600,7 @@ function makePortfolioCards(arr) {
         $('#updatePortfolioPrice').val(project.price);
 
         $('#projectPage').hide();
+        $('#updatePortfolioPage').show();
       },
       error: function(error) {
         console.log(error);
@@ -809,6 +766,7 @@ function makePortfolioCards(arr) {
 
   function generateCommentsHTML(comments) {
     let currentUser = sessionStorage.getItem('usersName');
+    console.log(comments);
     for (let i = 0; i < comments.length; i++) {
       if (currentUser && (comments[i].postByUsername === currentUser)) {
         document.getElementById('viewMorePage-comments').innerHTML += `
@@ -869,7 +827,7 @@ function makePortfolioCards(arr) {
     let _date = Date.now();
     let _portfolioID = sessionStorage.getItem('currentPortfolio');
     let _userID = sessionStorage.getItem('memberId');
-    let _username = sessionStorage.getItem('usersName');
+    let _username = sessionStorage.getItem('username');
 
     $.ajax({
       url: `${url}/addComment`,
