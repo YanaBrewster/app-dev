@@ -506,7 +506,7 @@ function showEditUserForm() {
 function populateEditUserForm() {
   let _username = sessionStorage.getItem('username');
   let _email = sessionStorage.getItem('email');
-  let _description = ((sessionStorage.getItem('description')) !== "undefined") ? (sessionStorage.getItem('description')) : "";
+  let _description = ((sessionStorage.getItem('about')) !== "undefined") ? (sessionStorage.getItem('about')) : "";
   let _website = ((sessionStorage.getItem('website')) !== "undefined") ? (sessionStorage.getItem('website')) : "";
   let _location = ((sessionStorage.getItem('location')) !== "undefined") ? (sessionStorage.getItem('location')) : "";
 
@@ -598,8 +598,8 @@ function makePortfolioCards(arr) {
     <h5 class="card-text mb-3">${item.title}</h5>
     <div class="portfolioPage-buttonsWrapper">
     <div class="portfolioPage-buttonGroup">
-    <div class="button viewMoreButton btn-font" id="${item._id}">View</div>
-    <div class="button-black editButton btn-font" id="edit${item._id}">Edit</div>
+        <div class="button viewMoreButton btn-font" id="${item._id}">View</div>
+        <div class="button-black editButton btn-font" id="edit${item._id}">Edit</div>
     </div>
     <div class="button-red deleteButton btn-font" id="delete${item._id}">Delete</div>
     </div>
@@ -717,12 +717,13 @@ function makePortfolioCards(arr) {
     projectCard.innerHTML = `
         <div>
           <p class="text-center">Are you sure you want to delete this project?</p>
-          <button class="btn btn-danger btn-font back-portfolio radius float-left">Cancel</button>
+          <button id="abortDeleteProject" class="btn btn-danger btn-font back-portfolio radius float-left">Cancel</button>
           <button id="confirmDeleteProject" type="button" class="button float-right">Delete</button>
         </div> 
     `;
 
     document.getElementById('confirmDeleteProject').addEventListener('click', deleteProject);
+    document.getElementById('abortDeleteProject').addEventListener('click', abortDeleteProject);
   }
 
   function deleteProject() {
@@ -739,6 +740,38 @@ function makePortfolioCards(arr) {
         console.log(err);
       }
     });
+  }
+
+  function abortDeleteProject(e) {
+    let contentWrapper = e.path[2];
+    let projectId = sessionStorage.getItem('projectOnDelete');
+
+    contentWrapper.innerHTML = `
+    <div class="portfolioPage-buttonGroup">
+        <div class="button viewMoreButton btn-font" id="${projectId}">View</div>
+        <div class="button-black editButton btn-font" id="edit${projectId}">Edit</div>
+    </div>
+    <div class="button-red deleteButton btn-font" id="delete${projectId}">Delete</div>
+    `;
+
+    let viewMoreButtons = document.getElementsByClassName('viewMoreButton');
+
+    for (let i = 0; i < viewMoreButtons.length; i++) {
+      viewMoreButtons[i].addEventListener('click', getArtworkInfo);
+    }
+
+    let editButtons = document.getElementsByClassName('editButton');
+
+    for (let i = 0; i < editButtons.length; i++) {
+      editButtons[i].addEventListener('click', prefillUpdateProjectForm);
+    }
+
+    let deleteButtons = document.getElementsByClassName('deleteButton');
+
+    for (let i = 0; i < deleteButtons.length; i++) {
+      deleteButtons[i].addEventListener('click', displayDeletePopup);
+    }
+    
 
   }
 
