@@ -682,9 +682,12 @@ function makePortfolioCards(arr) {
             url :`${url}/updateProduct/${productId}`,
             type :'PATCH',
             data:{
-              name : productName,
-              price :productPrice,
-              userId :sessionStorage['userID']
+              title : title,
+              description : description,
+              image : image,
+              category : category,
+              price: price,
+              memberId : sessionStorage.getItem('memberId')
               },
             success : function(data){
               console.log(data);
@@ -711,22 +714,24 @@ function makePortfolioCards(arr) {
 
 $('#deleteProductBtn').click(function(){
     $('#delForm').show();
-    $('#productForm').hide();
-    $('#addProductForm').hide();
+    $('#addPortfolioForm').hide();
+    $('#addPortfolioForm').hide();
 });
+
+
 
 $('#delForm').submit(function(){
   event.preventDefault();
   if(!sessionStorage['userID']){
         alert('401, permission denied');
         return;
-    };
+    }
 
   let  productId = $('#delProductId').val();
 
   console.log(productId);
 
-  if (productId == '') {
+  if (productId === '') {
     alert('Please enter product id');
   } else { $.ajax({
           url :`${url}/deleteProduct/${productId}`,
@@ -734,6 +739,7 @@ $('#delForm').submit(function(){
           data:{
             userId: sessionStorage['userID']
           },
+
           success : function(data){
             console.log(data);
             if (data=='deleted'){
