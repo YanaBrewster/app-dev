@@ -112,6 +112,11 @@ p {
 .border-blue {
   border: 3px solid #99cccc;
 }
+@media (max-width: 720px) {
+  .border-blue {
+    border: 0;
+  }
+}
 
 .border-gray {
   border: 3px solid #cccccc;
@@ -194,6 +199,11 @@ p {
 .border-blue {
   border: 3px solid #99cccc;
 }
+@media (max-width: 720px) {
+  .border-blue {
+    border: 0;
+  }
+}
 
 .border-gray {
   border: 3px solid #cccccc;
@@ -256,7 +266,7 @@ p {
   margin: 0 auto;
   width: 70%;
 }
-@media (max-width: 900px) {
+@media (max-width: 720px) {
   .container-form {
     width: 100%;
   }
@@ -268,8 +278,9 @@ p {
   margin: 0 auto;
   width: 60%;
 }
-@media (max-width: 900px) {
+@media (max-width: 720px) {
   .form-box {
+    height: 95vh;
     width: 100%;
   }
 }
@@ -348,7 +359,7 @@ p {
   background-size: cover;
   height: 50vh;
 }
-@media (max-width: 900px) {
+@media (max-width: 720px) {
   .landingPage-banner {
     background-repeat: no-repeat;
     height: 25vh;

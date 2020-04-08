@@ -501,7 +501,7 @@ function makeEditUserForm() {
   </form>
   `;
   document.getElementById('editUserForm').addEventListener('submit', updateUser);
-  
+
 }
 
 function updateUser(e) {
@@ -728,7 +728,7 @@ function makePortfolioCards(arr) {
     for (let i = 0; i < deleteButtons.length; i++) {
       deleteButtons[i].addEventListener('click', displayDeletePopup);
     }
-    
+
 
   }
 

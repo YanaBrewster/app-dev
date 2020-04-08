@@ -29,6 +29,9 @@
 .border-blue
 {
 	border: 3px solid $blue;
+	@media (max-width: $tablet) {
+		border: 0;
+	}
 }
 .border-gray
 {
