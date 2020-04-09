@@ -438,7 +438,13 @@ function makePortfolioCards(arr) {
 
     for (let i = 0; i < viewMoreButtons.length; i ++) {
       viewMoreButtons[i].addEventListener('click', getArtworkInfo);
-    }
+ 
+     }
+     let editButtons = document.getElementsByClassName('editButton');
+    
+    for (let i = 0; i < editButtons.length; i ++) {
+      editButtons[i].addEventListener('click', getArtworkInfo);
+    } 
   }
 
   function generateLandingPageCards() {
@@ -709,6 +715,114 @@ function makePortfolioCards(arr) {
           });//ajax
     }
   });//submit function for update product
+
+
+
+
+
+
+
+
+
+
+
+function generateLandingPageCards() {
+    $.ajax({
+      url: `${url}/portfoliosAndAuthors`,
+      type: 'GET',
+      dataType: 'json',
+      success: function(portfolios) {
+        makeProductCards(portfolios);
+      },
+      error: function(error) {
+        console.log('Error: ' + error);
+      }
+    });
+  }
+
+  function makeProductCards(arr) {
+    document.getElementById('artsDeck').innerHTML = arr.map(art =>
+      `<div class="col-sm-12 col-md-6 col-lg-4 my-xs-1 my-sm-1 my-md-3 my-lg-3">
+      <div class="card card-border rounded-0 mb-4">
+
+      <img src="${art.image}" alt="Avatar" class="card-img-top radius">
+
+      <div class="card-body artcard-body mx-1 my-1">
+      <div class="artcard-columnwrap">
+      <h4 class="card-title artcard-title mb-3">${art.title}</h4>
+      <h5 class="card-title artcard-price">&dollar;${art.price}</h5>
+      </div>
+      <p class="card-title"><b>${art.authorInfo.username}, ${art.authorInfo.location}</b></p>
+      <p class="mb-3 text-truncate">${art.description}</p>
+      <a href="${art.authorInfo.website}" class="card-link artcard-link">Artist Website</a>
+      <div class="artcard-columnwrap mt-4">
+      <p class="card-title h5-cyan">${art.category}</p>
+      <div class="button viewMoreButton btn-font" id="${art._id}">View</div>
+      </div>
+      </div>
+
+      </div>
+      </div>`
+    ).join(' ');
+
+    let editButtons = document.getElementsByClassName('editButton');
+    for (let i = 0; i < editButtons.length; i++) {
+      editButtons[i].addEventListener('click', getArtworkInfo);
+    }
+  }
+
+  function generateEditHTML(portfolio) {
+
+    document.getElementById('editPage-artInfo').innerHTML = `
+    <div id="updatePortfolioPage">
+        <h1 class="text-center">Update Project</h1>
+        <form id="addPortfolioForm" class="mt-3 py-5 px-5 border border-info rounded col-lg-8 col-md-12 col-sm-12 mx-auto">
+          <div class="form-group">
+            <label for="addPortfolioTitle"><h5>Title</h5></label>
+            <input type="text" id="${portfolio.title}" class="form-control rounded" placeholder="Title" name="addPortfolioTitle" required autofocus>
+          </div>
+          <div class="form-group">
+            <label for="addPortfolioDescription"><h5>Description</h5></label>
+            <textarea id="${art.description}" class="form-control rounded" placeholder="Description" name="addPortfolioDescription" required autofocus></textarea>
+          </div>
+          <div class="form-group">
+            <label for="addPortfolioImage"><h5>Image URL</h5></label>
+            <input type="text" id="${portfolio.image}" class="form-control rounded" placeholder="${portfolio.image}" name="addPortfolioImage" required autofocus>
+          </div>
+          <div class="row mb-2">
+            <div class="form-group col-6">
+              <label for="addPortfolioCategory"><h5>Category</h5></label>
+              <div class="input-group">
+                <select class="custom-select filterInputGroup rounded" id="${portfolio.category}" required autofocus>
+                  <option value="painting">Painting</option>
+                  <option value="photography">Photography</option>
+                  <option value="prints">Prints</option>
+                  <option value="others">Others</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group col-6">
+              <label for="addPortfolioPrice"><h5>Price($)</h5></label>
+              <input type="number" id="${portfolio._id}" class="form-control rounded" placeholder="Price" name="addPortfolioPrice" required autofocus>
+            </div>
+          </div>
+          <button id="${portfolio._id}" name="addPortfolioButton" type="submit" class="btn btn-dark btn-font float-right">Submit</button>
+          <button id="backToLanding" type="button" class="btn btn-dark mt-3 mb-5 btn-font radius">Back</button>
+        </form>
+      </div>
+    `;
+
+
+
+
+    $('html, body').animate({ scrollTop: 0 }, 'fast');
+
+    document.getElementById('backToLanding').addEventListener('click', function() {
+      $("#editPage").hide();
+      $("#landingPage").show();
+      sessionStorage.removeItem('currentPortfolio');
+    });
+  }
 
 //delete a product
 
