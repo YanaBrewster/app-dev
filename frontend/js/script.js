@@ -804,7 +804,7 @@ function makePortfolioCards(arr) {
     } else if (!currentUser) {
       document.getElementById('viewMorePage-addCommentWrapper').innerHTML = `
       <div class="text-center mb-5">Please log in to add comment</div>
-      `
+      `;
     }
   }
 
