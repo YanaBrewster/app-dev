@@ -216,7 +216,7 @@ $('#registerForm').submit(function(){
         $('#loginBtn').show();
         $('#registerBtn').hide();
         $('#loginPage').show();
-        $('#signUpPage').hide();  
+        $('#signUpPage').hide();
       } else {
         alert('Username already taken. Please try another one');
         $('#registerUsername').val('');
@@ -315,7 +315,7 @@ $('#addPortfolioForm').submit(function(){
         memberId : _memberId
       },
       success : function(portfolio){
-        if (portfolio !== 'Title taken already, please try another one') {
+        if (portfolio !== 'Artwork already added') {
           alert('Added the portfolio');
         } else {
           alert('Title taken already, please try another one');
@@ -488,7 +488,7 @@ function populateEditUserForm() {
   // let _website = ((sessionStorage.getItem('website')) !== "undefined") ? (sessionStorage.getItem('website')) : "";
   // let _location = ((sessionStorage.getItem('location')) !== "undefined") ? (sessionStorage.getItem('location')) : "";
 
-  
+
 }
 
 function makeEditUserForm() {
