@@ -254,9 +254,9 @@ app.post('/addComment', (req, res) => {
 // Rahul's code
 
 //delete a product
-app.delete('/deleteProduct/:id',(req,res)=>{
+app.delete('/deleteProductBtn/:id',(req,res)=>{
   const idParam = req.params.id;
-  Product.findOne({_id:idParam}, (err,product)=>{ //_id refers to mongodb
+  Product.findOne({_id:idParam}, (err,product)=>{ 
     if (product){
       Product.deleteOne({_id:idParam},err=>{
         res.send('deleted');
