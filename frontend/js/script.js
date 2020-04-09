@@ -18,8 +18,6 @@ $(document).ready(function(){
     }//error
   });//ajax
 
-
-
 // Show and hide pages ===============================================================
 // Yanas code
 
@@ -235,7 +233,7 @@ $('#registerForm').submit(function(){
 // login member ===============================================================
 // Yanas code
 
-$('#loginSubmitBtn').click(function(){
+$('#loginForm').submit(function(){
   event.preventDefault();
   let username = $('#inputUsernameLogin').val();
   let password = $('#inputPasswordLogin').val();
@@ -248,7 +246,7 @@ $('#loginSubmitBtn').click(function(){
       password : password
     },
     success : function(loginData){
-      if (loginData === 'Please fill in all input fields') {
+      if (loginData === ' ') {
         alert('Please fill in all input fields');
       } else if (loginData === 'Member not found. Please register') {
         alert('Register please');
@@ -681,7 +679,7 @@ function makePortfolioCards(arr) {
     sessionStorage.setItem('projectOnDelete', projectId);
 
     projectCard.innerHTML = `
-        <div>
+        <div class="">
           <p class="text-center">Are you sure you want to delete this project?</p>
           <button id="abortDeleteProject" class="btn btn-danger btn-font back-portfolio radius float-left">Cancel</button>
           <button id="confirmDeleteProject" type="button" class="btn btn-dark btn-font float-right radius">Delete</button>
@@ -713,10 +711,10 @@ function makePortfolioCards(arr) {
     let projectId = sessionStorage.getItem('projectOnDelete');
 
     contentWrapper.innerHTML = `
-    <div class="row">
+
       <div class="col-sm-12 col-md-4 col-lg-4">
         <div class="deleteButton btn-red radius px-3 py-2 mb-3 btn-font float-lg-right" id="delete${projectId}">Delete</div>
-    </div>
+
     `;
 
     let viewMoreButtons = document.getElementsByClassName('viewMoreButton');

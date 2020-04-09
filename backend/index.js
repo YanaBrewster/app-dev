@@ -87,7 +87,7 @@ app.post('/loginMember', (req,res) => {
       if (bcryptjs.compareSync(req.body.password, memberResult.password)){
         res.send(memberResult);
       } else {
-        res.send('not authorized');
+        res.send('Not Authorized');
       }
     } else {
       res.send('Member not found. Please register');
@@ -188,8 +188,8 @@ app.patch('/updateMember/:id', (req, res) => {
                           website: req.body.website
   }
 
-  Member.findByIdAndUpdate(_id, 
-                            { $set: updatedMember }, 
+  Member.findByIdAndUpdate(_id,
+                            { $set: updatedMember },
                             { useFindAndModify: false, upsert: true, new: true },
                             (err, result) => {
                                 console.log(result);
@@ -208,9 +208,9 @@ app.patch('/updatePortfolio/:id', (req, res) => {
                           price : req.body.price
   };
 
-  Portfolio.findByIdAndUpdate(_id, 
-                                {$set: updatedProject}, 
-                                { upsert: true, new: true}, 
+  Portfolio.findByIdAndUpdate(_id,
+                                {$set: updatedProject},
+                                { upsert: true, new: true},
                                 (err, result) => {
                                     res.send({
                                       _id: result._id,
@@ -228,14 +228,14 @@ app.patch('/updatePortfolio/:id', (req, res) => {
 app.get('/findProject/:id', (req, res) => {
   let _projectID = req.params.id;
 
-  Portfolio.findById(_projectID, 
+  Portfolio.findById(_projectID,
                       (err, result) => { res.send(result); })
 })
 
 app.get('/myAccountInfo/:accountID', (req, res) => {
   let _memberId = req.params.accountID;
 
-  Member.findById(_memberId, 
+  Member.findById(_memberId,
                   (err, result) => { res.send(result); })
 })
 
