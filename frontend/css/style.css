@@ -86,91 +86,9 @@ p {
   padding-left: 70px;
 }
 
-.btn-font {
-  font-family: 'Quicksand', sans-serif;
-  font-weight: 700;
-  text-align: center;
-}
-
-.nav-font {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 700;
-}
-
-.radius {
-  border-radius: 50px;
-}
-
-.bg-blue {
-  background-color: #99cccc;
-}
-
-.bg-cyan {
-  background-color: #339999;
-}
-
-.border-blue {
-  border: 3px solid #99cccc;
-}
-@media (max-width: 720px) {
-  .border-blue {
-    border: 0;
-  }
-}
-
-.border-gray {
-  border: 3px solid #cccccc;
-}
-
-.border-red {
-  border: 3px solid #FF9966;
-}
-
-.logo {
-  width: 200px;
-}
-
-.header {
-  align-items: center;
-  display: flex;
-  height: 10%;
-  justify-content: space-between;
-}
-
-.nav {
-  justify-content: space-evenly;
-  width: 300px;
-}
-
-.button {
-  background-color: #339999;
-  border-radius: 20px;
-  color: white;
-  cursor: pointer;
-  padding: 9px 15px;
-}
-
-.signInButton {
-  cursor: pointer;
-  padding: 6px 15px;
-}
-
-.button-red {
-  background-color: #FF9966;
-  border-radius: 20px;
-  color: white;
-  cursor: pointer;
-  padding: 6px 15px;
-  text-align: center;
-}
-
-.button-black {
-  background-color: #333333;
-  border-radius: 20px;
-  color: white;
-  cursor: pointer;
-  padding: 6px 15px;
-  text-align: center;
+footer {
+  bottom: 0;
+  position: absolute;
 }
 
 .btn-font {
@@ -258,6 +176,113 @@ p {
   cursor: pointer;
   padding: 6px 15px;
   text-align: center;
+}
+
+.btn-red {
+  background-color: #FF9966;
+  color: white;
+  cursor: pointer;
+  text-align: center;
+}
+.btn-red :hover {
+  color: white;
+}
+
+.btn-font {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  text-align: center;
+}
+
+.nav-font {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+}
+
+.radius {
+  border-radius: 50px;
+}
+
+.bg-blue {
+  background-color: #99cccc;
+}
+
+.bg-cyan {
+  background-color: #339999;
+}
+
+.border-blue {
+  border: 3px solid #99cccc;
+}
+@media (max-width: 720px) {
+  .border-blue {
+    border: 0;
+  }
+}
+
+.border-gray {
+  border: 3px solid #cccccc;
+}
+
+.border-red {
+  border: 3px solid #FF9966;
+}
+
+.logo {
+  width: 200px;
+}
+
+.header {
+  align-items: center;
+  display: flex;
+  height: 10%;
+  justify-content: space-between;
+}
+
+.nav {
+  justify-content: space-evenly;
+  width: 300px;
+}
+
+.button {
+  background-color: #339999;
+  border-radius: 20px;
+  color: white;
+  cursor: pointer;
+  padding: 9px 15px;
+}
+
+.signInButton {
+  cursor: pointer;
+  padding: 6px 15px;
+}
+
+.button-red {
+  background-color: #FF9966;
+  border-radius: 20px;
+  color: white;
+  cursor: pointer;
+  padding: 6px 15px;
+  text-align: center;
+}
+
+.button-black {
+  background-color: #333333;
+  border-radius: 20px;
+  color: white;
+  cursor: pointer;
+  padding: 6px 15px;
+  text-align: center;
+}
+
+.btn-red {
+  background-color: #FF9966;
+  color: white;
+  cursor: pointer;
+  text-align: center;
+}
+.btn-red :hover {
+  color: white;
 }
 
 .container-form {
@@ -453,6 +478,12 @@ p {
 @media (max-width: 900px) {
   .card-img-top {
     height: 50vw;
+  }
+}
+
+@media (max-width: 720px) {
+  .logo {
+    width: 40%;
   }
 }
 
