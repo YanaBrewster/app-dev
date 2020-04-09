@@ -669,7 +669,6 @@ function makePortfolioCards(arr) {
           `;
           return;
         }
-        // generateCommentsHTML(portfolio[0].comments);
       },
       error: function(error) {
         console.log('Error: ' + error);
@@ -851,57 +850,6 @@ function makePortfolioCards(arr) {
 
     if (viewMorePageNode.contains(document.getElementById('viewMorePage-postCommentButton'))) {
       document.getElementById('viewMorePage-postCommentButton').addEventListener('click', postComment);
-    }
-  }
-
-  function generateCommentsHTML(comments) {
-    let currentUser = sessionStorage.getItem('username');
-    for (let i = 0; i < comments.length; i++) {
-      if (currentUser && (comments[i].postByUsername === currentUser)) {
-        document.getElementById('viewMorePage-comments').innerHTML += `
-
-          <div class="col-sm-12 col-lg-12 col-md-10">
-            <div class="comment-container comment-right mb-3">
-            <div class="comment-info">
-            <strong class="mr-1">You</strong>
-            <p>on ${formatDate(comments[i].posted)}</p>
-            </div>
-            <p><b>${comments[i].text}</b></p>
-            </div>
-        </div>
-        `;
-      } else if (comments[i].postByUsername !== currentUser) {
-        document.getElementById('viewMorePage-comments').innerHTML += `
-        <div class="col-sm-12 col-lg-12 col-md-10">
-        <div class="comment-container comment-left mb-3">
-        <div class="comment-info">
-        <strong class="mr-1">${comments[i].postByUsername}</strong>
-        <p>on ${formatDate(comments[i].posted)}</p>
-        </div>
-        <p>${comments[i].text}</p>
-        </div>
-        </div>
-        `;
-      }
-    }
-
-    if(currentUser) {
-      document.getElementById('viewMorePage-addCommentWrapper').innerHTML = `
-      <div class="col-12 col-sm-12 col-lg-10 col-md-10 mx-auto">
-      <label for="viewMorePage-postComment" class="nav-font">Comment:</label>
-      <textarea id="viewMorePage-postComment" class="col-12 col-sm-12 col-lg-10 col-md-10" rows="4" cols="100"></textarea>
-      <div class="col-12 col-sm-12 col-lg-11 col-md-11">
-          <div id="viewMorePage-postCommentButton" class="button btn-font bg-dark float-right mt-2 mb-5">Submit</div>
-      </div>
-    </div>
-      `;
-
-      document.getElementById('viewMorePage-postCommentButton').addEventListener('click', postComment);
-
-    } else if (!currentUser) {
-      document.getElementById('viewMorePage-addCommentWrapper').innerHTML = `
-      <div class="text-center mb-5">Please log in to add comment</div>
-      `;
     }
   }
 
