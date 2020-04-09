@@ -297,7 +297,6 @@ $('#addPortfolioForm').submit(function(){
   let category = $('#addPortfolioCategory').val();
   let price = $('#addPortfolioPrice').val();
   let _memberId = sessionStorage.getItem('memberId');
-  console.log(_memberId);
 
   if (title == '' || description == '' || image == '' || category == '' || price == ''){
     alert('Please enter all details');
@@ -390,7 +389,6 @@ function generateMyPortfolios() {
     url: `${url}/myPortfolios/${currentUserId}`,
     type: 'GET',
     success: function(results) {
-      console.log(results);
       if (results === "No portfolio by this user found") {
         document.getElementById('myProjectCards').innerHTML = `
         <div class="noPortfolio text-center">You have not upload any project yet!</div>
@@ -451,7 +449,6 @@ function generateAccountSummaryHTML(account) {
 document.getElementById('updateMemberBtn').addEventListener('click', showEditUserForm);
 
 function showEditUserForm() {
-  console.log(sessionStorage);
   $('#updateMemberBtn').hide();
   makeEditUserForm();
   populateEditUserForm();
@@ -549,22 +546,18 @@ function generateLandingPageCards() {
 function makePortfolioCards(arr) {
   document.getElementById('myProjectCards').innerHTML = arr.map(item => `
     <div class="card portfolioCard border-bottom">
-      <div style="background-image:url(${item.image})" class="portfolioPage-image mb-3"></div>
-        <h5 class="card-text mb-3">${item.title}</h5>
-          <div class="">
-
-    <div class="row">
-      <div class="col-sm-12 col-md-4 col-lg-4">
-        <div class="button viewMoreButton btn-font mb-3" id="${item._id}">View</div>
-      </div>
-      <div class="col-sm-12 col-md-4 col-lg-4">
-        <div class="editButton btn-dark btn-font radius py-2 px-2 mb-3" id="edit${item._id}">Edit</div>
-      </div>
-      <div class="col-sm-12 col-md-4 col-lg-4">
-        <div class="deleteButton btn-red radius px-3 py-2 mb-3 btn-font float-lg-right" id="delete${item._id}">Delete</div>
-      </div>
-    </div>
-
+      <div style="background-image:url(${item.image})" class="portfolioPage-image"></div>
+      <h5 class="portfolioPage-cardTitle card-text mb-3">${item.title}</h5>
+      <div id="portfolioCard__buttonWrapper${item._id}" class="row mb-2">
+        <div class="col-sm-12 col-md-4 col-lg-4">
+          <div class="button viewMoreButton btn-font mb-3" id="${item._id}">View</div>
+        </div>
+        <div class="col-sm-12 col-md-4 col-lg-4">
+          <div class="editButton btn-dark btn-font radius py-2 px-2 mb-3" id="edit${item._id}">Edit</div>
+        </div>
+        <div class="col-sm-12 col-md-4 col-lg-4">
+          <div class="deleteButton btn-red radius px-3 py-2 mb-3 btn-font float-lg-right" id="delete${item._id}">Delete</div>
+        </div>
       </div>
     </div>
     `).join(' ');
@@ -673,13 +666,15 @@ function makePortfolioCards(arr) {
     });
   }
 
-  function displayDeletePopup(e) {
-    let projectCard = e.path[2].children[2];
+  function displayDeletePopup(e) {   
     let projectId = (e.target.id).slice(6);
     sessionStorage.setItem('projectOnDelete', projectId);
 
-    projectCard.innerHTML = `
-        <div class="">
+    let idName = `portfolioCard__buttonWrapper${projectId}`;
+    let buttonWrapper = document.getElementById(idName);
+
+    buttonWrapper.innerHTML = `
+        <div class="mx-auto">
           <p class="text-center">Are you sure you want to delete this project?</p>
           <button id="abortDeleteProject" class="btn btn-danger btn-font back-portfolio radius float-left">Cancel</button>
           <button id="confirmDeleteProject" type="button" class="btn btn-dark btn-font float-right radius">Delete</button>
@@ -707,14 +702,20 @@ function makePortfolioCards(arr) {
   }
 
   function abortDeleteProject(e) {
-    let contentWrapper = e.path[2];
     let projectId = sessionStorage.getItem('projectOnDelete');
-
-    contentWrapper.innerHTML = `
-
+    let idName = `portfolioCard__buttonWrapper${projectId}`;
+    let buttonWrapper = document.getElementById(idName);
+    
+    buttonWrapper.innerHTML = `
+      <div class="col-sm-12 col-md-4 col-lg-4">
+        <div class="button viewMoreButton btn-font mb-3" id="${projectId}">View</div>
+      </div>
+      <div class="col-sm-12 col-md-4 col-lg-4">
+        <div class="editButton btn-dark btn-font radius py-2 px-2 mb-3" id="edit${projectId}">Edit</div>
+      </div>
       <div class="col-sm-12 col-md-4 col-lg-4">
         <div class="deleteButton btn-red radius px-3 py-2 mb-3 btn-font float-lg-right" id="delete${projectId}">Delete</div>
-
+      </div>
     `;
 
     let viewMoreButtons = document.getElementsByClassName('viewMoreButton');
@@ -816,6 +817,8 @@ function makePortfolioCards(arr) {
       <div class="text-center mb-5">Please log in to add comment</div>
       `;
     }
+
+    document.getElementById('viewMorePage-postCommentButton').addEventListener('click', postComment);
   }
 
   document.getElementById("filterButton").addEventListener('click', getFilteredArtworks);
@@ -829,7 +832,6 @@ function makePortfolioCards(arr) {
       url: `${url}/filterPortfolios/${minPrice}/${maxPrice}/${category}`,
       type: 'GET',
       success: function(response) {
-        console.log(response);
         if (response === 'Sorry, there is no artwork that matches your search!') {
           document.getElementById('artsDeck').innerHTML = `
           <div class="row mx-auto">
@@ -845,8 +847,6 @@ function makePortfolioCards(arr) {
       }
     });
   }
-
-  document.getElementById('viewMorePage-postCommentButton').addEventListener('click', postComment);
 
   function postComment() {
     let _content = $('textarea#viewMorePage-postComment').val();
@@ -889,12 +889,14 @@ function makePortfolioCards(arr) {
 
   function addComment(comment) {
     let commentHtml = `
-    <div class="comment-container mb-3">
-    <div class="comment-info">
-    <strong class="mr-1">You</strong>
-    <p>on ${formatDate(comment.posted)}</p>
-    </div>
-    <p>${comment.text}</p>
+    <div class="col-sm-12 col-lg-12 col-md-10">
+      <div class="comment-container comment-right mb-3">
+        <div class="comment-info">
+        <strong class="mr-1">You</strong>
+        <p>on ${formatDate(comment.posted)}</p>
+        </div>
+        <p><b>${comment.text}</b></p>
+      </div>
     </div>
     `;
 
