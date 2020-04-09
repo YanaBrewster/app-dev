@@ -557,13 +557,13 @@ function makePortfolioCards(arr) {
 
     <div class="row">
       <div class="col-sm-12 col-md-4 col-lg-4">
-        <div class="button viewMoreButton btn-font" id="${item._id}">View</div>
+        <div class="button viewMoreButton btn-font mb-3" id="${item._id}">View</div>
       </div>
       <div class="col-sm-12 col-md-4 col-lg-4">
-        <div class="editButton btn btn-dark btn-font radius px-3" id="edit${item._id}">Edit</div>
+        <div class="editButton btn-dark btn-font radius py-2 px-2 mb-3" id="edit${item._id}">Edit</div>
       </div>
       <div class="col-sm-12 col-md-4 col-lg-4">
-        <div class="deleteButton btn btn-red radius px-3 btn-font float-right" id="delete${item._id}">Delete</div>
+        <div class="deleteButton btn-red radius px-3 py-2 mb-3 btn-font float-lg-right" id="delete${item._id}">Delete</div>
       </div>
     </div>
 
@@ -626,7 +626,7 @@ function makePortfolioCards(arr) {
 
       <div class="card-body artcard-body mx-1 my-1">
       <div class="artcard-columnwrap">
-      <h4 class="card-title artcard-title mb-3">${art.title}</h4>
+      <h4 class="card-title mb-3">${art.title}</h4>
       <h5 class="card-title artcard-price">&dollar;${art.price}</h5>
       </div>
       <p class="card-title"><b>${art.authorInfo.username}, ${art.authorInfo.location}</b></p>
@@ -713,11 +713,10 @@ function makePortfolioCards(arr) {
     let projectId = sessionStorage.getItem('projectOnDelete');
 
     contentWrapper.innerHTML = `
-    <div class="portfolioPage-buttonGroup">
-        <div class="button viewMoreButton btn-font" id="${projectId}">View</div>
-        <div class="button-black editButton btn-font" id="edit${projectId}">Edit</div>
+    <div class="row">
+      <div class="col-sm-12 col-md-4 col-lg-4">
+        <div class="deleteButton btn-red radius px-3 py-2 mb-3 btn-font float-lg-right" id="delete${projectId}">Delete</div>
     </div>
-    <div class="button-red deleteButton btn-font" id="delete${projectId}">Delete</div>
     `;
 
     let viewMoreButtons = document.getElementsByClassName('viewMoreButton');
@@ -778,22 +777,27 @@ function makePortfolioCards(arr) {
     for (let i = 0; i < comments.length; i++) {
       if (currentUser && (comments[i].postByUsername === currentUser)) {
         document.getElementById('viewMorePage-comments').innerHTML += `
-        <div class="comment-container comment-right mb-3">
-        <div class="comment-info">
-        <strong class="mr-1">You</strong>
-        <p>on ${formatDate(comments[i].posted)}</p>
-        </div>
-        <p><b>${comments[i].text}</b></p>
+
+          <div class="col-sm-12 col-lg-12 col-md-10">
+            <div class="comment-container comment-right mb-3">
+            <div class="comment-info">
+            <strong class="mr-1">You</strong>
+            <p>on ${formatDate(comments[i].posted)}</p>
+            </div>
+            <p><b>${comments[i].text}</b></p>
+            </div>
         </div>
         `;
       } else if (comments[i].postByUsername !== currentUser) {
         document.getElementById('viewMorePage-comments').innerHTML += `
+        <div class="col-sm-12 col-lg-12 col-md-10">
         <div class="comment-container comment-left mb-3">
         <div class="comment-info">
         <strong class="mr-1">${comments[i].postByUsername}</strong>
         <p>on ${formatDate(comments[i].posted)}</p>
         </div>
         <p>${comments[i].text}</p>
+        </div>
         </div>
         `;
       }
@@ -812,7 +816,7 @@ function makePortfolioCards(arr) {
     } else if (!currentUser) {
       document.getElementById('viewMorePage-addCommentWrapper').innerHTML = `
       <div class="text-center mb-5">Please log in to add comment</div>
-      `
+      `;
     }
   }
 
