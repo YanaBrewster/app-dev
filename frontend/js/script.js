@@ -555,13 +555,13 @@ function makePortfolioCards(arr) {
           <div class="">
 
     <div class="row">
-      <div class="col-sm-12 col-lg-4">
+      <div class="col-sm-12 col-md-4 col-lg-4">
         <div class="button viewMoreButton btn-font" id="${item._id}">View</div>
       </div>
-      <div class="col-sm-12 col-lg-4">
+      <div class="col-sm-12 col-md-4 col-lg-4">
         <div class="editButton btn btn-dark btn-font radius px-3" id="edit${item._id}">Edit</div>
       </div>
-      <div class="col-sm-12 col-lg-4">
+      <div class="col-sm-12 col-md-4 col-lg-4">
         <div class="deleteButton btn btn-red radius px-3 btn-font float-right" id="delete${item._id}">Delete</div>
       </div>
     </div>
