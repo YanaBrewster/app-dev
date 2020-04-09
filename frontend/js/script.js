@@ -213,11 +213,11 @@ $('#registerForm').submit(function(){
     },
     success : function(member){
       if (member !== 'Username already taken. Please try another one') {
-        alert ('Please login to add artwork and buy art');
+        alert ('Username already taken. Please try another one');
         $('#loginBtn').show();
         $('#registerBtn').hide();
       } else {
-        alert('Username already taken. Please try another one');
+        alert('Please login to add artwork and buy art');
         $('#registerUsername').val('');
         $('#registerEmail').val('');
         $('#registerPassword').val('');
