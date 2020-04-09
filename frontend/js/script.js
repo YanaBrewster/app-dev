@@ -2,7 +2,6 @@
 
 $(document).ready(function(){
   sessionStorage.clear();
-  console.log(sessionStorage);
   var url;
   // get url and port from config.json
   $.ajax({
@@ -216,6 +215,8 @@ $('#registerForm').submit(function(){
         alert ('Please login to add artwork and buy art');
         $('#loginBtn').show();
         $('#registerBtn').hide();
+        $('#loginPage').show();
+        $('#signUpPage').hide();  
       } else {
         alert('Username already taken. Please try another one');
         $('#registerUsername').val('');
@@ -422,6 +423,10 @@ function getMyAccountInfo() {
 }
 
 function generateAccountSummaryHTML(account) {
+  let _description = account.about ? account.about : "";
+  let _website = account.website ? account.website : "";
+  let _location = account.location ? account.location : "";
+
   document.getElementById('memberAccount').innerHTML = `
   <div class="flexContainer-flexStart mb-1">
     <strong class="userInfoField">Username:</strong>
@@ -433,15 +438,15 @@ function generateAccountSummaryHTML(account) {
   </div>
   <div class="flexContainer-flexStart mb-1">
     <strong class="userInfoField">About:</strong>
-    <div>${account.about}</div>
+    <div>${_description}</div>
   </div>
   <div class="flexContainer-flexStart mb-1">
     <strong class="userInfoField">Location:</strong>
-    <div>${account.location}</div>
+    <div>${_location}</div>
   </div>
   <div class="flexContainer-flexStart mb-1">
     <strong class="userInfoField">Website:</strong>
-    <a>${account.website}</a>
+    <a>${_website}</a>
   </div>
   `;
 }
@@ -456,17 +461,31 @@ function showEditUserForm() {
 
 // Prefill form's value with current user info
 function populateEditUserForm() {
-  let _username = sessionStorage.getItem('username');
-  let _email = sessionStorage.getItem('email');
-  let _description = ((sessionStorage.getItem('about')) !== "undefined") ? (sessionStorage.getItem('about')) : "";
-  let _website = ((sessionStorage.getItem('website')) !== "undefined") ? (sessionStorage.getItem('website')) : "";
-  let _location = ((sessionStorage.getItem('location')) !== "undefined") ? (sessionStorage.getItem('location')) : "";
+  let currentUserId = sessionStorage.getItem('memberId');
 
-  $('#editUserForm__username').val(_username);
-  $('#editUserForm__email').val(_email);
-  $('#editUserForm__description').val(_description);
-  $('#editUserForm__website').val(_website);
-  $('#editUserForm__location').val(_location);
+  $.ajax({
+    url: `${url}/myAccountInfo/${currentUserId}`,
+    type: 'GET',
+    dataType: 'json',
+    success: function(result) {
+      $('#editUserForm__username').val(result.username);
+    $('#editUserForm__email').val(result.email);
+    $('#editUserForm__description').val(result.about);
+    $('#editUserForm__website').val(result.website);
+    $('#editUserForm__location').val(result.location);
+    },
+    error: function(error) {
+      console.log(error);
+    }
+
+  })
+  // let _username = sessionStorage.getItem('username');
+  // let _email = sessionStorage.getItem('email');
+  // let _description = ((sessionStorage.getItem('about')) !== "undefined") ? (sessionStorage.getItem('about')) : "";
+  // let _website = ((sessionStorage.getItem('website')) !== "undefined") ? (sessionStorage.getItem('website')) : "";
+  // let _location = ((sessionStorage.getItem('location')) !== "undefined") ? (sessionStorage.getItem('location')) : "";
+
+  
 }
 
 function makeEditUserForm() {
