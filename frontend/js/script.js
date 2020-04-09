@@ -18,8 +18,6 @@ $(document).ready(function(){
     }//error
   });//ajax
 
-
-
 // Show and hide pages ===============================================================
 // Yanas code
 
@@ -235,7 +233,7 @@ $('#registerForm').submit(function(){
 // login member ===============================================================
 // Yanas code
 
-$('#loginSubmitBtn').click(function(){
+$('#loginForm').submit(function(){
   event.preventDefault();
   let username = $('#inputUsernameLogin').val();
   let password = $('#inputPasswordLogin').val();
@@ -248,7 +246,7 @@ $('#loginSubmitBtn').click(function(){
       password : password
     },
     success : function(loginData){
-      if (loginData === 'Please fill in all input fields') {
+      if (loginData === ' ') {
         alert('Please fill in all input fields');
       } else if (loginData === 'Member not found. Please register') {
         alert('Register please');
