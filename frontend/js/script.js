@@ -443,7 +443,7 @@ function makePortfolioCards(arr) {
      let editButtons = document.getElementsByClassName('editButton');
     
     for (let i = 0; i < editButtons.length; i ++) {
-      editButtons[i].addEventListener('click', updateArt);
+      editButtons[i].addEventListener('click', getArtworkUpdate);
     } 
   }
 
@@ -493,7 +493,7 @@ function makePortfolioCards(arr) {
 
     let editButtons = document.getElementsByClassName('editButton');
     for (let i = 0; i < editButtons.length; i++) {
-      editButtons[i].addEventListener('click', updateArt);
+      editButtons[i].addEventListener('click', getArtworkUpdate);
     }
   }
 
@@ -672,7 +672,7 @@ function makePortfolioCards(arr) {
   // Rahul's code 
 
   //updateProduct
-  $('#addPortfolioForm').click(function(){
+  $('#updateProject').click(function(){
       $('#addPortfolioForm').show();
       $('#deletePortfolioPage').hide();
       $('#delForm').hide();
@@ -681,10 +681,12 @@ function makePortfolioCards(arr) {
 
     event.preventDefault();
 
-    let  productId = $('#productId').val();
-    let  productName = $('#productName').val();
-    let  productPrice = $('#productPrice').val();
-    let  userId = $('#userId').val();
+    let  title = $('#addPortfolioTitle').val();
+    let  description = $('#addPortfolioDescription').val();
+    let  image = $('#addPortfolioImage').val();
+    let  category = $('#addPortfolioCategory').val();
+    let  price = $('#addPortfolioPrice').val();
+    let  memberId = $('#addPortfolioMemberId').val()
 
     console.log(productId, productName, productPrice, userId);
     if (productId === '') {
@@ -707,10 +709,12 @@ function makePortfolioCards(arr) {
               } else{
                 alert('modified');
               }
-              $('#productId').val('');
-              $('#productName').val('');
-              $('#productPrice').val('');
-              $('#userId').val('');
+              $('#addPortfolioTitle').val();
+              $('#addPortfolioDescription').val();
+              $('#addPortfolioImage').val();
+              $('#addPortfolioCategory').val();
+              $('#addPortfolioPrice').val();
+              $('#addPortfolioMemberId').val();
             },//success
             error:function(){
               console.log('error: cannot call api');
@@ -719,6 +723,53 @@ function makePortfolioCards(arr) {
 
           });//ajax
     }
+
+
+    function getArtworkUpdate(e) {
+    let id = e.target.id;
+    $.ajax({
+      url: `${url}/portfolioWithAuthor/${id}`,
+      type: 'POST',
+      dataType: 'json',
+      success: function(portfolio) {
+        generateEditHTML(portfolio[0]);
+        sessionStorage.setItem('currentPortfolio', portfolio[0]._id);
+        $("#editPage").show();
+        $("#projectPage").hide();
+        $("#landingPage").hide();
+      },
+      error: function(error) {
+        console.log('Error: ' + error);
+      }
+    });
+  }
+
+
+    function generateEditHTML(portfolio) {
+
+    document.getElementById('editPage-artInfo').innerHTML = `
+    <div>
+    <h5 class="h3">${portfolio.title}</h5>
+    <div class="edit-photoBackground">
+    <img src="${portfolio.image}" class="edit-mainPhoto" alt="${portfolio.title} photo">
+    </div>
+    <div class="flexContainer-row mt-3 mb-3">
+    <h5 class="h4">${portfolio.authorInfo.username}</h5>
+    </div>
+    <div class="bg-info text-white radius py-2 px-3 btn-font" id="${portfolio._id}">Update</div>
+    </div>
+    <button id="backToLanding" type="button" class="btn btn-dark mt-3 mb-5 btn-font radius">Back</button>
+    </div>
+    `;
+    $('html, body').animate({ scrollTop: 0 }, 'fast');
+
+    document.getElementById('backToLanding').addEventListener('click', function() {
+      $("#editPage").hide();
+      $("#landingPage").show();
+      sessionStorage.removeItem('currentPortfolio');
+    });
+  }
+
   });//submit function for update product
 
 
@@ -729,69 +780,6 @@ function makePortfolioCards(arr) {
 
 
 
-function updateArt(e) {
-    let id = e.target.id;
-    $.ajax({
-      url: `${url}/portfolioWithAuthor/${id}`,
-      type: 'POST',
-      dataType: 'json',
-      success: function(portfolio) {
-        generateViewMoreHTML(portfolio[0]);
-        sessionStorage.setItem('currentPortfolio', portfolio[0]._id);
-        $("#editPage").show();
-        $("#projectPage").hide();
-        $("#landingPage").hide();
-
-      },
-      error: function(error) {
-        console.log('Error: ' + error);
-      }
-    });
-  }
-
-  function generateEditHTML(portfolio) {
-
-    document.getElementById('editPage-artInfo').innerHTML = `
-    <div class="form-group">
-      <label for="addPortfolioTitle"><h5>Title</h5></label>
-      <input type="text" id="addPortfolioTitle" class="form-control rounded" placeholder="Title" name="addPortfolioTitle" required autofocus>
-    </div>
-    <div class="form-group">
-      <label for="addPortfolioDescription"><h5>Description</h5></label>
-      <textarea id="addPortfolioDescription" class="form-control rounded" placeholder="Description" name="addPortfolioDescription" required autofocus></textarea>
-    </div>
-    <div class="form-group">
-      <label for="addPortfolioImage"><h5>Image URL</h5></label>
-      <input type="text" id="addPortfolioImage" class="form-control rounded" placeholder="Image URL" name="addPortfolioImage" required autofocus>
-    </div>
-    <div class="row mb-2">
-      <div class="form-group col-6">
-        <label for="addPortfolioCategory"><h5>Category</h5></label>
-        <div class="input-group">
-          <select class="custom-select filterInputGroup rounded" id="addPortfolioCategory" required autofocus>
-            <option value="painting">Painting</option>
-            <option value="photography">Photography</option>
-            <option value="prints">Prints</option>
-            <option value="others">Others</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-group col-6">
-        <label for="addPortfolioPrice"><h5>Price($)</h5></label>
-        <input type="number" id="addPortfolioPrice" class="form-control rounded" placeholder="Price" name="addPortfolioPrice" required autofocus>
-      </div>
-    </div>
-    <button id="addPortfolioBtn" name="addPortfolioButton" type="submit" class="btn btn-dark btn-font float-right">Submit</button>
-    <button name="addPortfolioButton" type="submit" class="btn btn-danger btn-font float-left">Cancel</button><br>
-    `;
-    $('html, body').animate({ scrollTop: 0 }, 'fast');
-
-    document.getElementById('backToLanding').addEventListener('click', function() {
-      $("#editPage").hide();
-      $("#landingPage").show();
-      sessionStorage.removeItem('currentPortfolio');
-    });
-  }
 
 //delete a product
 
