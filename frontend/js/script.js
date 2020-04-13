@@ -443,7 +443,7 @@ function makePortfolioCards(arr) {
      let editButtons = document.getElementsByClassName('editButton');
     
     for (let i = 0; i < editButtons.length; i ++) {
-      editButtons[i].addEventListener('click', getArtworkUpdate);
+      editButtons[i].addEventListener('click', getArtworkInfo);
     } 
   }
 
@@ -493,7 +493,7 @@ function makePortfolioCards(arr) {
 
     let editButtons = document.getElementsByClassName('editButton');
     for (let i = 0; i < editButtons.length; i++) {
-      editButtons[i].addEventListener('click', getArtworkUpdate);
+      editButtons[i].addEventListener('click', getArtworkInfo);
     }
   }
 
@@ -688,11 +688,11 @@ function makePortfolioCards(arr) {
     let  price = $('#addPortfolioPrice').val();
     let  memberId = $('#addPortfolioMemberId').val()
 
-    console.log(productId, productName, productPrice, userId);
-    if (productId === '') {
-      alert('Please enter product details');
+    console.log(title, description, image, category, price, memberId);
+    if (membertId === '') {
+      alert('Please enter Portfolio details');
     } else { $.ajax({
-            url :`${url}/updateProduct/${productId}`,
+            url :`${url}/updatePortfolio/${id}`,
             type :'POST',
             data:{
               title : title,
@@ -798,14 +798,14 @@ $('#delForm').submit(function(){
         return;
     }
 
-  let  productId = $('#delProductId').val();
+  let  memberId = $('#delProductId').val();
 
-  console.log(productId);
+  console.log(memberId);
 
-  if (productId === '') {
-    alert('Please enter product id');
+  if (memberId === '') {
+    alert('Please enter portfolio id');
   } else { $.ajax({
-          url :`${url}/deleteProduct/${productId}`,
+          url :`${url}/deleteProductBtn/${id}`,
           type :'DELETE',
           data:{
             userId: sessionStorage['userID']
