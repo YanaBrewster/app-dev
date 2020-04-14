@@ -436,13 +436,13 @@ $(document).ready(function(){
       <div class="">
       <div class="row">
       <div class="col-sm-12 col-md-4 col-lg-4">
-      <div class="button btn viewMoreButton btn-font mb-3 radius px-4" id="${item._id}">View</div>
+      <div class="button viewMoreButton btn-font mb-3" id="${item._id}">View</div>
       </div>
       <div class="col-sm-12 col-md-4 col-lg-4">
-      <div class="editButton btn btn-dark btn-font radius py-2 px-4 mb-3" id="edit${item._id}">Edit</div>
+      <div class="editButton edit-button btn-dark btn-font radius py-2 px-2 mb-3" id="edit${item._id}">Edit</div>
       </div>
       <div class="col-sm-12 col-md-4 col-lg-4">
-      <div class="deleteButton btn btn-red radius px-3 py-2 mb-3 btn-font float-lg-right" id="delete${item._id}">Delete</div>
+      <div class="deleteButton btn-red radius px-3 py-2 mb-3 btn-font float-lg-right" id="delete${item._id}">Delete</div>
       </div>
       </div>
       </div>

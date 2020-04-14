@@ -104,4 +104,13 @@
 	:hover {
 		color: white;
 	}
+
+}
+
+.edit-button {
+  background-color: $gray-dark;
+  border-radius: 20px;
+  color: white;
+  cursor: pointer;
+  padding: 9px 15px;
 }

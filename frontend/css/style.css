@@ -188,6 +188,14 @@ footer {
   color: white;
 }
 
+.edit-button {
+  background-color: #333333;
+  border-radius: 20px;
+  color: white;
+  cursor: pointer;
+  padding: 9px 15px;
+}
+
 .btn-font {
   font-family: 'Quicksand', sans-serif;
   font-weight: 700;
@@ -283,6 +291,14 @@ footer {
 }
 .btn-red :hover {
   color: white;
+}
+
+.edit-button {
+  background-color: #333333;
+  border-radius: 20px;
+  color: white;
+  cursor: pointer;
+  padding: 9px 15px;
 }
 
 .container-form {
