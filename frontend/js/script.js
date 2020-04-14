@@ -427,7 +427,7 @@ function makePortfolioCards(arr) {
     <div class="portfolioPage-buttonsWrapper">
     <div class="portfolioPage-buttonGroup">
     <div class="button viewMoreButton btn-font" id="${item._id}">View</div>
-    <div class="button-black editButton btn-font" id="${item._id}">Edit</div>
+    <div class="button-black editButton btn-font" id="editPage-artInfo">Edit</div>
     </div>
     <div class="button-red deleteButton btn-font" id="${item._id}">Delete</div>
     </div>
@@ -686,7 +686,7 @@ function makePortfolioCards(arr) {
     let  image = $('#addPortfolioImage').val();
     let  category = $('#addPortfolioCategory').val();
     let  price = $('#addPortfolioPrice').val();
-    let  memberId = $('#addPortfolioMemberId').val()
+    let  memberId = $('#addPortfolioMemberId').val();
 
     console.log(title, description, image, category, price, memberId);
     if (membertId === '') {
