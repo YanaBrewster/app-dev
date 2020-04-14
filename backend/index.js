@@ -87,13 +87,14 @@ app.post('/loginMember', (req,res) => {
       if (bcryptjs.compareSync(req.body.password, memberResult.password)){
         res.send(memberResult);
       } else {
-        res.send('not authorized');
+        res.send('Not Authorized');
       }
     } else {
       res.send('Member not found. Please register');
     }
   });
 });
+
 
 
 // add an artwork to portfolio =================================================
@@ -131,9 +132,6 @@ app.get('/allPortfolios', (req,res) => {
     res.json(result);
   });
 });
-// Yanas code
-
-
 
 
 //  Yanas code ends
@@ -278,7 +276,7 @@ app.patch('/addPortfolioForm/:id',(req,res)=>{
       user_id : req.body.userId
 
     };
-    Product.updateOne({_id:idParam}, updatedProduct).then(result=>{
+    Product.updateOne({_id:idParam}, updatedPortfolioPage).then(result=>{
       res.send(result);
     }).catch(err=> res.send(err));
   } else {

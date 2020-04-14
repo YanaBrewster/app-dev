@@ -427,7 +427,7 @@ function makePortfolioCards(arr) {
     <div class="portfolioPage-buttonsWrapper">
     <div class="portfolioPage-buttonGroup">
     <div class="button viewMoreButton btn-font" id="${item._id}">View</div>
-    <div class="button-black editButton btn-font" id="editPage-artInfo">Edit</div>
+    <div class="button-black editButton btn-font" id="${item._id}">Edit</div>
     </div>
     <div class="button-red deleteButton btn-font" id="${item._id}">Delete</div>
     </div>
@@ -443,7 +443,7 @@ function makePortfolioCards(arr) {
      let editButtons = document.getElementsByClassName('editButton');
     
     for (let i = 0; i < editButtons.length; i ++) {
-      editButtons[i].addEventListener('click', getArtworkInfo);
+      editButtons[i].addEventListener('click', editPage);
     } 
   }
 
@@ -465,9 +465,7 @@ function makePortfolioCards(arr) {
     document.getElementById('artsDeck').innerHTML = arr.map(art =>
       `<div class="col-sm-12 col-md-6 col-lg-4 my-xs-1 my-sm-1 my-md-3 my-lg-3">
       <div class="card card-border rounded-0 mb-4">
-
       <img src="${art.image}" alt="Avatar" class="card-img-top radius">
-
       <div class="card-body artcard-body mx-1 my-1">
       <div class="artcard-columnwrap">
       <h4 class="card-title artcard-title mb-3">${art.title}</h4>
@@ -481,7 +479,6 @@ function makePortfolioCards(arr) {
       <div class="button viewMoreButton btn-font" id="${art._id}">View</div>
       </div>
       </div>
-
       </div>
       </div>`
     ).join(' ');
@@ -493,7 +490,7 @@ function makePortfolioCards(arr) {
 
     let editButtons = document.getElementsByClassName('editButton');
     for (let i = 0; i < editButtons.length; i++) {
-      editButtons[i].addEventListener('click', getArtworkInfo);
+      editButtons[i].addEventListener('click', editPage);
     }
   }
 
@@ -509,6 +506,7 @@ function makePortfolioCards(arr) {
         $("#viewMorePage").show();
         $("#projectPage").hide();
         $("#landingPage").hide();
+        $("#updatePortfolioPage").hide();
         if (portfolio[0].comments.length === 0) {
           document.getElementById('viewMorePage-comments').innerHTML = `
           <div class="text-center">There has not been any question about this artwork</div>
@@ -550,6 +548,7 @@ function makePortfolioCards(arr) {
 
     document.getElementById('backToLanding').addEventListener('click', function() {
       $("#viewMorePage").hide();
+      $("#updatePortfolioPage").hide();
       $("#landingPage").show();
       sessionStorage.removeItem('currentPortfolio');
     });
@@ -672,10 +671,10 @@ function makePortfolioCards(arr) {
   // Rahul's code 
 
   //updateProduct
-  $('#updateProject').click(function(){
-      $('#addPortfolioForm').show();
-      $('#deletePortfolioPage').hide();
-      $('#delForm').hide();
+  $('#updatePortfolioPage').click(function(){
+      $('#updatePortfolioPage').show();
+      $('#addPortfolioForm').hide();
+      $('#addPortfolioForm').hide();
   });
   $('#addPortfolioForm').submit(function(){
 
@@ -747,25 +746,49 @@ function makePortfolioCards(arr) {
 
     function generateEditHTML(portfolio) {
 
-    document.getElementById('editPage-artInfo').innerHTML = `
-    <div>
-    <h5 class="h3">${portfolio.title}</h5>
-    <div class="edit-photoBackground">
-    <img src="${portfolio.image}" class="edit-mainPhoto" alt="${portfolio.title} photo">
+    document.getElementById('editPage').innerHTML = `
+    <div id="updatePortfolioPage">
+  <h1 class="text-center">Update Project</h1>
+  <form id="addPortfolioForm" class="mt-3 py-5 px-5 border border-info rounded col-lg-8 col-md-12 col-sm-12 mx-auto">
+    <div class="form-group">
+      <label for="addPortfolioTitle"><h5>Title</h5></label>
+      <input type="text" id="addPortfolioTitle" class="form-control rounded" placeholder="Title" name="addPortfolioTitle" required autofocus>
     </div>
-    <div class="flexContainer-row mt-3 mb-3">
-    <h5 class="h4">${portfolio.authorInfo.username}</h5>
+    <div class="form-group">
+      <label for="addPortfolioDescription"><h5>Description</h5></label>
+      <textarea id="addPortfolioDescription" class="form-control rounded" placeholder="Description" name="addPortfolioDescription" required autofocus></textarea>
     </div>
-    <div class="bg-info text-white radius py-2 px-3 btn-font" id="${portfolio._id}">Update</div>
+    <div class="form-group">
+      <label for="addPortfolioImage"><h5>Image URL</h5></label>
+      <input type="text" id="addPortfolioImage" class="form-control rounded" placeholder="Image URL" name="addPortfolioImage" required autofocus>
     </div>
-    <button id="backToLanding" type="button" class="btn btn-dark mt-3 mb-5 btn-font radius">Back</button>
+    <div class="row mb-2">
+      <div class="form-group col-6">
+        <label for="addPortfolioCategory"><h5>Category</h5></label>
+        <div class="input-group">
+          <select class="custom-select filterInputGroup rounded" id="addPortfolioCategory" required autofocus>
+            <option value="painting">Painting</option>
+            <option value="photography">Photography</option>
+            <option value="prints">Prints</option>
+            <option value="others">Others</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group col-6">
+        <label for="addPortfolioPrice"><h5>Price($)</h5></label>
+        <input type="number" id="addPortfolioPrice" class="form-control rounded" placeholder="Price" name="addPortfolioPrice" required autofocus>
+      </div>
     </div>
+    <button id="addPortfolioBtn" name="addPortfolioButton" type="submit" class="btn btn-dark btn-font float-right">Submit</button>
+    <button name="addPortfolioButton" type="submit" class="btn btn-danger btn-font float-left">Cancel</button><br>
+  </form>
+</div>
     `;
     $('html, body').animate({ scrollTop: 0 }, 'fast');
 
     document.getElementById('backToLanding').addEventListener('click', function() {
-      $("#editPage").hide();
-      $("#landingPage").show();
+      $("#landingPage").hide();
+      $("#editPage").show();
       sessionStorage.removeItem('currentPortfolio');
     });
   }
@@ -789,6 +812,15 @@ $('#deleteProductBtn').click(function(){
     $('#addPortfolioForm').hide();
 });
 
+getElementById('deletePortfolioPage').innerHTML = 
+  `<h1 class="text-center"> Delete Project </h1>` +
+  `<p class="py-3 px-3 mr-5 text-center">Are you sure you want to delete your project?</p>` +
+  `<p class="py-3 px-3 mr-5 text-center">Confirm project details</p>` +
+  `<div class="deleteProject">`;
+
+
+
+portfolio.removeChild('');
 
 
 $('#delForm').submit(function(){
@@ -828,6 +860,7 @@ $('#delForm').submit(function(){
 
         });//ajax
   }
+
 });//submit function for delete product
 
   // Rahul's code ends

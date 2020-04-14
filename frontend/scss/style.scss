@@ -27,15 +27,11 @@ $grey-light: #f5f9f8;
 
 // SMACCS Set up
 @import 'base';
-@import 'variables';
-@import 'mixins';
 @import 'layout';
 @import 'module';
-@import 'state';
 @import 'module';
 @import 'theme';
 @import 'portfolioPage';
 //yanas code ends
 @import 'landingPage';
 @import 'viewMorePage';
-
