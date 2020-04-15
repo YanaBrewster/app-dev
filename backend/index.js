@@ -11,7 +11,7 @@ const Comment = require('./models/comment.js');
 const Member = require('./models/member.js');
 const Portfolio = require('./models/portfolio.js');
 
-const port = 5000;
+const port = 3000;
 
 app.get('/', (req, res) => res.send('Hello World from Hayley, Rahul and Yana!'));
 
@@ -246,5 +246,52 @@ app.post('/addComment', (req, res) => {
 
 
 // Hayley's code ends
+
+
+
+
+
+
+// Rahul's code
+
+//delete a portfolio
+app.delete('/deleteProductBtn/:id',(req,res)=>{
+  const idParam = req.params.id;
+  Product.findOne({_id:idParam}, (err,product)=>{ 
+    if (product){
+      Product.deleteOne({_id:idParam},err=>{
+        res.send('deleted');
+      });
+    } else {
+      res.send('not found');
+    }
+  }).catch(err => res.send(err));
+});
+
+app.patch('/addPortfolioForm/:id',(req,res)=>{
+  const idParam = req.params.id;
+  Product.findById(idParam,(err,product)=>{
+    if (product['user_id'] == req.body.userId){
+    const updatedProduct ={
+      name:req.body.name,
+      price:req.body.price,
+      image_url:req.body.imageUrl,
+      user_id : req.body.userId
+
+    };
+    Product.updateOne({_id:idParam}, updatedPortfolioPage).then(result=>{
+      res.send(result);
+    }).catch(err=> res.send(err));
+  } else {
+    res.send('401 error; user has no permission to update');
+  }
+
+}).catch(err=>res.send('product not found'));
+
+});
+
+// Rahul's code ends
+
+
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
