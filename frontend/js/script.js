@@ -673,4 +673,209 @@ $(document).ready(function(){
     }
 
     // Hayley's code ends
+
+
+
+
+    // Rahul's code
+
+      //updateProduct
+  $('#updatePortfolioPage').click(function(){
+      $('#updatePortfolioPage').show();
+      $('#landingPage').hide();
+      $('#landingPage').hide();
+  });
+  $('#updatePortfolioPage').submit(function(){
+
+    event.preventDefault();
+
+    let  title = $('#addPortfolioTitle').val();
+    let  description = $('#addPortfolioDescription').val();
+    let  image = $('#addPortfolioImage').val();
+    let  category = $('#addPortfolioCategory').val();
+    let  price = $('#addPortfolioPrice').val();
+    let  memberId = $('#addPortfolioMemberId').val();
+
+    console.log(title, description, image, category, price, memberId);
+    if (membertId === '') {
+      alert('Please enter Portfolio details');
+    } else { $.ajax({
+            url :`${url}/updatePortfolio/${id}`,
+            type :'GET',
+            data:{
+              title : title,
+              description : description,
+              image : image,
+              category : category,
+              price: price,
+              memberId : sessionStorage.getItem('memberId')
+              },
+            success : function(data){
+              console.log(data);
+              if (data == '401 error; user has no permission to update') {
+                alert ('401 error; user has no permission to update');
+              } else{
+                alert('modified');
+              }
+              $('#addPortfolioTitle').val();
+              $('#addPortfolioDescription').val();
+              $('#addPortfolioImage').val();
+              $('#addPortfolioCategory').val();
+              $('#addPortfolioPrice').val();
+              $('#addPortfolioMemberId').val();
+            },//success
+            error:function(){
+              console.log('error: cannot call api');
+            }//error
+
+
+          });//ajax
+    }
+
+
+    function getArtworkUpdate(e) {
+    let id = e.target.id;
+    $.ajax({
+      url: `${url}/updateProject/${id}`,
+      type: 'POST',
+      dataType: 'json',
+      success: function(update) {
+        generateEditHTML(update[0]);
+        sessionStorage.setItem('currentPortfolio', update[0]._id);
+        $("#edit").show();
+        $("#projectPage").hide();
+        $("#landingPage").hide();
+      },
+      error: function(error) {
+        console.log('Error: ' + error);
+      }
+    });
+  }
+
+
+    let editButtons = document.getElementsByClassName('editButton');
+
+      for (let i = 0; i < editButtons.length; i ++) {
+        editButtons[i].document.getElementById('click', getArtworkUpdate);
+      }
+
+
+    function generateEditHTML(updateProject) {
+
+    document.getElementById('editButton').innerHTML = `
+    <div>
+      <h5 class="h3">${portfolio.title}</h5>
+      <div class="viewMore-photoBackground">
+      <img src="${portfolio.image}" class="viewMore-mainPhoto img-fluid" alt="${portfolio.title} photo">
+      </div>
+      <div class="flexContainer-row mt-3 mb-3">
+      <h5 class="h4">${portfolio.authorInfo.username}</h5>
+      <h5 class="card-title h4 artcard-price">&dollar;${portfolio.price}</h5>
+      </div>
+      <p>${portfolio.description}</p>
+      <strong class="mb-5">Location: ${portfolio.authorInfo.location}</strong>
+      <br/>
+      <a href="${portfolio.authorInfo.website}" class="artcard-link">${portfolio.authorInfo.website}</a>
+      <div class="artcard-columnwrap mt-5 viewMore-endBoarder">
+      <p class="card-title h5-cyan">${portfolio.category}</p>
+      </div>
+      <button id="backToLanding" type="button" class="btn btn-dark mt-3 mb-5 btn-font radius">Back</button>
+      </div>
+    `;
+    $('html, body').animate({ scrollTop: 0 }, 'fast');
+
+    document.getElementById('backToLanding').addEventListener('click', function() {
+      $("#landingPage").show();
+      $("#edit").hide();
+      sessionStorage.removeItem('currentPortfolio');
+    });
+  }
+
+  });//submit function for update product
+
+
+
+//delete a product
+
+$('#deleteProductBtn').click(function(){
+    $('#delForm').show();
+    $('#addPortfolioForm').hide();
+    $('#addPortfolioForm').hide();
+});
+
+document.getElementById('deleteButton').innerHTML = `
+    <div id="deletePortfolioPage">
+      <h1 class="text-center"> Delete Project </h1>
+      <p class="py-3 px-3 mr-5 text-center">Are you sure you want to delete your project?</p>
+      <p class="py-3 px-3 mr-5 text-center">Confirm project details</p>
+      <div class="deleteProject">
+        <form id="delForm" class="mt-3 py-5 px-5 border border-warning rounded col-lg-8 col-md-12 col-sm-12 mx-auto">
+          <div class="form-group col-6">
+            <label for="addPortfolioTitle"><h5> Title </h5></label>
+            <input type="text" id="addPortfolioTitle" class="form-control rounded" placeholder="Title" name="addPortfolioTitle" required autofocus>
+          </div>
+          <div class="form-group col-6">
+            <label for="addPortfolioTitle"><h5> Username </h5></label>
+            <input type="text" id="addPortfolioUsername" class="form-control rounded" placeholder="username" name="addPortfolioTitle" required autofocus>
+          </div>
+          <button id="addPortfolioBtn" name="addPortfolioButton" type="submit" class="btn btn-warning btn-font float-right">Delete</button><br>
+          <button name="addPortfolioButton" type="submit" class="btn btn-dark btn-font float-left">Cancel</button>
+        </form>
+      </div>
+    </div>
+    `;
+    $('html, body').animate({ scrollTop: 0 }, 'fast');
+
+    document.getElementById('backToLanding').addEventListener('click', function() {
+      $("#landingPage").show();
+      $("#deleteButton").hide();
+      sessionStorage.removeItem('currentPortfolio');
+    });
+
+
+
+
+$('#delForm').submit(function(){
+  event.preventDefault();
+  if(!sessionStorage['userID']){
+        alert('401, permission denied');
+        return;
+    }
+
+  let  memberId = $('#delProductId').val();
+
+  console.log(memberId);
+
+  if (memberId === '') {
+    alert('Please enter portfolio id');
+  } else { $.ajax({
+          url :`${url}/deleteProductBtn/${id}`,
+          type :'DELETE',
+          data:{
+            userId: sessionStorage['userID']
+          },
+
+          success : function(data){
+            console.log(data);
+            if (data=='deleted'){
+              alert('deleted');
+              $('#delProductId').val('');
+            } else {
+              alert('Enter a valid id');
+            }
+
+          },//success
+          error:function(){
+            console.log('error: cannot call api');
+          }//error
+
+
+        });//ajax
+  }
+
+});//submit function for delete product
+
+    // Rahul's code ends
+
+
   }); // Document ready ends
