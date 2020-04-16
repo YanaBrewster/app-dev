@@ -268,7 +268,7 @@ app.delete('/deleteProductBtn/:id',(req,res)=>{
   }).catch(err => res.send(err));
 });
 
-app.patch('/addPortfolioForm/:id',(req,res)=>{
+app.patch('/updatedPortfolioPage/:id',(req,res)=>{
   const idParam = req.params.id;
   Product.findById(idParam,(err,product)=>{
     if (product['user_id'] == req.body.userId){
