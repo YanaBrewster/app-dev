@@ -677,6 +677,8 @@ $(document).ready(function(){
 
 
 
+
+
     // Rahul's code
 
       //updateProduct
