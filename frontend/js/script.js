@@ -11,7 +11,6 @@ $(document).ready(function(){
     success : function(configData){
       // url = `${configData.SERVER_URL}:${configData.SERVER_PORT}`;
       url = configData.SERVER_URL + ":" + configData.SERVER_PORT;
-      console.log(url);
       generateLandingPageCards();
     },//success
     error:function(){
@@ -192,7 +191,6 @@ $(document).ready(function(){
       type : 'GET',
       dataType : 'json',
       success : function(membersFromMongo){
-        console.log(membersFromMongo);
         $('#membersCards').empty();
         document.getElementById('membersCards').innerHTML +=
         '<h2 class="pt-5 pb-4">All Members</h2>';
@@ -315,7 +313,6 @@ $(document).ready(function(){
     let category = $('#addPortfolioCategory').val();
     let price = $('#addPortfolioPrice').val();
     let _memberId = sessionStorage.getItem('memberId');
-    console.log(_memberId);
 
     if (title == '' || description == '' || image == '' || category == '' || price == ''){
       alert('Please enter all details');
