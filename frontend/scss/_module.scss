@@ -1,5 +1,6 @@
+// YANAS code===================================================================
 // buttons
-// yanas code
+
 .btn-font
 {
 	font-family: 'Quicksand', sans-serif;
@@ -17,32 +18,48 @@
 }
 
 // background colours
-.bg-blue
-{
-	background-color: $blue;
-}
+
 .bg-cyan
 {
 	background-color: $cyan;
 }
+
 // borders
+
 .border-blue
 {
 	border: 3px solid $blue;
-	  // Yanas responsive code
 	@media (max-width: $tablet) {
 		border: 0;
 	}
 }
+
 .border-gray
 {
 	border: 3px solid $gray;
 }
+
 .border-red
 {
 	border: 3px solid $red;
 }
-// Yanas code ends
+
+.btn-red {
+  background-color: $red;
+  color: white;
+	cursor: pointer;
+  text-align: center;
+}
+
+.edit-button {
+  background-color: $gray-dark;
+  border-radius: 20px;
+  color: white;
+  cursor: pointer;
+  padding: 9px 15px;
+}
+
+// YANAS code ends===============================================================
 
 // Hayley's code
 .logo {
@@ -94,23 +111,3 @@
 }
 
 // Hayley's code ends
-//  Yanas code
-.btn-red {
-  background-color: $red;
-  color: white;
-	cursor: pointer;
-  text-align: center;
-
-	:hover {
-		color: white;
-	}
-
-}
-
-.edit-button {
-  background-color: $gray-dark;
-  border-radius: 20px;
-  color: white;
-  cursor: pointer;
-  padding: 9px 15px;
-}

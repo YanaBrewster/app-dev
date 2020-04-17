@@ -79,13 +79,6 @@ p {
   flex-direction: row;
 }
 
-.container-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding-left: 70px;
-}
-
 footer {
   bottom: 0;
   position: absolute;
@@ -106,10 +99,6 @@ footer {
   border-radius: 50px;
 }
 
-.bg-blue {
-  background-color: #99cccc;
-}
-
 .bg-cyan {
   background-color: #339999;
 }
@@ -129,6 +118,21 @@ footer {
 
 .border-red {
   border: 3px solid #FF9966;
+}
+
+.btn-red {
+  background-color: #FF9966;
+  color: white;
+  cursor: pointer;
+  text-align: center;
+}
+
+.edit-button {
+  background-color: #333333;
+  border-radius: 20px;
+  color: white;
+  cursor: pointer;
+  padding: 9px 15px;
 }
 
 .logo {
@@ -176,129 +180,6 @@ footer {
   cursor: pointer;
   padding: 6px 15px;
   text-align: center;
-}
-
-.btn-red {
-  background-color: #FF9966;
-  color: white;
-  cursor: pointer;
-  text-align: center;
-}
-.btn-red :hover {
-  color: white;
-}
-
-.edit-button {
-  background-color: #333333;
-  border-radius: 20px;
-  color: white;
-  cursor: pointer;
-  padding: 9px 15px;
-}
-
-.btn-font {
-  font-family: 'Quicksand', sans-serif;
-  font-weight: 700;
-  text-align: center;
-}
-
-.nav-font {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 700;
-}
-
-.radius {
-  border-radius: 50px;
-}
-
-.bg-blue {
-  background-color: #99cccc;
-}
-
-.bg-cyan {
-  background-color: #339999;
-}
-
-.border-blue {
-  border: 3px solid #99cccc;
-}
-@media (max-width: 720px) {
-  .border-blue {
-    border: 0;
-  }
-}
-
-.border-gray {
-  border: 3px solid #cccccc;
-}
-
-.border-red {
-  border: 3px solid #FF9966;
-}
-
-.logo {
-  width: 200px;
-}
-
-.header {
-  align-items: center;
-  display: flex;
-  height: 10%;
-  justify-content: space-between;
-}
-
-.nav {
-  justify-content: space-evenly;
-  width: 300px;
-}
-
-.button {
-  background-color: #339999;
-  border-radius: 20px;
-  color: white;
-  cursor: pointer;
-  padding: 9px 15px;
-}
-
-.signInButton {
-  cursor: pointer;
-  padding: 6px 15px;
-}
-
-.button-red {
-  background-color: #FF9966;
-  border-radius: 20px;
-  color: white;
-  cursor: pointer;
-  padding: 6px 15px;
-  text-align: center;
-}
-
-.button-black {
-  background-color: #333333;
-  border-radius: 20px;
-  color: white;
-  cursor: pointer;
-  padding: 6px 15px;
-  text-align: center;
-}
-
-.btn-red {
-  background-color: #FF9966;
-  color: white;
-  cursor: pointer;
-  text-align: center;
-}
-.btn-red :hover {
-  color: white;
-}
-
-.edit-button {
-  background-color: #333333;
-  border-radius: 20px;
-  color: white;
-  cursor: pointer;
-  padding: 9px 15px;
 }
 
 .container-form {
@@ -438,11 +319,6 @@ footer {
   width: 450px;
 }
 
-.artcard-title {
-  height: 56px;
-  margin-right: 50px;
-}
-
 .artcard-body {
   padding-left: 30px;
   padding-right: 30px;
@@ -451,21 +327,6 @@ footer {
 .artcard-columnwrap {
   display: flex;
   justify-content: space-between;
-}
-
-.artcard-description {
-  height: 72px;
-  overflow: hidden;
-  text-align: justify;
-}
-
-.art-image {
-  border: none;
-  border-radius: 50px;
-  height: auto;
-  max-height: 300px;
-  max-width: 449px;
-  width: auto;
 }
 
 .artcard-link {
