@@ -1,11 +1,11 @@
-// yanas code
+// YANAS code==================================================================
 // colours for app
 
 // dark grey for text and buttons
 $gray-dark: #333333;
 $dark: #333333;
 
-// light grey for background colour and boarders
+// light grey for background colour and borders
 $gray: #cccccc;
 $secondary: #cccccc;
 
@@ -29,9 +29,6 @@ $grey-light: #f5f9f8;
 @import 'base';
 @import 'layout';
 @import 'module';
-@import 'module';
-@import 'theme';
 @import 'portfolioPage';
-//yanas code ends
 @import 'landingPage';
 @import 'viewMorePage';

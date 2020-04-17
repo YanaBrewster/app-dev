@@ -1,4 +1,4 @@
-// Yanas code
+// YANAS code
 const mongoose = require('mongoose');
 const portfolioSchema = new mongoose.Schema({
     _id : mongoose.Schema.Types.ObjectId,
@@ -12,6 +12,6 @@ const portfolioSchema = new mongoose.Schema({
     ref : 'Member'
     }
 });
-// For it to be used
+
 module.exports = mongoose.model('Portfolio', portfolioSchema);
-// Yanas code ends
+// YANAS code ends

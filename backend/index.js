@@ -1,4 +1,4 @@
-// Yanas set up code
+// YANAS set up code ===========================================================
 const express = require('express');
 const app = express();
 const path = require('path');
@@ -42,7 +42,7 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(cors());
 
 // register a member ============================================================
-// Yanas code
+// YANAS code
 
 app.post('/registerMember', (req,res) => {
   //checking if member is found in the db already
@@ -70,7 +70,7 @@ app.post('/registerMember', (req,res) => {
 });
 
 // get all members =============================================================
-// Yanas code
+// YANAS code
 
 app.get('/allMembers', (req,res) => {
   Member.find().then(result => {
@@ -79,7 +79,7 @@ app.get('/allMembers', (req,res) => {
 });
 
 // login a member ==============================================================
-// Yanas code
+// YANAS code
 
 app.post('/loginMember', (req,res) => {
   Member.findOne({username:req.body.username},(err,memberResult) => {
@@ -98,7 +98,7 @@ app.post('/loginMember', (req,res) => {
 
 
 // add an artwork to portfolio =================================================
-// Yanas code
+// YANAS code
 
 app.post('/addPortfolio', (req,res) => {
   //checking if portfolio is found in the db already
@@ -124,7 +124,7 @@ app.post('/addPortfolio', (req,res) => {
 });
 
 // get all portfolios ==========================================================
-// Yanas code
+// YANAS code
 
 app.get('/allPortfolios', (req,res) => {
   Portfolio.find().then(result => {
@@ -134,7 +134,7 @@ app.get('/allPortfolios', (req,res) => {
 });
 
 
-//  Yanas code ends
+//  YANAS code ends
 // =============================================================================
 
 
