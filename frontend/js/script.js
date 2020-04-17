@@ -1,4 +1,4 @@
-// Yanas code
+// YANAS code
 
 $(document).ready(function(){
   $('html, body').animate({ scrollTop: 0 }, 'fast');
@@ -21,7 +21,7 @@ $(document).ready(function(){
 
 
   // Show and hide pages ===============================================================
-  // Yanas code
+  // YANAS code
 
   //check if there is any session sessionStorage
   if (sessionStorage.usersName) {
@@ -169,7 +169,7 @@ $(document).ready(function(){
 
 
   // Logout member ===============================================================
-  // Yanas code
+  // YANAS code
 
   $('#logoutBtn').click(function(){
     sessionStorage.clear();
@@ -183,7 +183,7 @@ $(document).ready(function(){
   });
 
   // view all members button ===============================================================
-  // Yanas code
+  // YANAS code
 
   $('#viewMembersBtn').click(function(){
     $.ajax({
@@ -209,7 +209,7 @@ $(document).ready(function(){
   });
 
   // register member ===============================================================
-  // Yanas code
+  // YANAS code
 
   // register user
   $('#registerForm').submit(function(){
@@ -247,7 +247,7 @@ $(document).ready(function(){
   });//submit function for register form
 
   // login member ===============================================================
-  // Yanas code
+  // YANAS code
 
   $('#loginForm').submit(function(){
     event.preventDefault();
@@ -293,13 +293,13 @@ $(document).ready(function(){
   });
 
   // show members name ===========================================================
-  // Yanas code
+  // YANAS code
   function showMemberName(name){
     document.getElementById('memberName').innerHTML =  '<h1 class="d-block text-center mt-4 mb-5">' + name + '\'s Account </h1>';
   }
 
-  // add portfolio form ===============================================================
-  // Yanas code
+  // add portfolio form ========================================================
+  // YANAS code
 
   $('#addPortfolioForm').submit(function(){
     event.preventDefault();
@@ -331,21 +331,22 @@ $(document).ready(function(){
         success : function(portfolio){
           if (portfolio !== 'Artwork already added') {
             alert('Artwork added to your portfolio');
+
+            $('#addPortfolioTitle').val();
+            $('#addPortfolioDescription').val();
+            $('#addPortfolioImage').val();
+            $('#addPortfolioCategory').val();
+            $('#addPortfolioPrice').val();
+            $('#addPortfolioMemberId').val();
+
+            $('#addPortfolioForm').trigger('reset');
+            $('#uploadPortfolioPage').hide();
+            generateMyPortfolios();
+            $('#projectPage').show();
+            $('html, body').animate({ scrollTop: 50}, 'fast');
           } else {
             alert('Title taken already, please try another one');
           }
-          $('#addPortfolioTitle').val();
-          $('#addPortfolioDescription').val();
-          $('#addPortfolioImage').val();
-          $('#addPortfolioCategory').val();
-          $('#addPortfolioPrice').val();
-          $('#addPortfolioMemberId').val();
-
-          $('#addPortfolioForm').trigger('reset');
-          $('#uploadPortfolioPage').hide();
-          generateMyPortfolios();
-          $('#projectPage').show();
-          $('html, body').animate({ scrollTop: 50}, 'fast');
         },   // success
         error:function(){
           // console.log('error: cannot call api');
@@ -354,7 +355,7 @@ $(document).ready(function(){
     } //else
   }); // submit add portfolio
 
-  // Yanas code ENDS
+  // YANAS code ENDS ===========================================================
 
 
   // ===================================================================================

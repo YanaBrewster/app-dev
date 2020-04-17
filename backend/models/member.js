@@ -1,5 +1,5 @@
-// Yanas code
-const mongoose = require('mongoose');  // since we are using Moongoose we have to require it
+// YANAS code
+const mongoose = require('mongoose'); 
 
 const memberSchema = new mongoose.Schema({
   _id : mongoose.Schema.Types.ObjectId,
@@ -12,4 +12,4 @@ const memberSchema = new mongoose.Schema({
 
 });
 module.exports = mongoose.model('Member', memberSchema);
-// Yanas code ends
+// YANAS code ends
