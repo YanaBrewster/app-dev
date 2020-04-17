@@ -1,0 +1,34 @@
+// YANAS code==================================================================
+// colours for app
+
+// dark grey for text and buttons
+$gray-dark: #333333;
+$dark: #333333;
+
+// light grey for background colour and borders
+$gray: #cccccc;
+$secondary: #cccccc;
+
+// Light blue for boarders
+$blue: #99cccc;
+$info: #99cccc;
+
+// For blue button background colour and category name colour
+$cyan: #339999;
+$primary: #339999;
+
+// red for delete buttons
+$red: #FF9966;
+$danger: #FF9966;
+
+//Light grey for photo background
+$grey-light: #f5f9f8;
+
+
+// SMACCS Set up
+@import 'base';
+@import 'layout';
+@import 'module';
+@import 'portfolioPage';
+@import 'landingPage';
+@import 'viewMorePage';

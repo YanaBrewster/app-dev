@@ -1,0 +1,32 @@
+// Hayley's code
+.flexContainer-row {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.flexContainer-flexStart {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: row;
+}
+
+
+// Hayley's code ends ==========================================================
+
+// YANAS code ==================================================================
+
+// grid break points - max
+
+$mobile: 540px;
+$tablet: 720px;
+$desktop: 960px;
+$desktop-xl: 1140px;
+
+footer {
+  bottom: 0;
+  position: absolute;
+}
+
+// YANAS code ends
